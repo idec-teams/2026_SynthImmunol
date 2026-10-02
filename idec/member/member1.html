@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member</title>
+        <link rel="icon" href="../image/所有图（除design头图）/community图标.png" type="image/png">
+    <style>
+        /* 基础样式与重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            background-size: cover;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* 背景叠加层 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(245, 245, 245, 0.85);
+            z-index: -1;
+        }
+
+        /* 网站头部 */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 85px;
+            overflow: visible;      /* 关键：允许伪元素超出 */
+            color: white;
+            z-index: 1000;
+            box-shadow: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+        .site-header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 200px;          /* 比容器 85px 高，就能上下超出 */
+    transform: translate(-50%, -50%);
+    background-image: url('../image/所有图（除design头图）/导航栏.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;            /* 放到内容下面 */
+    pointer-events: none;   /* 不挡点击 */
+}
+
+        .site-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #64ffda;
+        }
+
+        .site-nav {
+            display: flex;
+            gap: 25px;
+            position: relative;
+        }
+        .nav-item {
+            position: relative;
+        }
+
+       .nav-icon {
+    width: 50px;         /* 控制图标大小，按需调整 */
+    height: 50px;
+    object-fit: contain; /* 保持图片比例，不变形 */
+    flex-shrink: 0;      /* 防止图标被文字挤压变形 */
+    margin-right: 8px;   /* 图标与文字的间距 */
+}
+        .nav-link {
+            display: flex;
+            align-items: center;
+            color: rgba(8, 0, 0, 0.9);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            transition: all 0.3s;
+            height: 70px;
+            cursor: pointer;
+            font-weight: 600;   /* 新增：让文字变粗 */
+        }
+        
+        .nav-link:hover {
+            color: #f5cd1acb;
+            background: rgba(100, 255, 218, 0.1);
+        }
+        
+        .nav-link.has-dropdown::after {
+            content: '▾';
+            margin-left: 5px;
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+        
+        .nav-item:hover .nav-link.has-dropdown::after {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            overflow: hidden;
+        }
+        
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu a:hover {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding-left: 25px;
+        }
+        /* ===== 顶部轮播区域 (替代原大图) ===== */
+        .top-carousel-section {
+            margin-top: 50px; /* 为固定header留出空间 */
+            width: 100%;
+            position: relative;
+        }
+
+        .hero-carousel {
+            width: 100%;
+            height: 800px;
+            position: relative;
+            overflow: hidden;
+            background: #0a192f;
+        }
+
+        .hero-carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        .hero-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 渐变遮罩 + 文字 */
+        .hero-slide .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 25, 47, 0.85));
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-slide .slide-overlay h1 {
+            font-size: 3.2rem;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.7);
+            letter-spacing: 1px;
+        }
+
+        .hero-slide .slide-overlay p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 轮播控制按钮 (大) */
+        .hero-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+            z-index: 20;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.08);
+            border-color: #64ffda;
+            color: #64ffda;
+        }
+
+        .hero-btn.prev {
+            left: 24px;
+        }
+
+        .hero-btn.next {
+            right: 24px;
+        }
+
+        /* 指示器 (dots) */
+        .hero-dots {
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            z-index: 20;
+        }
+
+        .hero-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .hero-dot.active {
+            background: #64ffda;
+            border-color: #64ffda;
+            transform: scale(1.2);
+            box-shadow: 0 0 16px rgba(100, 255, 218, 0.5);
+        }
+
+        /* ===== 图片网格区域 ===== */
+        .gallery-section {
+            width: 100%;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+.gallery-title {
+    width: 400px;
+    height: 120px;
+    background: url("../image/所有图（除design头图）/member.png") no-repeat center / contain;
+    overflow: hidden;
+    display: block;        /* 块级元素，margin auto 才生效 */
+    margin: 0 auto 60px;   /* 上0、左右auto、下60px */
+}
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+       
+
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+ .gallery-item.single {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 30%;
+    height: 250px;
+}
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+
+        .gallery-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+            padding: 25px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-info {
+            transform: translateY(0);
+        }
+
+        .gallery-item-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .gallery-item-category {
+            display: inline-block;
+            background: #64ffda;
+            color: #1a237e;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .gallery-item-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* 辅助 */
+        .mt-2 { margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <!-- 网站头部 -->
+        <header class="site-header">
+        <div class="site-logo">SynthImmunol NMU</div>
+       <nav class="site-nav">
+             <div class="nav-item" id="home">
+                    <a href="../home/index.html" class="nav-link">
+                        <img src="../image/图标/home.png"alt="" class="nav-icon">Home</a>
+                </div>
+                
+                <div class="nav-item" id="experiments">
+                    <a href="#experiments" class="nav-link has-dropdown">
+                        <img src="../image/图标/project.png"alt="" class="nav-icon">Project</a>
+                    <div class="dropdown-menu">
+                        <a href="../background/background.html">Background</a>
+                        <a href="../design/design.html">Design</a>
+                        <a href="../result/result.html">Result</a>
+                        <a href="../report_maintext_SynthImmunol.pdf">Report</a>
+                        <a href="../Extended Data _SynthImmunol.pdf">Supplement</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item" id="projects">
+                    <a href="#projects" class="nav-link has-dropdown">
+                        <img src="../image/图标/document.png"alt="" class="nav-icon">Documents</a>
+                    <div class="dropdown-menu">
+                        <a href="../notebook/notebook.html">Lab notebook</a>
+                        <a href="../protocol/protocol.html">Protocols</a>  
+                    </div>
+                </div>
+                 <div class="nav-item" id="publications">
+                    <a href="#publications" class="nav-link has-dropdown">Challenge</a>
+                </div>
+                <div class="nav-item" id="team">
+                    <a href="#team" class="nav-link has-dropdown">
+                        <img src="../image/图标/team.png"alt="" class="nav-icon">Team</a>
+                    <div class="dropdown-menu">
+                        <a href="../member/member1.html">Member</a>
+                        <a href="../Community/Community.html">Community</a>
+                    </div>
+                </div>
+                
+               
+            </nav>
+    </header>
+    <!-- ===== 顶部轮播区域 ===== -->
+    <section class="top-carousel-section">
+        <div class="hero-carousel" id="heroCarousel">
+            <div class="hero-carousel-track" id="heroTrack">
+                <!-- 幻灯片 1 -->
+                <div class="hero-slide">
+                    <img src="../image/单人照/1.jpg" alt="实验室研究">
+                </div>
+                <!-- 幻灯片 2 -->
+                <div class="hero-slide">
+                    <img src="../image/单人照/2.jpg" alt="团队协作">
+
+                </div>
+            </div>
+
+            <!-- 控制按钮 -->
+            <button class="hero-btn prev" id="heroPrev">❮</button>
+            <button class="hero-btn next" id="heroNext">❯</button>
+
+            <!-- 指示器 -->
+            <div class="hero-dots" id="heroDots"></div>
+        </div>
+    </section>
+
+    <!-- === 图片网格区域 === -->
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <div class="gallery-header">
+                <h2 class="gallery-title"></h2>
+            </div>
+        </div>
+
+        <!-- Teacher 网格 -->
+        <div class="gallery-container">
+            <div class="gallery-header">
+            </div>
+            <div class="gallery-grid">
+                 <div class="gallery-item" data-category="experiment">
+                    <img src="../image/单人照/zkq.jpg" alt="细胞培养" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">kaiqing Zhang</h3>
+                        <p class="gallery-item-description">Undergraduate student majoring in Medical Imaging, passionate swimmer. In the world of medical imaging, I seek the microscopic truth of life with rigorous precision; in the swimming pool, I forge unwavering resilience with every stroke.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="experiment">
+                    <img src="../image/单人照/jy.jpg" alt="数据分析" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Yang Jin</h3>
+                        <p class="gallery-item-description">The plan is to fan this spark into a flame.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="meeting">
+                    <img src="../image/单人照/fy.jpg" alt="团队讨论" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Yue Fu</h3>
+                        <p class="gallery-item-description">Hello everyone～I'm Yue Fu, an ENFJ to the core.
+I love climbing high peaks to greet the sunrise,
+and wandering river vales to seek surprise.
+Delighted to join this warm family.
+Together let’s taste this world’s variety.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="conference">
+                    <img src="../image/单人照/hzq.jpg" alt="学术报告" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Ziqian He</h3>
+                        <p class="gallery-item-description">Team cartoon poster illustrator and nature-loving avid hiker, blending unyielding perseverance, strong team ethos, and a bold adventurous streak.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="activity">
+                    <img src="../image/单人照/jqw.jpg" alt="团队建设" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Qiwen Jiang</h3>
+                        <p class="gallery-item-description">A man, a scalpel, a mind, a pipette, a discovery, a dream.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="achievement">
+                    <img src="../image/单人照/jkl.jpg" alt="科研成果" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Kaili Jin</h3>
+                        <p class="gallery-item-description">An enduring night owl. Frail but with a tough immune system.
+Medical science animation creator, selfie lover on Douyin.
+Extreme sports fan: bucket list with scuba diving, bungee jumping & snow mountain climbing.
+Grinding research while chasing mountains and seas.</p>
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="conference">
+                    <img src="../image/单人照/xhc.jpg" alt="学术报告" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Haochen Xu</h3>
+                        <p class="gallery-item-description">Kindness is not weakness,but a conscious choice I make everyday</p>
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="experiment">
+                    <img src="../image/单人照/zbx.jpg" alt="数据分析" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Binxuan Zhang</h3>
+                        <p class="gallery-item-description">Undergraduate student, Naval Medical University, where insatiable curiosity meets
+                  relentless competitive spirit, a symphony of success is composed!</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="activity">
+                    <img src="../image/单人照/yxr.jpg" alt="团队建设" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Xinru Yuan</h3>
+                        <p class="gallery-item-description">a paint-stained, margin-doodling, novel-hoarding scientific experimentation enthusiast who treats caffeine as a food group.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="meeting">
+                    <img src="../image/单人照/lqc.jpg" alt="文献阅读" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Qichang Liu</h3>
+                        <p class="gallery-item-description">I am what I am — a different kind of fruit. Aiming for Super Haha Star.
+Live long and prosper. </p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="activity">
+                    <img src="../image/单人照/lzd.jpg" alt="生日庆祝" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Zhangdong Liu</h3>
+                        <p class="gallery-item-description">Grounded in the unity of knowledge and action and the principle of seeking truth from facts, I turn curiosity into clinical execution and theory into patient-centered results. A single spark can start a prairie fire.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="meeting">
+                    <img src="../image/单人照/wyx.jpg" alt="团队讨论" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Yuxuan Wang</h3>
+                        <p class="gallery-item-description">Hello everyone, my name is Yuxuan Wang, a typical INTJ. I enjoy novels and drawing in quiet time, plus swimming and badminton. I look forward to brainstorming and exploring iDEC directed evolution and unlocking exciting research ideas together!</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="achievement">
+                    <img src="../image/单人照/yzy.jpg" alt="科研成果" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Ziyan Yu</h3>
+                        <p class="gallery-item-description">A late start is a start too.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="experiment">
+                    <img src="../image/单人照/dzy.jpg" alt="细胞培养" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Zheyuan Deng</h3>
+                        <p class="gallery-item-description">Xiao Deng, at the tender age of twenty-two, sound in all four limbs, breathing unaided since childhood, handy with a smartphone, capable of eating three meals a day, and fond of water sports. By day, bound for school; by night, bound for the pillow.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="meeting">
+                    <img src="../image/单人照/cy.jpg" alt="文献阅读" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Yue Chao</h3>
+                        <p class="gallery-item-description">Hi everyone! I’m Chaoyue from Beijing, China. This is my first year in a professional biomedical research project. I’ve learned a lot from this warm team, and I’m excited to begin my research journey through this competition.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="activity">
+                    <img src="../image/单人照/pylz.jpg" alt="生日庆祝" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">Yulongzi Piao</h3>
+                        <p class="gallery-item-description">Boundless imagination meets fervent empathy, a symphony of wonder is composed!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ========== 顶部轮播 (hero) ==========
+            const heroCarousel = document.getElementById('heroCarousel');
+            const heroTrack = document.getElementById('heroTrack');
+            const heroSlides = heroTrack.querySelectorAll('.hero-slide');
+            const heroDotsContainer = document.getElementById('heroDots');
+            const heroPrevBtn = document.getElementById('heroPrev');
+            const heroNextBtn = document.getElementById('heroNext');
+
+            let currentHero = 0;
+            const totalHero = heroSlides.length;
+            let autoPlay = null;
+
+            // 创建dots
+            heroSlides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('data-index', i);
+                dot.addEventListener('click', () => goToHero(i));
+                heroDotsContainer.appendChild(dot);
+            });
+
+            function goToHero(index) {
+                if (index < 0) index = totalHero - 1;
+                if (index >= totalHero) index = 0;
+                currentHero = index;
+                heroTrack.style.transform = 'translateX(-' + (currentHero * 100) + '%)';
+                
+                // 更新指示器
+                document.querySelectorAll('.hero-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentHero);
+                });
+            }
+
+            function nextHero() {
+                goToHero(currentHero + 1);
+            }
+
+            function prevHero() {
+                goToHero(currentHero - 1);
+            }
+
+            // 按钮事件
+            heroNextBtn.addEventListener('click', nextHero);
+            heroPrevBtn.addEventListener('click', prevHero);
+
+            // 启动自动播放
+            function startAutoPlay() {
+                if (autoPlay) clearInterval(autoPlay);
+                autoPlay = setInterval(nextHero, 5000);
+            }
+
+            function stopAutoPlay() {
+                if (autoPlay) {
+                    clearInterval(autoPlay);
+                    autoPlay = null;
+                }
+            }
+
+            // 鼠标悬停控制
+            heroCarousel.addEventListener('mouseenter', stopAutoPlay);
+            heroCarousel.addEventListener('mouseleave', startAutoPlay);
+
+            // 初始化
+            goToHero(0);
+            startAutoPlay();
+
+        })();
+    </script>
+</body>
+</html>

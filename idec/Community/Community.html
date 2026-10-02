@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community</title>
+        <link rel="icon" href="../image/所有图（除design头图）/community图标.png" type="image/png">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: url("../image/背景/community背景图.png");
+            background-size: cover;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* 背景叠加层 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(245, 245, 245, 0.85);
+            z-index: -1;
+        }
+        
+       /* 网站头部 */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 85px;
+            overflow: visible;      /* 关键：允许伪元素超出 */
+            color: white;
+            z-index: 1000;
+            box-shadow: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+        .site-header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 200px;          /* 比容器 85px 高，就能上下超出 */
+    transform: translate(-50%, -50%);
+    background-image: url('../image/所有图（除design头图）/导航栏.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;            /* 放到内容下面 */
+    pointer-events: none;   /* 不挡点击 */
+}
+        
+        .site-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #64ffda;
+        }
+        
+        .site-nav {
+            display: flex;
+            gap: 25px;
+            position: relative;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-icon {
+    width: 50px;         /* 控制图标大小，按需调整 */
+    height: 50px;
+    object-fit: contain; /* 保持图片比例，不变形 */
+    flex-shrink: 0;      /* 防止图标被文字挤压变形 */
+    margin-right: 8px;   /* 图标与文字的间距 */
+}
+        .nav-link {
+            display: flex;
+            align-items: center;
+            color: rgba(8, 0, 0, 0.9);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            transition: all 0.3s;
+            height: 70px;
+            cursor: pointer;
+            font-weight: 600;   /* 新增：让文字变粗 */
+        }
+        
+        .nav-link:hover {
+            color: #f5cd1acb;
+            background: rgba(100, 255, 218, 0.1);
+        }
+        
+        .nav-link.has-dropdown::after {
+            content: '▾';
+            margin-left: 5px;
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+        
+        .nav-item:hover .nav-link.has-dropdown::after {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            overflow: hidden;
+        }
+        
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu a:hover {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding-left: 25px;
+        }
+        
+        #experiments .dropdown-menu { min-width: 220px; }
+        #projects .dropdown-menu { min-width: 180px; }
+        #team .dropdown-menu { min-width: 160px; }
+        #publications .dropdown-menu { min-width: 200px; }
+         
+        /* === 侧边栏 - 重新设计，与主内容协调 === */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 25px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            border: 1px solid rgba(26, 35, 126, 0.1);
+            margin-top: 50px; /* 与顶部大图重叠一部分，增加视觉动感 */
+            margin-left: -40px; 
+        }
+        
+        .sidebar-header {
+            padding: 0 25px 20px 25px;
+            border-bottom: 2px solid #5faaf5;
+        }
+        
+        .sidebar-header h3 {
+            color: #a9a9f7;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 15px 0;
+        }
+        
+        .sidebar-nav li {
+            margin: 5px 0;
+        }
+        
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            color: #444;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .sidebar-nav a:hover {
+            background: rgba(26, 35, 126, 0.05);
+            border-left-color: #1a237e;
+            color: #1a237e;
+        }
+        
+        .sidebar-nav a.active {
+            background: rgba(26, 35, 126, 0.1);
+            border-left-color: #ff9100;
+            color: #1a237e;
+            font-weight: 500;
+        }
+        
+        .nav-icon {
+            margin-right: 12px;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .sun-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../image/头图/community头图.png') bottom/cover no-repeat;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 3rem;
+            text-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.8);
+        }
+
+        .home1 {
+            font-size: 16rem;
+            color: white;
+            display: block;
+            line-height: 1;
+        }
+
+        .home2 {
+            color: #ff9100;
+            font-size: 5rem;
+            text-shadow: -0.2rem -0.2rem 0 #000000,
+                        0.2rem -0.2rem 0 #000000,
+                        -0.2rem 0.2rem 0 #000000,
+                        0.2rem 0.2rem 0 #000000;
+            margin-top: 5vh;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 4rem;
+            animation: bounce 2s infinite;
+            z-index: 3;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-2rem); }
+            60% { transform: translateX(-50%) translateY(-1rem); }
+        }
+        /* === 重新设计的主内容区域 - 使用flex布局让侧边栏和内容并排 === */
+        .main-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            gap: 30px;
+            position: relative;
+            z-index: 5;
+            align-items: flex-start; /* 顶部对齐 */
+        }
+        
+        /* 内容区域优化 */
+        .content-main {
+            flex: 1; /* 占据剩余空间 */
+            min-width: 0; /* 防止flex溢出 */
+            padding: 0; /* 移除内边距，由内部元素控制 */
+        }
+        
+        /* 以下样式保留原有内容区域的美观设计 */
+        .content-section {
+            background-color: transparent !important;
+            max-width: 100% !important;
+            height: auto !important;
+            border-radius: 0 !important;
+            z-index: 3 !important;
+            top: 0 !important;
+            position: relative !important;
+            padding-bottom: 5vh !important;
+            margin-bottom: 5vh !important;
+        }
+        
+        .text-content0 {
+            top: 0;
+            min-height: auto;
+            width: 100%;
+            position: relative;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .text-content {
+            flex: 1;
+            width: 100%;
+            min-height: auto;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        /* 标题样式优化 */
+        .title-style {
+            position: relative;
+            top: 2vh;
+            text-align: left;
+            align-self: flex-start;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #1a237e;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff9100;
+            width: 100%;
+        }
+        
+        #Overview.title-style {
+            font-size: 2.5rem;
+        }
+        
+        /* 正文样式优化 */
+        .nomal-style {
+            position: relative;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            text-align: justify;
+            width: 100%;
+        }
+        
+        .nomal-style span {
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .nomal-style span[id="General laboratory safety"] {
+            font-size: inherit;
+            font-weight: inherit;
+        }
+        
+        .nomal-style span[style*="font-size: 3rem"] {
+            font-size: 2.2rem !important;
+            font-weight: 600 !important;
+            color: #1a237e;
+            margin: 30px 0 15px 0;
+        }
+        
+        .nomal-style span[style*="font-size: 2rem"] {
+            font-size: 1.4rem !important;
+            font-weight: 400 !important;
+            color: #ff9100;
+            font-style: italic;
+            margin: 20px 0 10px 0;
+        }
+        
+        .nomal-style span[style*="font-weight: bold"]:not([style*="font-size"]) {
+            color: #1a237e;
+            font-weight: 600 !important;
+        }
+        
+        /* 图片容器优化 */
+        .img-div {
+            width: 100%;
+            padding-left: 2vw;
+            padding-right: 2vw;
+            min-height: auto;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 40px 0 20px 0;
+            justify-content: center;
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eef2f6;
+        }
+        
+        .img {
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+            margin-bottom: 15px;
+        }
+        
+        .img-div div[style*="text-align: center"] {
+            text-align: center;
+            justify-content: center;
+            align-self: flex-start;
+            display: flex;
+            position: relative;
+            width: 100%;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #eef2f6;
+        }
+        
+        .img-div div[style*="text-align: center"] h {
+            position: center;
+            text-align: center;
+            color: #666;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* 按钮样式优化 */
+        .button0 {
+            position: relative;
+            align-self: flex-end;
+            height: auto;
+            width: auto;
+            margin: 30px 0;
+            margin-right: 2vw;
+        }
+        
+        .outline-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
+            border: none;
+        }
+        
+        .outline-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.3);
+            background: linear-gradient(135deg, #283593, #1a237e);
+        }
+        
+        .progress-container {
+            flex: 1 !important;
+            min-width: 200px !important;
+            background: rgba(255, 255, 255, 0.2) !important;
+            height: 6px !important;
+            border-radius: 3px !important;
+        }
+        
+        
+        /* 引用文本优化 */
+        .nomal-style span[style*="font-weight:lighter"] {
+            font-size: 1.3rem !important;
+            color: #ff9100;
+            font-style: italic;
+            border-left: 4px solid #ff9100;
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 992px) {
+            .main-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                position: static;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title-style {
+                font-size: 1.8rem;
+            }
+            
+            #Overview.title-style {
+                font-size: 2rem;
+            }
+            
+            .nomal-style span[style*="font-size: 3rem"] {
+                font-size: 1.8rem !important;
+            }
+            
+            .control-buttons {
+                justify-content: center;
+            }
+            
+            .img {
+                min-height: 200px;
+            }
+
+            .main-wrapper {
+                padding: 20px 15px;
+            }
+            .content-main {
+                padding: 0;
+            }
+        }
+    </style>
+    <!-- 添加Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="star-background" id="starBackground"></div>
+    
+        <header class="site-header">
+        <div class="site-logo">SynthImmunol NMU</div>
+       <nav class="site-nav">
+             <div class="nav-item" id="home">
+                    <a href="../home/index.html" class="nav-link">
+                        <img src="../image/图标/home.png"alt="" class="nav-icon">Home</a>
+                </div>
+                
+                <div class="nav-item" id="experiments">
+                    <a href="#experiments" class="nav-link has-dropdown">
+                        <img src="../image/图标/project.png"alt="" class="nav-icon">Project</a>
+                    <div class="dropdown-menu">
+                        <a href="../background/background.html">Background</a>
+                        <a href="../design/design.html">Design</a>
+                        <a href="../result/result.html">Result</a>
+                        <a href="../report_maintext_SynthImmunol.pdf">Report</a>
+                        <a href="../Extended Data _SynthImmunol.pdf">Supplement</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item" id="projects">
+                    <a href="#projects" class="nav-link has-dropdown">
+                        <img src="../image/图标/document.png"alt="" class="nav-icon">Documents</a>
+                    <div class="dropdown-menu">
+                        <a href="../notebook/notebook.html">Lab notebook</a>
+                        <a href="../protocol/protocol.html">Protocols</a>  
+                    </div>
+                </div>
+                 <div class="nav-item" id="publications">
+                    <a href="#publications" class="nav-link has-dropdown">Challenge</a>
+                </div>
+                <div class="nav-item" id="team">
+                    <a href="#team" class="nav-link has-dropdown">
+                        <img src="../image/图标/team.png"alt="" class="nav-icon">Team</a>
+                    <div class="dropdown-menu">
+                        <a href="../member/member1.html">Member</a>
+                        <a href="../Community/Community.html">Community</a>
+                    </div>
+                </div>
+                
+               
+            </nav>
+    </header>
+    <section class="hero">
+        <div class="sun-background"></div>
+        <div class="hero-content">
+            <span class="home1"></span>
+            <h1 class="home2"></h1>
+        </div>
+        <div class="scroll-indicator">Explore more <i class="fas fa-chevron-down"></i></div>
+    </section>
+    
+    <!-- 主内容区域：侧边栏和内容并排，侧边栏在左，内容在右 -->
+    <div class="main-wrapper">
+        <!-- 侧边栏 - 重新设计的样式，现在位于左侧并与主内容协调 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Content</h3>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#Slide1" class="active">
+                        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Knowledge to Action
+                    <li><a href="#Slide2">
+                        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Trust Gap
+                    <li><a href="#Slide3">
+                        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Community Needs
+                    </a></li>
+                    <li><a href="#Slide4">
+                        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Tailored Outreach
+                    </a></li>
+                    <li><a href="#Slide5">
+                        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Simple Science
+                    </a></li>
+                    <li><a href="#Slide6">
+                    <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Community Action
+                    </a></li>
+                <li><a href="#Slide7">
+                    <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Clinical Communication
+                    </a></li>
+                    <li><a href="#Slide8">
+                    <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Long-Term Commitment
+                    </a></li>
+            </nav>
+        </aside>
+
+        <!-- 主要内容区域 -->
+        <main class="content-main">
+            <section id="content" class="content-section">
+                <div class="text-content0">
+                    <div class="text-content">
+                        <p id="Slide1" class="title-style">Slide 1</p>
+                        <p class="nomal-style">
+                            <span style="font-size: 3rem; font-weight: bold;"> From Understanding the World to Transforming the World</span>
+                          In our immunology classes we learned how B cells mutate their antibody genes and are then selected for stronger binding — somatic hypermutation, the process behind antibody affinity maturation. We then asked whether this natural principle could be used in our own research. But research should not stay in the laboratory. As these technologies move closer to patients, the people who may one day receive them need clear, reliable information too. That is why we took this work into the community.
+                        </p>
+                        <p id="#Slide2" class="title-style">Slide 2</p>
+                        <p class="nomal-style">
+                            <span style="font-size: 3rem; font-weight: bold;">We Saw the Trust Gap in Grassroots Communities</span>
+                           Cell therapy is a promising new way for tough diseases, but people in grassroots communities just didn’t trust it. They often heard bad things—sky-high costs, failed cases, and messy wrong information online. No one told them the real science behind it. We knew this fear wasn’t simply from facts, but from an information gap. So we decided to step in, bring the truth to the community, and turn fear into understanding through our winter-to-spring community outreach.
+                        </p>
+                        
+                        <div class="img-div">
+                            <img src="../Community/img/1.png"style="width: 100%; border-radius: 12px;">(Free clinic activity during the Spring “Learn from Lei Feng” campaign at Changhai Hospital.)
+                        </div>
+                        <p id="Slide3" class="title-style">Slide 3</p>
+                        
+                        <p class="nomal-style">
+                            <span style="font-size: 3rem; font-weight: bold;">We Listened Closely to What the Community Really Needed</span>
+                           We didn’t just talk—we asked first. We did a full survey in the community, made the questions easy to understand, and helped elderly residents and people with low education fill them out one by one. We found that 80.5% of residents had no knowledge at all of cell therapy, while only 8.2% reported full knowledge. We also found that treatment safety was the topic residents most wanted to learn about, accounting for 44.8% of responses. These answers told us exactly what to explain and helped us tailor our science popularization to different groups.</p>
+
+                        <div class="img-div">
+                             <img src="../Community/img/图片1.png"style="width: 100%; border-radius: 12px;">(Residents’ level of understanding of cell therapy based on the questionnaire survey.)
+                        </div>
+                        <div class="img-div">
+                             <img src="../Community/img/图片2.png"style="width: 100%; border-radius: 12px;">(Topics about cell therapy that residents most wanted to learn about, with treatment safety ranking first.)
+                        </div>
+                        <p id="Slide4" class="title-style">Slide 4</p>
+                        <p class="nomal-style">
+                            <span style="font-size: 3rem; font-weight: bold;">We Spoke to Everyone in Their Own Way</span>
+                            We divided the community into four groups and tailored our talks for each. For patients and their families who needed treatment badly, we chatted one-on-one and talked about safety and recovery with real cases. For elderly neighbors who knew little about the topic, we used simple words, pictures and slow short videos. For young and middle-aged people with basic knowledge, we held lectures and Q&As to sort out their understanding. For school students, we used age-appropriate and engaging science classes to help them become little health messengers for their families. The photos here show representative examples of these audience-focused activities, including rural science popularization for children and elderly residents and an in-school science lecture.
+                        </p>
+                         <div class="img-div">
+                             <img src="../Community/img/2.png"style="width: 100%; border-radius: 12px;">(Science popularization activity for children during a rural free clinic.)
+                        </div>
+                        <div class="img-div">
+                             <img src="../Community/img/3.png"style="width: 100%; border-radius: 12px;">(Science popularization activity for elderly residents during a rural free clinic.)
+                        </div>
+                         <div class="img-div">
+                            <img src="../Community/img/4.jpg"style="width: 100%; border-radius: 12px;">(Science popularization lecture delivered to students at a school.)
+</div>
+                        <p id="Slide5" class="title-style">Slide 5</p>
+                        <p class="nomal-style">
+                            <span style="font-size: 3rem; font-weight: bold;">We Crafted a Simple Science Plan for the Community</span>
+                            Everyone's biggest fear was treatment safety, and cytokine storm was what they worried about most. So we planned out exactly how to explain this medical stuff in an easy way. We'd make it clear that IL-6 is a key factor involved in cytokine storm, and then tell them the real ways to deal with it. Doctors use IL-6 antibody drugs to help control it, and cell therapy technology is always getting better to lower this risk from the very start. We decided to use simple everyday examples, skip all the hard medical words, and keep everything plain and easy to understand. Our goal was to make sure no one was confused and that people could understand the safety concerns they had heard about.
+                        </p>
+                        
+                        <p id="Slide6" class="title-style">Slide 6</p>
+                        
+                        <p class="nomal-style">
+                            <span style="font-size: 3rem; font-weight: bold;">We Brought Warmth and Science This Spring Festival</span> 
+                           Since the Spring Festival is a time for reunion, warmth and heartfelt traditions, it was a good opportunity to connect with the community. We brought rice, oil and New Year gifts, visited patients' homes door to door, and sent our New Year wishes first. We then set up outreach activities in community spaces and medical settings, including consultation desks, picture boards and one-on-one answer corners, with doctors providing professional support. Right at these activities, we put our simple science plan into practice. We talked about cytokine storm and safety facts with anyone who asked, using the easy everyday examples and plain words we had planned earlier. For people who could receive cell therapy, we shared detailed treatment information and professional advice. At the same time, our broader outreach included rural free-clinic activities that brought health services and science popularization closer to residents with limited medical resources.
+                        </p>
+                        
+                        <div class="img-div">
+                             <img src="../Community/img/5.jpg"style="width: 100%; border-radius: 12px;">(Rural free clinic at Longwangzhuang Village Health Room during the 2026 Q1 chronic-disease follow-up.)
+                        </div>
+                         <p id="Slide7" class="title-style">Slide 7</p>
+                        <p class="nomal-style">
+                            <span style="font-size: 3rem; font-weight: bold;">We Took This Communication Skill to the Clinical Setting</span>
+                            The same need for clear explanation appeared again during our clinical training. At the pediatric sample-collection window of Changhai Hospital, one of us collected throat swabs from children held in their parents’ arms. Mask on, there was little time to talk. After each procedure the mask came off, and he explained to the parent what the sample was for and what would happen next. Many of those parents were as anxious as the residents we had met in the community, and often for the same reason: no one had explained things clearly. Clear communication is not a one-off exercise — it is part of how we intend to practise medicine.
+                        </p> 
+                         <div class="img-div">
+                             <img src="../Community/img/6.png"style="width: 100%; border-radius: 12px;">(Mask on: collecting a throat swab from a child at the pediatric window of Changhai Hospital.)
+                        </div>
+                        <div class="img-div">
+                             <img src="../Community/img/7.png"style="width: 100%; border-radius: 12px;">(Mask off, same window: explaining the sampling procedure to the parent.)
+                        </div>
+                        <p id="Slide8" class="title-style">Slide 8</p>
+                        <p class="nomal-style">
+                            <span style="font-size: 3rem; font-weight: bold;"> We'll Keep Standing by the Community for the Long Run</span>
+                            This Spring Festival activity wasn’t a one-off. We broke the information wall for grassroots neighbors and let cutting-edge medical knowledge walk into the community. And we’re not stopping here—we’ll keep coming back to the community, do regular science popularization, help areas with poor medical resources, and keep closing the information gap. We believe that, with warmth and professional knowledge, everyone in the community can face diseases with science, not fear, and hold onto every hope for treatment.
+                        </p> 
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+            
+</body>
+</html>
