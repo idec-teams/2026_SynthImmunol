@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notebook</title>
+    <link rel="icon" href="../image/所有图（除design头图）/community图标.png" type="image/png">
+    <style>
+         /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5 url('../image/背景/notebook背景图.png') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* 背景叠加层 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(245, 245, 245, 0.2);
+            z-index: -1;
+        }
+        
+       /* 网站头部 */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 85px;
+            overflow: visible;      /* 关键：允许伪元素超出 */
+            color: white;
+            z-index: 1000;
+            box-shadow: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+        .site-header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 200px;          /* 比容器 85px 高，就能上下超出 */
+    transform: translate(-50%, -50%);
+    background-image: url('../image/所有图（除design头图）/导航栏.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;            /* 放到内容下面 */
+    pointer-events: none;   /* 不挡点击 */
+}
+        .site-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #64ffda;
+        }
+        
+        .site-nav {
+            display: flex;
+            gap: 25px;
+            position: relative;
+        }
+        
+        .site-nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        
+        .site-nav a:hover {
+            color: #64ffda;
+        }
+         .nav-item {
+            position: relative;
+        }
+        
+        .nav-icon {
+    width: 50px;         /* 控制图标大小，按需调整 */
+    height: 50px;
+    object-fit: contain; /* 保持图片比例，不变形 */
+    flex-shrink: 0;      /* 防止图标被文字挤压变形 */
+    margin-right: 8px;   /* 图标与文字的间距 */
+}
+        .nav-link {
+            display: flex;
+            align-items: center;
+            color: rgba(8, 0, 0, 0.9);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            transition: all 0.3s;
+            height: 70px;
+            cursor: pointer;
+            font-weight: 600;   /* 新增：让文字变粗 */
+        }
+        
+        .nav-link:hover {
+            color: #f5cd1acb;
+            background: rgba(100, 255, 218, 0.1);
+        }
+        
+        
+        /* 下拉菜单箭头 */
+        .nav-link.has-dropdown::after {
+            content: '▾';
+            margin-left: 5px;
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+        
+        .nav-item:hover .nav-link.has-dropdown::after {
+            transform: rotate(180deg);
+        }
+        
+        /* 下拉菜单样式 */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            overflow: hidden;
+        }
+        
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu a:hover {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding-left: 25px;
+        }
+        
+        .dropdown-header {
+            padding: 12px 20px;
+            font-weight: bold;
+            color: #1a237e;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        /* 为不同菜单项定制不同宽度的下拉菜单 */
+        #experiments .dropdown-menu {
+            min-width: 220px;
+        }
+        
+        #projects .dropdown-menu {
+            min-width: 180px;
+        }
+        
+        #team .dropdown-menu {
+            min-width: 160px;
+        }
+        
+        #publications .dropdown-menu {
+            min-width: 200px;
+        }
+              
+        /* === 顶部大图区域 === */
+        .top-banner-section {
+            margin-top: 70px; /* 为固定header留出空间 */
+            width: 100%;
+        }
+        
+        .top-banner {
+            width: 100%;
+            height: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .top-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+        
+        .top-banner:hover img {
+            transform: scale(1.05);
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 25, 47, 0.8));
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .banner-title {
+            font-size: 2.8rem;
+            margin: 0 0 15px 0;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .banner-subtitle {
+            font-size: 1.3rem;
+            margin: 0;
+            opacity: 0.9;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+            animation: fadeInUp 1.2s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* === 主内容区域 === */
+        .main-content-area {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            gap: 30px;
+        }
+        
+  /* === 侧边栏 === */
+        .sidebar {
+            width: 330px;
+            min-width: 280px;
+            background: url('../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/A初始.png') right top/100%  no-repeat;
+            border-radius: 0;
+            padding: 2rem;
+            box-shadow: none;
+            color: white;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            margin-top: -20px; /* 与顶部大图重叠一部分 */
+            z-index: 10;
+        }
+        .sidebar::before {
+    content: '';
+    position: absolute;
+    top: 80px;
+    left: 140px;
+    width: 100%;
+    height: 50px;      /* 图的高度 */
+    background: url('../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/please\ click\ here.png') center / contain no-repeat;
+    z-index: 1;
+    pointer-events: none;
+}
+        .sidebar-logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #64ffda;
+        }
+        /* ===== 核心菜单：按钮样式 ===== */
+        .sidebar-nav {
+            margin-top: 5rem;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;      /* 用 gap 替代 li 的 margin-bottom，更干净 */
+            margin-left:7rem;
+        }
+
+        /* 每个列表项作为 flex 容器，确保按钮填满 */
+        .sidebar-nav li {
+            display: flex;
+            width: 100%;
+        }
+        
+        .sidebar-nav button {
+            position: relative;
+    border: 2px solid rgba(255, 255, 255, 0);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 2rem;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    overflow: visible;
+    background: transparent;  /* 按钮本身不要背景图 */
+}
+/* ===== 用伪元素显示背景图 ===== */
+.sidebar-nav button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 250px auto;
+    width: 300px;
+    height: 200px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+}
+.sidebar-nav li:nth-child(1) button::before {
+    background-image: url("../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/抽屉.png");
+        top: -50px;
+        left:-75px;
+}
+.sidebar-nav li:nth-child(2) button::before {
+    background-image: url("../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/抽屉.png");
+        top: -53px;
+        left:-70px;
+}
+.sidebar-nav li:nth-child(3) button::before {
+    background-image: url("../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/抽屉\(2\).png");
+        top: -55px;
+        left:-65px;
+}
+.sidebar-nav li:nth-child(4) button::before {
+    background-image: url("../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/抽屉\(2\).png");
+        top: -55px;
+        left:-65px;
+}
+.sidebar-nav li:nth-child(5) button::before {
+    background-image: url("../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/抽屉\(2\).png");
+        top: -60px;
+        left:-60px;
+}
+.sidebar-nav li:nth-child(6) button::before {
+    background-image: url("../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/抽屉\(1\).png");
+        top: -60px;
+        left:-53px;
+}
+.sidebar-nav li:nth-child(7) button::before {
+    background-image: url("../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/抽屉\(1\).png");
+        top: -62px;
+        left:-50px;
+}
+.sidebar-nav li:nth-child(8) button::before {
+    background-image: url("../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/抽屉\(1\).png");
+        top: -62px;
+        left:-50px;
+}
+.sidebar-nav li:nth-child(9) button::before {
+    background-image: url("../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/抽屉\(1\).png");
+        top: -65px;
+        left:-50px;
+}
+.sidebar-nav li:nth-child(10) button::before {
+    background-image: url("../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/抽屉\(3\).png");
+        top: -70px;
+        left:-50px;
+}
+
+/* ===== 按钮文字在图片上层 ===== */
+.sidebar-nav button .nav-icon,
+.sidebar-nav button .btn-label {
+    position: relative;
+    z-index: 1;
+}
+.sidebar-nav li:nth-child(1) {
+    margin-bottom :-0.8rem;
+    margin-top: -0.7rem;
+    
+}
+.sidebar-nav li:nth-child(2) {
+    margin-bottom :-1.2rem;
+
+}
+.sidebar-nav li:nth-child(3) {
+    margin-bottom :-1.5rem;
+
+}
+.sidebar-nav li:nth-child(4) {
+    margin-bottom :-1.4rem;
+
+}
+.sidebar-nav li:nth-child(5) {
+    margin-bottom :-1rem;
+
+}
+.sidebar-nav li:nth-child(6) {
+    margin-bottom :-1.35rem;
+
+}.sidebar-nav li:nth-child(7) {
+    margin-bottom :-1.3rem
+}.sidebar-nav li:nth-child(8) {
+    margin-bottom :-1.4rem;
+}
+.sidebar-nav li:nth-child(9) {
+    margin-bottom :-1.3rem;
+
+}
+        /* 图标样式 (保留 .nav-icon) */
+        .nav-icon {
+            margin-right: 10px;
+            font-size: 1.1rem;
+            flex-shrink: 0;   /* 避免被挤压 */
+            transition: transform 0.2s ease;
+        }
+.sidebar-nav button.shift-right::before {
+    opacity: 1;
+}
+        /* ----- 新增：点击后向右平移 (动画) ----- */
+        .sidebar-nav button.shift-right {
+            transform: translateX(60px); 
+            transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+            /* 保留其他过渡，只覆盖 transform 相关 */
+        }
+
+        /* 为了更细腻，同时给图标一点点动感 (可选) */
+        .sidebar-nav button.shift-right .nav-icon {
+            transform: translateX(2px);
+        }
+
+        /* 移除点击时的默认焦点环，用更柔和的样式 (可访问性保留) */
+        .sidebar-nav button:focus-visible {
+            outline: 2px solid #64ffda;
+            outline-offset: 2px;
+        }
+
+        /* 小提示：按钮文本 */
+        .btn-label {
+            flex: 1;
+        }
+        /* 侧边栏底部信息 */
+        .sidebar-footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            opacity: 0.7;
+            text-align: center;
+        }
+        /* === 主内容区域 === */
+        .content-main {
+            flex: 1;
+            background: transparent; 
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            margin-top: -30px; /* 与顶部大图重叠一部分 */
+            position: relative;
+            z-index: 5;
+        }
+        
+        /* 页面标题 */
+        .page-title {
+            color: #2c3e50;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        /* 实验部分样式 */
+        .experiment-section {
+            background: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/大书柜.png') center top / 100% auto no-repeat;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            margin-bottom: 25px;
+              width: 700px;                 /* 固定宽度 */
+    height: 900px;                /* 固定高度 */
+            backdrop-filter: blur(5px);
+        }
+        
+        
+         .experiment-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 4rem;
+            justify-content: center;
+            flex-wrap: nowrap;
+            margin-top: 2.7rem;
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        /* 修改按钮样式，添加背景图 */
+        .experiment-btn-e, .experiment-btn-c{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 130px;
+            height: 195px;
+            border: none;
+            border-radius: 1rem;
+            font-size: 1.6rem;
+            font-weight: bold;
+            text-decoration: none;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: visible;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .experiment-btn-e ,
+        .experiment-btn-c {
+             background-image: var(--btn-bg);
+            color: white;
+        }
+        .experiment-btn-e::before,
+        .experiment-btn-c::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            z-index: 1;
+            transition: background 0.3s ease;
+        }
+        
+        .experiment-btn-e span,
+        .experiment-btn-c span{
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        .experiment-btn-e:hover::before,
+        .experiment-btn-c:hover::before {
+            background: rgba(0, 0, 0, 0);
+        }
+        
+        .experiment-btn-e:hover,
+        .experiment-btn-c:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 实验描述 */
+        .experiment-description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .main-content-area {
+                max-width: 95%;
+            }
+            
+            .top-banner {
+                height: 350px;
+            }
+            
+            .banner-title {
+                font-size: 2.4rem;
+            }
+        }
+        /* 响应式设计 - 添加下拉菜单的响应式支持 */
+        @media (max-width: 768px) {
+            .site-nav {
+                gap: 10px;
+            }
+            
+            .nav-link {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .dropdown-menu {
+                min-width: 180px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .site-nav {
+                display: none; /* 小屏幕隐藏导航，可用汉堡菜单替代 */
+            }
+        }
+        @media (max-width: 992px) {
+            .main-content-area {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .sidebar {
+                width: 100%;
+                min-width: 100%;
+                position: static;
+                top: auto;
+                margin-top: 0;
+            }
+            
+            .content-main {
+                margin-top: 0;
+            }
+            
+            .top-banner {
+                height: 300px;
+            }
+            
+            .banner-title {
+                font-size: 2rem;
+            }
+            
+            .banner-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .experiment-buttons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .site-header {
+                padding: 0 15px;
+                height: 60px;
+            }
+            
+            .site-logo {
+                font-size: 1.5rem;
+            }
+            
+            .site-nav {
+                gap: 15px;
+            }
+            
+            .site-nav a {
+                font-size: 0.9rem;
+            }
+            
+            .top-banner-section {
+                margin-top: 60px;
+            }
+            
+            .top-banner {
+                height: 250px;
+            }
+            
+            .banner-overlay {
+                padding: 25px;
+            }
+            
+            .banner-title {
+                font-size: 1.7rem;
+                margin-bottom: 10px;
+            }
+            
+            .banner-subtitle {
+                font-size: 1rem;
+            }
+            
+            .content-main {
+                padding: 1.8rem;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .experiment-btn {
+                width: 150px;
+                height: 55px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .site-nav {
+                display: none; /* 小屏幕隐藏导航，可用汉堡菜单替代 */
+            }
+            
+            .top-banner {
+                height: 200px;
+            }
+            
+            .banner-overlay {
+                padding: 15px;
+            }
+            
+            .banner-title {
+                font-size: 1.4rem;
+            }
+            
+            .banner-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .content-main {
+                padding: 1.5rem;
+            }
+            
+            .experiment-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .experiment-btn {
+                width: 90%;
+                max-width: 250px;
+            }
+            
+            .experiment-item h3 {
+                font-size: 1.1rem;
+            }
+        }
+        /* 内容面板切换样式 */
+.content-panel {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.content-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- 网站头部 -->
+        <header class="site-header">
+        <div class="site-logo">SynthImmunol NMU</div>
+       <nav class="site-nav">
+             <div class="nav-item" id="home">
+                    <a href="../home/index.html" class="nav-link">
+                        <img src="../image/图标/home.png"alt="" class="nav-icon">Home</a>
+                </div>
+                
+                <div class="nav-item" id="experiments">
+                    <a href="#experiments" class="nav-link has-dropdown">
+                        <img src="../image/图标/project.png"alt="" class="nav-icon">Project</a>
+                    <div class="dropdown-menu">
+                        <a href="../background/background.html">Background</a>
+                        <a href="../design/design.html">Design</a>
+                        <a href="../result/result.html">Result</a>
+                        <a href="../report_maintext_SynthImmunol.pdf">Report</a>
+                        <a href="../Extended Data _SynthImmunol.pdf">Supplement</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item" id="projects">
+                    <a href="#projects" class="nav-link has-dropdown">
+                        <img src="../image/图标/document.png"alt="" class="nav-icon">Documents</a>
+                    <div class="dropdown-menu">
+                        <a href="../notebook/notebook.html">Lab notebook</a>
+                        <a href="../protocol/protocol.html">Protocols</a>  
+                    </div>
+                </div>
+                 <div class="nav-item" id="publications">
+                    <a href="#publications" class="nav-link has-dropdown">Challenge</a>
+                </div>
+                <div class="nav-item" id="team">
+                    <a href="#team" class="nav-link has-dropdown">
+                        <img src="../image/图标/team.png"alt="" class="nav-icon">Team</a>
+                    <div class="dropdown-menu">
+                        <a href="../member/member1.html">Member</a>
+                        <a href="../Community/Community.html">Community</a>
+                    </div>
+                </div>
+                
+               
+            </nav>
+    </header>
+    <!-- 顶部大图区域 -->
+    <section class="top-banner-section">
+        <div class="top-banner">
+            <img src="C:\Users\25233\Desktop\idec\image\所有图（除design头图）\notebook头图.png"width="100%" height="800px" >
+            <div class="image-overlay"></div>
+        </div>
+    </section>
+    
+    <!-- 主内容区域 -->
+    <div class="main-content-area">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><button data-section="march" >
+                        <span class="nav-icon"></span>
+                    </button></li>
+                    <li><button data-section="april" >
+                        <span class="nav-icon"></span>
+                    </button></li>
+                    <li><button data-section="may" >
+                        <span class="nav-icon"></span>
+                    </button></li>
+                    <li><button data-section="june">
+                        <span class="nav-icon"></span>
+                    </button></li>
+                    <li><button data-section="june">
+                        <span class="nav-icon"></span>
+                    </button></li>
+                    <li><button data-section="june">
+                        <span class="nav-icon"></span>
+                    </button></li>
+                    <li><button data-section="june">
+                        <span class="nav-icon"></span>
+                    </button></li>
+                    <li><button data-section="june">
+                        <span class="nav-icon"></span>
+                    </button></li>
+                    <li><button data-section="june">
+                        <span class="nav-icon"></span>
+                    </button></li>
+                    <li><button data-section="june">
+                        <span class="nav-icon"></span>
+                    </button></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+            </div>
+        </aside>
+        
+        <!-- 主内容 -->
+        <main class="content-main">
+            <h1 class="page-title"></h1>
+            
+            <!-- 三月实验部分 -->
+            <div id="section-march" class="content-panel">
+                <div class="experiment-section">
+                    <div class="experiment-buttons">
+                        <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/1.Cell Thawing_English version.pdf" target="_blank" class="experiment-btn-e" style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/1.png');"></a>
+                        <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/1.Cell Thawing_Chinese version.pdf" target="_blank" class="experiment-btn-c" style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/2.png');"></a>
+                     </div>
+                      <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/11.Flow Cytometric Analysis of the Cell Cycle (II)_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/3.png');"></a>
+                     </div>   
+                </div>
+            </div>
+            <div id="section-april" class="content-panel">
+                <div class="experiment-section">
+                    <div class="experiment-buttons">
+                        <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/5.Sample Preparation for Proteome Sequencing (I)_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/4.png');"></a>
+                        <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/5.Sample Preparation for Proteome Sequencing (I)_Chinese version.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/5.png');"></a>
+                    </div>
+                </div>
+                 <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/11.Flow Cytometric Analysis of the Cell Cycle (II)_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/6.png');"></a>
+                 </div>
+            </div>
+            <!-- 五月实验 -->
+           <div id="section-may" class="content-panel">
+            <div class="experiment-section">
+               <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/10.Flow Cytometric Analysis of the Cell Cycle (I)_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/7.png');"></a>
+                   <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/10.Flow Cytometric Analysis of the Cell Cycle (I)_Chinese version.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/8.png');"></a>
+                </div>
+              
+            </div>
+           </div>
+           
+           <!-- 六月实验 -->
+           <div id="section-june" class="content-panel"><div class="experiment-section">
+               <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/15.Transcriptomics Data Analysis_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/9.png');"></a>
+                   <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/15.Transcriptomics Data Analysis_Chinese version.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/10.png');"></a>
+                </div>
+               <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/16.Proteomics Data Analysis_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/11.png');"></a>
+                </div>
+               
+               </div>
+              
+
+
+           </div>
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.sidebar-nav button');
+    const panels = document.querySelectorAll('.content-panel');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const section = this.dataset.section;
+            const targetPanel = document.getElementById(`section-${section}`);
+            
+            // 检查当前按钮是否已经是激活状态（即内容已展开）
+            const isActive = this.classList.contains('active');
+            
+            if (isActive) {
+                // ===== 如果按钮已激活，执行收回操作 =====
+                
+                // 移除当前按钮的 active 和 shift-right 类
+                this.classList.remove('active', 'shift-right');
+                
+                // 隐藏对应的内容面板
+                if (targetPanel) {
+                    targetPanel.classList.remove('active');
+                }
+                
+            } else {
+                // ===== 如果按钮未激活，执行展开操作 =====
+                
+                // 移除所有按钮的 active 和 shift-right 类
+                buttons.forEach(btn => {
+                    btn.classList.remove('active', 'shift-right');
+                });
+                
+                // 隐藏所有内容面板
+                panels.forEach(panel => {
+                    panel.classList.remove('active');
+                });
+                
+                // 激活当前按钮
+                this.classList.add('active', 'shift-right');
+                
+                // 显示对应的内容面板
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                }
+            }
+        });
+    });
+});
+</script>
+</body>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>design</title>
+    <link rel="icon" href="../image/所有图（除design头图）/community图标.png" type="image/png">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: url('../image/背景/design背景图.png') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* 背景叠加层 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(245, 245, 245, 0.60);
+            z-index: -1;
+        }
+        
+        /* 网站头部 */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 85px;
+            overflow: visible;      /* 关键：允许伪元素超出 */
+            color: white;
+            z-index: 1000;
+            box-shadow: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+        .site-header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 200px;          /* 比容器 85px 高，就能上下超出 */
+    transform: translate(-50%, -50%);
+    background-image: url('../image/所有图（除design头图）/导航栏.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;            /* 放到内容下面 */
+    pointer-events: none;   /* 不挡点击 */
+}
+
+        
+        .site-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #64ffda;
+        }
+        
+        .site-nav {
+            display: flex;
+            gap: 25px;
+            position: relative;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-icon {
+    width: 50px;         /* 控制图标大小，按需调整 */
+    height: 50px;
+    object-fit: contain; /* 保持图片比例，不变形 */
+    flex-shrink: 0;      /* 防止图标被文字挤压变形 */
+    margin-right: 8px;   /* 图标与文字的间距 */
+}
+        .nav-link {
+            display: flex;
+            align-items: center;
+            color: rgba(8, 0, 0, 0.9);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            transition: all 0.3s;
+            height: 70px;
+            cursor: pointer;
+            font-weight: 600;   /* 新增：让文字变粗 */
+        }
+        
+        .nav-link:hover {
+            color: #f5cd1acb;
+            background: rgba(100, 255, 218, 0.1);
+        }
+        
+        
+        
+        .nav-link.has-dropdown::after {
+            content: '▾';
+            margin-left: 5px;
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+        
+        .nav-item:hover .nav-link.has-dropdown::after {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            overflow: hidden;
+        }
+        
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu a:hover {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding-left: 25px;
+        }
+        
+        #experiments .dropdown-menu { min-width: 220px; }
+        #projects .dropdown-menu { min-width: 180px; }
+        #team .dropdown-menu { min-width: 160px; }
+        #publications .dropdown-menu { min-width: 200px; }
+        
+        /* 英雄区域 */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 47px;
+           
+        }
+
+    .sun-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* 使用多张背景图，用逗号分隔 */
+    background-image: 
+        url('../image/design头图/1.png'),
+        url('../image/design头图/2.png'),
+        url('../image/design头图/3.png'),
+        url('../image/design头图/4.png'),
+        url('../image/design头图/5.png'),
+        url('../image/design头图/6.png'),
+        url('../image/design头图/7.png'),
+        url('../image/design头图/8.png'),
+        url('../image/design头图/9.png'),
+        url('../image/design头图/10.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* 动画：依次显示每张图 */
+    animation: slideshow 20s infinite;
+}
+
+@keyframes slideshow {
+0%{background-image: url('../image/design头图/1.png')}
+3%{background-image: url('../image/design头图/1.png')}
+3%{background-image: url('../image/design头图/2.png')}
+6%{background-image: url('../image/design头图/2.png')}
+6%{background-image: url('../image/design头图/3.png')}
+9%{background-image: url('../image/design头图/3.png')}
+9%{background-image: url('../image/design头图/4.png')}
+12%{background-image: url('../image/design头图/4.png')}
+12%{background-image: url('../image/design头图/5.png')}
+15%{background-image: url('../image/design头图/5.png')}
+15%{background-image: url('../image/design头图/6.png')}
+18%{background-image: url('../image/design头图/6.png')}
+18%{background-image: url('../image/design头图/7.png')}
+21%{background-image: url('../image/design头图/7.png')}
+21%{background-image: url('../image/design头图/8.png')}
+24%{background-image: url('../image/design头图/8.png')}
+24%{background-image: url('../image/design头图/9.png')}
+27%{background-image: url('../image/design头图/9.png')}
+27%{background-image: url('../image/design头图/10.png')}
+        }
+   
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 3rem;
+            text-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.8);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 4rem;
+            animation: bounce 2s infinite;
+            z-index: 3;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-2rem); }
+            60% { transform: translateX(-50%) translateY(-1rem); }
+        }
+        /* === 重新设计的主内容区域 === */
+        .main-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            gap: 30px;
+            position: relative;
+            z-index: 5;
+        }
+        /* 主内容区域优化 */
+        .content-main {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .section-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #7a7777;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+        /* 图片表格优化 */
+        
+        .single-image-container {
+            margin: 40px 0;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eef2f6;
+        }
+        
+        .single-image {
+            width: 100%;
+    height: auto;        /* 关键：高度按比例自动算 */
+    display: block;      /* 去掉 img 底部空隙 */
+    border-radius: 12px;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 1024px) {
+            .main-wrapper {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: static;
+            }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .home1 {
+                font-size: 8rem;
+            }
+            
+            .home2 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .home1 {
+                font-size: 5rem;
+            }
+            
+            .home2 {
+                font-size: 2rem;
+            }
+        }
+        
+       footer {
+            background:url("../image/所有图（除design头图）/底部.png");
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+    </style>
+    <!-- 添加Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="star-background" id="starBackground"></div>
+    
+        <header class="site-header">
+        <div class="site-logo">SynthImmunol NMU</div>
+       <nav class="site-nav">
+             <div class="nav-item" id="home">
+                    <a href="../home/index.html" class="nav-link">
+                        <img src="../image/图标/home.png"alt="" class="nav-icon">Home</a>
+                </div>
+                
+                <div class="nav-item" id="experiments">
+                    <a href="#experiments" class="nav-link has-dropdown">
+                        <img src="../image/图标/project.png"alt="" class="nav-icon">Project</a>
+                    <div class="dropdown-menu">
+                        <a href="../background/background.html">Background</a>
+                        <a href="../design/design.html">Design</a>
+                        <a href="../result/result.html">Result</a>
+                        <a href="../report_maintext_SynthImmunol.pdf">Report</a>
+                        <a href="../Extended Data _SynthImmunol.pdf">Supplement</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item" id="projects">
+                    <a href="#projects" class="nav-link has-dropdown">
+                        <img src="../image/图标/document.png"alt="" class="nav-icon">Documents</a>
+                    <div class="dropdown-menu">
+                        <a href="../notebook/notebook.html">Lab notebook</a>
+                        <a href="../protocol/protocol.html">Protocols</a>  
+                    </div>
+                </div>
+                 <div class="nav-item" id="publications">
+                    <a href="#publications" class="nav-link has-dropdown">Challenge</a>
+                </div>
+                <div class="nav-item" id="team">
+                    <a href="#team" class="nav-link has-dropdown">
+                        <img src="../image/图标/team.png"alt="" class="nav-icon">Team</a>
+                    <div class="dropdown-menu">
+                        <a href="../member/member1.html">Member</a>
+                        <a href="../Community/Community.html">Community</a>
+                    </div>
+                </div>
+                
+               
+            </nav>
+    </header>
+
+    <section class="hero">
+        <div class="sun-background"></div>
+        <div class="hero-content">
+           
+        </div>
+        <div class="scroll-indicator">Explore more <i class="fas fa-chevron-down"></i></div>
+    </section>
+
+    <div class="main-wrapper">
+        <main class="content-main">
+            <!-- 内容区域 -->
+            <div class="content-section">
+                <!-- 图片网格1 -->
+                <div class="single-image-container">
+                    <img class="single-image" src="../design/design图/1.jpg">
+                </div>
+
+                <!-- 图片网格2 -->
+                <div class="single-image-container">
+                   <img class="single-image" src="../design/design图/2.png">
+                </div>
+                <p class="section-text">
+                  This schematic illustration was generated with AI and reviewed by the team. It does not represent experimental data.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="copyright">
+            <i class="far fa-copyright"></i> 2025 SynthImmunol NMU. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

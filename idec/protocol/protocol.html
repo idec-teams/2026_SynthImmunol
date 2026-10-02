@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol</title>
+        <link rel="icon" href="../image/所有图（除design头图）/community图标.png" type="image/png">
+    <style>
+         /* 基础样式 */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5 url('../image/背景/protocol背景图.png') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* 背景叠加层 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(245, 245, 245, 0.85);
+            z-index: -1;
+        }
+        /* 网站头部 */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 85px;
+            overflow: visible;      /* 关键：允许伪元素超出 */
+            color: white;
+            z-index: 1000;
+            box-shadow: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+        .site-header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 200px;          /* 比容器 85px 高，就能上下超出 */
+    transform: translate(-50%, -50%);
+    background-image: url('../image/所有图（除design头图）/导航栏.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;            /* 放到内容下面 */
+    pointer-events: none;   /* 不挡点击 */
+}
+        
+        .site-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #64ffda;
+        }
+        
+        .site-nav {
+            display: flex;
+            gap: 25px;
+            position: relative;
+        }
+        
+        .site-nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        
+        .site-nav a:hover {
+            color: #64ffda;
+        }
+         .nav-item {
+            position: relative;
+        }
+        
+         .nav-icon {
+    width: 50px;         /* 控制图标大小，按需调整 */
+    height: 50px;
+    object-fit: contain; /* 保持图片比例，不变形 */
+    flex-shrink: 0;      /* 防止图标被文字挤压变形 */
+    margin-right: 8px;   /* 图标与文字的间距 */
+}
+        .nav-link {
+            display: flex;
+            align-items: center;
+            color: rgba(8, 0, 0, 0.9);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            transition: all 0.3s;
+            height: 70px;
+            cursor: pointer;
+            font-weight: 600;   /* 新增：让文字变粗 */
+        }
+        
+        .nav-link:hover {
+            color: #f5cd1acb;
+            background: rgba(100, 255, 218, 0.1);
+        }
+        
+        /* 下拉菜单箭头 */
+        .nav-link.has-dropdown::after {
+            content: '▾';
+            margin-left: 5px;
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+        
+        .nav-item:hover .nav-link.has-dropdown::after {
+            transform: rotate(180deg);
+        }
+        
+        /* 下拉菜单样式 */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            overflow: hidden;
+        }
+        
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu a:hover {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding-left: 25px;
+        }
+        
+        .dropdown-header {
+            padding: 12px 20px;
+            font-weight: bold;
+            color: #1a237e;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        /* 为不同菜单项定制不同宽度的下拉菜单 */
+        #experiments .dropdown-menu {
+            min-width: 220px;
+        }
+        
+        #projects .dropdown-menu {
+            min-width: 180px;
+        }
+        
+        #team .dropdown-menu {
+            min-width: 160px;
+        }
+        
+        #publications .dropdown-menu {
+            min-width: 200px;
+        }
+        /* ===== 主布局：侧边栏 + 内容 ===== */
+        .main-layout {
+            display: flex;
+            margin-top: 70px;    /* 给固定header留空间 */
+            min-height: calc(100vh - 70px);
+        }
+
+
+        /* === 顶部大图区域 === */
+        .top-banner-section {
+            margin-top: 50px; /* 为固定header留出空间 */
+            width: 100%;
+        }
+        
+        .top-banner {
+            width: 100%;
+            height: 800px;
+            position: relative;
+        }
+        
+        .top-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+        
+        .top-banner:hover img {
+            transform: scale(1.05);
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 25, 47, 0.8));
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .banner-title {
+            font-size: 2.8rem;
+            margin: 0 0 15px 0;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .banner-subtitle {
+            font-size: 1.3rem;
+            margin: 0;
+            opacity: 0.9;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+            animation: fadeInUp 1.2s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+ 
+         /* ====== 可展开副标题区域 ====== */
+        .subtitle-accordion-section {
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+            padding: 40px 20px 20px 20px;
+        }
+        
+        .accordion-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 35px 35px 35px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid #eef2f6;
+        }
+        
+        .accordion-main-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a237e;
+            margin-bottom: 6px;
+        }
+        
+        .accordion-main-desc {
+            text-align: center;
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+        
+        /* 每个折叠项 */
+        .accordion-item {
+            background: #fafbfc;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #eef2f6;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-item:hover {
+            border-color: #1a237e;
+            box-shadow: 0 2px 12px rgba(26, 35, 126, 0.08);
+        }
+        
+        /* 可点击的标题栏 */
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            padding: 16px 22px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.3s ease;
+            gap: 12px;
+        }
+        
+        .accordion-header:hover {
+            background: rgba(26, 35, 126, 0.04);
+        }
+        
+        .accordion-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        
+        .accordion-title {
+            flex: 1;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1a237e;
+        }
+        
+        .accordion-arrow {
+            font-size: 0.8rem;
+            color: #999;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        /* 展开状态 - 箭头旋转 */
+        .accordion-item.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+        
+        /* 展开状态 - 标题颜色变化 */
+        .accordion-item.active .accordion-title {
+            color: #ff9100;
+        }
+        
+        .accordion-item.active .accordion-header {
+            background: rgba(26, 35, 126, 0.04);
+        }
+        
+        /* 内容体 - 默认隐藏 */
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 22px;
+            background: white;
+        }
+        
+        /* 展开状态 - 显示内容 */
+        .accordion-item.active .accordion-body {
+            max-height: 500px;
+            padding: 18px 22px 22px 22px;
+        }
+        
+        .accordion-body p {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .accordion-body ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        
+        .accordion-body ul li {
+            color: #555;
+            line-height: 2;
+            font-size: 0.95rem;
+            list-style-type: disc;
+        }
+        
+        .accordion-body ul li::marker {
+            color: #ff9100;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .accordion-container {
+                padding: 20px;
+            }
+            .accordion-main-title {
+                font-size: 1.5rem;
+            }
+            .accordion-title {
+                font-size: 0.95rem;
+            }
+            .accordion-header {
+                padding: 14px 16px;
+            }
+            .accordion-body {
+                padding: 0 16px;
+            }
+            .accordion-item.active .accordion-body {
+                padding: 14px 16px 18px 16px;
+            }
+        }
+        
+</style>
+      
+<body>
+    <!-- 网站头部 -->
+       <header class="site-header">
+        <div class="site-logo">SynthImmunol NMU</div>
+       <nav class="site-nav">
+             <div class="nav-item" id="home">
+                    <a href="../home/index.html" class="nav-link">
+                        <img src="../image/图标/home.png"alt="" class="nav-icon">Home</a>
+                </div>
+                
+                <div class="nav-item" id="experiments">
+                    <a href="#experiments" class="nav-link has-dropdown">
+                        <img src="../image/图标/project.png"alt="" class="nav-icon">Project</a>
+                    <div class="dropdown-menu">
+                        <a href="../background/background.html">Background</a>
+                        <a href="../design/design.html">Design</a>
+                        <a href="../result/result.html">Result</a>
+                        <a href="../report_maintext_SynthImmunol.pdf">Report</a>
+                        <a href="../Extended Data _SynthImmunol.pdf">Supplement</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item" id="projects">
+                    <a href="#projects" class="nav-link has-dropdown">
+                        <img src="../image/图标/document.png"alt="" class="nav-icon">Documents</a>
+                    <div class="dropdown-menu">
+                        <a href="../notebook/notebook.html">Lab notebook</a>
+                        <a href="../protocol/protocol.html">Protocols</a>  
+                    </div>
+                </div>
+                 <div class="nav-item" id="publications">
+                    <a href="#publications" class="nav-link has-dropdown">Challenge</a>
+                </div>
+                <div class="nav-item" id="team">
+                    <a href="#team" class="nav-link has-dropdown">
+                        <img src="../image/图标/team.png"alt="" class="nav-icon">Team</a>
+                    <div class="dropdown-menu">
+                        <a href="../member/member1.html">Member</a>
+                        <a href="../Community/Community.html">Community</a>
+                    </div>
+                </div>
+                
+               
+            </nav>
+    </header>
+    
+    <!-- 顶部大图区域 -->
+    <section class="top-banner-section">
+        <div class="top-banner">
+            <img src="C:\Users\25233\Desktop\idec\image\所有图（除design头图）\protocol头图.png"width="100%" height="900px" >
+            <div class="image-overlay">
+        </div>
+    </section>
+     <!-- 主布局：侧边栏 + 内容 -->
+    <div class="main-layout">
+    <!-- ====== 可展开副标题区域 ====== -->
+    <section class="subtitle-accordion-section">
+        <div class="accordion-container">
+            <h2 class="accordion-main-title">Here are our protocols:
+This section shows details of the experiments that are not shown in detail in the notebook.</h2>
+            <p class="accordion-main-desc">Click the block to view the hidden content</p>
+            
+            <!-- 副标题 1 -->
+            <div id="1" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-icon">🧬</span>
+                    <span class="accordion-title">De novo design</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <p>细胞治疗作为一种前沿医疗技术，在治疗癌症、免疫系统疾病等方面展现出巨大潜力。然而，在基层社区中，由于信息不对称和谣言传播，公众对这一技术普遍存在误解和不信任。</p>
+                    <ul>
+                        <li>调研显示 65% 的社区居民对细胞治疗存在误解</li>
+                        <li>网络谣言和失败案例被过度放大</li>
+                        <li>缺乏面向公众的科学传播渠道</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 副标题 2 -->
+            <div id="2" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-icon">🤝</span>
+                    <span class="accordion-title">Homologous recombination</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <p>我们深入社区，通过面对面的科普讲座、互动问答和真实案例分享，帮助居民建立对细胞治疗的科学认知，消除恐惧和误解。</p>
+                    <ul>
+                        <li>举办社区科普讲座 25+ 场</li>
+                        <li>覆盖居民 600+ 人</li>
+                        <li>建立线上答疑社群，持续提供科学信息</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 副标题 3 -->
+            <div id="3"class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-icon">📚</span>
+                    <span class="accordion-title">Flow Cytometric Analysis</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <p>我们将复杂的医学知识转化为通俗易懂的语言，制作图文、短视频等多样化的科普内容，让科学真正走进千家万户。</p>
+                    <ul>
+                        <li>制作科普图文 50+ 篇</li>
+                        <li>发布短视频 30+ 条</li>
+                        <li>开展线上问答活动 10+ 期</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 副标题 4 -->
+            <div id="4" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-icon">🌟</span>
+                    <span class="accordion-title">Bio-layer interferometry</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <p>我们的目标是将社区科普模式推广到更多地区，与学校、医疗机构合作，建立长期、可持续的科学传播网络。</p>
+                    <ul>
+                        <li>拓展至 15 个社区</li>
+                        <li>建立 8 个科普工作站</li>
+                        <li>培养 200 名科普志愿者</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function toggleAccordion(headerElement) {
+            // 获取当前点击的 accordion-item
+            const item = headerElement.closest('.accordion-item');
+            
+            // 如果已经展开，则收起
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+                return;
+            }
+            
+            // 关闭其他所有展开项（手风琴模式，一次只展开一个）
+            const allItems = document.querySelectorAll('.accordion-item');
+            allItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // 展开当前项
+            item.classList.add('active');
+        }
+        
+        // 页面加载后默认展开第一个
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstItem = document.querySelector('.accordion-item');
+            if (firstItem) {
+                firstItem.classList.add('active');
+            }
+        });
+    </script>
+       
+
+
+
+</body>
