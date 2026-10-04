@@ -75,17 +75,6 @@
             gap: 25px;
             position: relative;
         }
-        
-        .site-nav a {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-        
-        .site-nav a:hover {
-            color: #64ffda;
-        }
          .nav-item {
             position: relative;
         }
@@ -322,12 +311,6 @@
         .accordion-header:hover {
             background: rgba(26, 35, 126, 0.04);
         }
-        
-        .accordion-icon {
-            font-size: 1.4rem;
-            flex-shrink: 0;
-        }
-        
         .accordion-title {
             flex: 1;
             font-size: 1.05rem;
@@ -341,6 +324,7 @@
             transition: transform 0.3s ease;
             flex-shrink: 0;
         }
+        
         
         /* 展开状态 - 箭头旋转 */
         .accordion-item.active .accordion-arrow {
@@ -364,10 +348,29 @@
             padding: 0 22px;
             background: white;
         }
+        .accordion-body .accordion-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 6px 0;
+    line-height: 1.4;
+    padding-left: 12px;
+    border-left: 4px solid #ff9100;   /* 跟你列表符号的橙色统一 */
+}
+
+/* 正文内的副标题 */
+.accordion-body .accordion-subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #000000;
+    margin: 0 0 16px 0;
+    line-height: 1.6;
+    padding-left: 12px;
+}
         
         /* 展开状态 - 显示内容 */
         .accordion-item.active .accordion-body {
-            max-height: 500px;
+            max-height: 5000px;
             padding: 18px 22px 22px 22px;
         }
         
@@ -393,6 +396,13 @@
         .accordion-body ul li::marker {
             color: #ff9100;
         }
+        .accordion-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 12px auto;
+    border-radius: 6px;
+}
         
         /* 响应式 */
         @media (max-width: 768px) {
@@ -435,8 +445,8 @@
                         <a href="../background/background.html">Background</a>
                         <a href="../design/design.html">Design</a>
                         <a href="../result/result.html">Result</a>
-                        <a href="../report_maintext_SynthImmunol.pdf">Report</a>
-                        <a href="../Extended Data _SynthImmunol.pdf">Supplement</a>
+                        <a href="../report_maintext_SynthImmunol.pdf"target="_blank">Report</a>
+                        <a href="../Extended Data _SynthImmunol.pdf"target="_blank">Supplement</a>
                     </div>
                 </div>
                 
@@ -448,8 +458,9 @@
                         <a href="../protocol/protocol.html">Protocols</a>  
                     </div>
                 </div>
-                 <div class="nav-item" id="publications">
-                    <a href="#publications" class="nav-link has-dropdown">Challenge</a>
+<div class="nav-item" id="publications">
+                    <a href="../challenge/challenge.html" class="nav-link">
+                    <img src="../image/图标/challenge.png"alt="" class="nav-icon">Challenge</a>
                 </div>
                 <div class="nav-item" id="team">
                     <a href="#team" class="nav-link has-dropdown">
@@ -467,8 +478,7 @@
     <!-- 顶部大图区域 -->
     <section class="top-banner-section">
         <div class="top-banner">
-            <img src="C:\Users\25233\Desktop\idec\image\所有图（除design头图）\protocol头图.png"width="100%" height="900px" >
-            <div class="image-overlay">
+            <img src="../image/所有图（除design头图）/protocol头图.png"width="100%" height="900px" >
         </div>
     </section>
      <!-- 主布局：侧边栏 + 内容 -->
@@ -483,71 +493,590 @@ This section shows details of the experiments that are not shown in detail in th
             <!-- 副标题 1 -->
             <div id="1" class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <span class="accordion-icon">🧬</span>
-                    <span class="accordion-title">De novo design</span>
+                    <span class="accordion-title">PEI Transfection</span>
                     <span class="accordion-arrow">▼</span>
                 </div>
                 <div class="accordion-body">
-                    <p>细胞治疗作为一种前沿医疗技术，在治疗癌症、免疫系统疾病等方面展现出巨大潜力。然而，在基层社区中，由于信息不对称和谣言传播，公众对这一技术普遍存在误解和不信任。</p>
+                     <h3 class="accordion-title">Principal</h3>
+                    <p>Linear polyethylenimine (PEI) 25000 is a highly charged cationic polymer that readily binds negatively charged nucleic acid molecules to form complexes, which are subsequently taken up by cells. It is a transient transfection reagent characterized by low cytotoxicity and high transfection efficiency, and has been validated in a broad range of cell lines including Hek293T, CHO-K1, COS-1, COS-7, NIH/3T3, Sf9, HepG2 and HeLa. The reagent is compatible with serum-containing medium and delivers nucleic acids into cells efficiently.
+                    </p>
+                    <p>In this study, PEI 25000 is used to co-transfect Hek293T cells with three plasmids: a transfer plasmid carrying the designed binder library, the packaging plasmid pCMVR8.74, and the envelope plasmid pMD2.G. The assembled lentiviral particles are released into the culture supernatant and harvested for downstream transduction.
+                    </p>
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.Preparation of Hek293T Packaging Cells</h3>
                     <ul>
-                        <li>调研显示 65% 的社区居民对细胞治疗存在误解</li>
-                        <li>网络谣言和失败案例被过度放大</li>
-                        <li>缺乏面向公众的科学传播渠道</li>
+                        <li>1.Culture: Hek293T cells were cultured in 10 cm dishes at 37 ℃ in a 5% CO2 incubator.</li>
+                        <li>2.Transfection timing: Lentiviral transfection was performed when the cultures reached approximately 75% confluence.</li>
                     </ul>
+                    <h3 class="accordion-subtitle">B.PEI-Mediated Transfection</h3>
+                    <ul>
+                        <li>1.Plasmid mixture: The pooled pCDH library plasmids (obtained by homologous recombination, containing 27 designs), pCMVR8.74, and pMD2.G were mixed at a mass ratio of 3:2:1, with a total DNA amount of 30 μg per 10 cm dish. Transfection was performed using MW25000 linear PEI (Hieff Trans® Polyethylenimine Linear) at a PEI:DNA mass ratio of 3:1. The transfection mixture composition is as follows:</li>
+                    </ul>
+                    <img src="../protocol/Protocol img/1/table1.png" alt="" class="accordion-img">
+                    <ul>
+                        <li>2.Complex formation: The PEI solution (Tube A) and the plasmid mixture (Tube B) were gently mixed separately, then combined by adding Tube B dropwise into Tube A using a micropipette. The mixture was vortexed briefly and incubated at room temperature for 15 min to allow complex formation. The transfection complexes were then added dropwise to the Hek293T cells, and the plates were returned to the incubator.</li>
+                        <li>3.Medium replacement: Six hours after transfection, the transfection medium was replaced with fresh complete culture medium.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">C.Viral Supernatant Collection and Concentration</h3>
+                    <ul>
+                        <li>1.Harvest: At 48 h and 72 h post-transfection, the viral supernatant was collected from Hek293T cells, filtered through a 0.45 μm filter, and used immediately or stored at -80 ℃.</li>
+                        <li>2.Concentration: The filtered viral supernatant was concentrated by ultracentrifugation at 20,000 × g for 99 min at 4 ℃.</li>
+                        <li>3.Storage: The viral pellet was resuspended in PBS or complete culture medium, aliquoted, and stored at -80 ℃ until use.</li>
+                    </ul>
+                    <img src="../protocol/Protocol img/1/figure1.png" alt="" class="accordion-img">Figure 1. Schematic map of the pCMVR8.74 lentiviral packaging plasmid.
+                    <img src="../protocol/Protocol img/1/figure2.png" alt="" class="accordion-img">Figure 2. Schematic map of the pMD2.G lentiviral packaging plasmid.
                 </div>
             </div>
             
             <!-- 副标题 2 -->
             <div id="2" class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <span class="accordion-icon">🤝</span>
                     <span class="accordion-title">Homologous recombination</span>
                     <span class="accordion-arrow">▼</span>
                 </div>
                 <div class="accordion-body">
-                    <p>我们深入社区，通过面对面的科普讲座、互动问答和真实案例分享，帮助居民建立对细胞治疗的科学认知，消除恐惧和误解。</p>
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>Homologous recombination-based cloning enables the seamless, ordered assembly of multiple DNA fragments into a linearized vector without reliance on restriction sites at the fragment junctions. Short terminal homology arms (typically 30 bp) are introduced at the 5' and 3' ends of each insert via PCR primers. In the presence of a recombinase, the homologous regions anneal and are covalently joined, resulting in in vitro circularization of the linear DNA fragments. This approach is particularly suited for combinatorial library construction, as multiple inserts can be assembled in a defined order in a single reaction. In this protocol, nine prioritized de novo binder modules (A1-A3, B1-B3, and C1-C3) are combinatorially assembled into 27 A-B-C constructs using the pCDH vector linearized with XbaI/BamHI.</p>
+                   <img src="../protocol/Protocol img/2/figure1.png">Figure 1. Schematic illustration of homologous recombination-based cloning.
+                   <h3 class="accordion-title">Method</h3>
+                   <h3 class="accordion-subtitle">A.Preparation of Linearized Vector</h3>
+                   <ul>
+                    <li>1.The pCDH vector is linearized by restriction enzyme digestion with XbaI and BamHI, or alternatively by inverse PCR.</li>
+                    <li>2.The linearized vector is purified by agarose gel electrophoresis.</li>
+                    <li>3.The concentration of the purified linearized vector is determined and recorded for subsequent recombination.</li></ul>
+                    <h3 class="accordion-subtitle">B.Acquisition of Insert Fragments</h3>
                     <ul>
-                        <li>举办社区科普讲座 25+ 场</li>
-                        <li>覆盖居民 600+ 人</li>
-                        <li>建立线上答疑社群，持续提供科学信息</li>
+                        <li>1.The A, B, and C fragments are amplified by PCR using primers that introduce the required terminal homology arms.</li>
+                        <li>2.Fragment A is designed with a 5' sequence homologous to the left terminus of the linearized vector, followed by a signal peptide coding sequence, and a 3' Flag-tag sequence.</li>
+                        <li>3.Fragment B is designed with the same Flag-tag sequence at its 5' end and a linker sequence at its 3' end.</li>
+                        <li>4.Fragment C is designed with the same linker sequence at its 5' end and a 3' sequence homologous to the FcR transmembrane region of the vector.</li>
+                        <li>5.Each fragment is designed with approximately 30 bp overlaps to enable ordered multi-fragment assembly.</li>
+                        <li>6.The PCR products are gel-purified and quantified.</li>
                     </ul>
-                </div>
+                    <h3 class="accordion-subtitle">C.Recombination Reaction</h3>
+                    <ul>
+                        <li>1.The linearized vector and the three insert fragments are mixed in appropriate molar ratios.</li>
+                        <li>2.A commercial homologous recombination master mix (e.g., Vazyme) is added.</li>
+                        <li>3.The reaction is assembled on ice to a final volume of 10 μL.</li>
+                        <li>4.The mixture is gently mixed by pipetting, avoiding vortexing.</li>
+                        <li>5.The reaction is incubated at 50 ℃ for 30 min.</li>
+                        <li>6.After incubation, the reaction is cooled to 4 ℃ or immediately placed on ice.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">D.Transformation</h3>
+                    <ul>
+                        <li>1.Cloning-competent E. coli Fast-T1 cells are thawed on ice.</li>
+                        <li>2.The entire recombination product is added to the competent cells.</li>
+                        <li>3.The mixture is gently mixed by flicking the tube, avoiding vortexing.</li>
+                        <li>4.The cells are incubated on ice for 30 min.</li>
+                        <li>5.Cells are heat-shocked at 42 ℃ for 90 s, then immediately transferred to ice for 2 min.</li>
+                        <li>6.LB medium is added, and the cells are recovered at 37 ℃ with shaking for 1 h.</li>
+                        <li>7.LB agar plates containing kanamycin are pre-warmed at 37 ℃.</li>
+                        <li>8.The culture is plated on kanamycin-containing LB agar and incubated at 37 ℃ for 12 h.</li></ul>
+                    <h3 class="accordion-subtitle">E.Verification of Recombinant Clones</h3>
+                    <ul>
+                        <li>1.After overnight incubation, single colonies are observed on the transformation plate.</li>
+                        <li>2.Several colonies are selected for colony PCR using a universal primer that anneals to the vector backbone.</li>
+                        <li>3.PCR-positive colonies are inoculated into liquid LB medium containing kanamycin and cultured overnight.</li>
+                        <li>4.Plasmid DNA is extracted and subjected to restriction enzyme digestion analysis or Sanger sequencing.</li>
+                        <li>5.The verified 27 A-B-C constructs constitute the first-round pCDH library for downstream applications.</li></ul>
+                    </div>
             </div>
             
             <!-- 副标题 3 -->
             <div id="3"class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <span class="accordion-icon">📚</span>
-                    <span class="accordion-title">Flow Cytometric Analysis</span>
+                    <span class="accordion-title">Fluorescent Labeling of Protein Complex with APC</span>
                     <span class="accordion-arrow">▼</span>
                 </div>
                 <div class="accordion-body">
-                    <p>我们将复杂的医学知识转化为通俗易懂的语言，制作图文、短视频等多样化的科普内容，让科学真正走进千家万户。</p>
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>Fluorescent labeling of a protein complex with APC is achieved through a two-step approach. First, the protein complex is biotinylated using a water-soluble, amine-reactive biotinylation reagent (Sulfo-NHS-Biotin). This reagent covalently couples biotin to primary amine groups (e.g., lysine side chains or the N-terminus) via stable amide bonds, without disrupting the overall structure or function of the complex. Second, the biotinylated complex is incubated with streptavidin-conjugated APC (Streptavidin-APC). The extremely high affinity between biotin and streptavidin (KD ~10-15 M) ensures efficient and specific binding, thereby indirectly attaching the APC fluorophore to the protein complex. This method is mild, site-specific, and preserves the biological activity of the complex, making it suitable for subsequent binding and internalization assays.</p>
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.Formation of the Protein Complex</h3>
                     <ul>
-                        <li>制作科普图文 50+ 篇</li>
-                        <li>发布短视频 30+ 条</li>
-                        <li>开展线上问答活动 10+ 期</li>
+                        <li>1.Recombinant human sIL-6R and IL-6 were mixed at a 1:1 molar ratio in an appropriate buffer.</li>
+                        <li>2.The mixture was incubated at room temperature for 30 min to allow formation of the sIL-6R/IL-6 complex.</li>
                     </ul>
+                    <h3 class="accordion-subtitle">B.Biotinylation of the Complex</h3>
+                    <ul>
+                        <li>1.The complex was buffer-exchanged into PBS to remove any amine-containing contaminants that could interfere with the labeling reaction.</li>
+                        <li>2.A 20-fold molar excess of Sulfo-NHS-Biotin reagent was added to the complex.</li>
+                        <li>3.The mixture was incubated at room temperature for 30 min in the dark.</li>
+                        <li>4.After the reaction, the sample was centrifuged at 14,000 rpm for 15 min at 4 ℃.</li>
+                        <li>5.The supernatant containing the biotinylated complex was carefully collected.</li></ul>
+                    <h3 class="accordion-subtitle">C.Removal of Free Biotin</h3>
+                    <ul>
+                        <li>1.A Zeba Spin desalting column was equilibrated with PBS according to the manufacturer's instructions.</li>
+                        <li>2.The supernatant was applied to the column.</li>
+                        <li>3.The column was centrifuged to elute the purified biotinylated complex.</li>
+                        <li>4.The purified biotinylated complex was collected and kept on ice.</li></ul>
+                     <h3 class="accordion-subtitle">D.Incubation with Streptavidin-APC</h3>
+                     <ul>   
+                        <li>1.The purified biotinylated complex was mixed with Streptavidin-APC at a molar ratio of 1:4.</li>
+                        <li>2.The mixture was incubated at 4 ℃ for 30 min in the dark.</li>
+                        <li>3.The fluorescently labeled sIL-6R/IL-6 complex was used immediately for downstream applications or stored at 4 ℃ protected from light for short-term use.</li>
+                    </ul>
+                    <img src="../protocol/Protocol img/3/fiure1.png">Figure 1. Preparation of fluorescently labeled sIL-6R/IL-6 complex for binding and uptake assays.The sIL-6R/IL-6 complex was first biotinylated, then incubated with streptavidin–APC. Streptavidin contains four biotin-binding sites, allowing it to simultaneously bind biotinylated complex and carry APC fluorophores, thereby generating a fluorescently labeled sIL-6R/IL-6 complex. The labeled complex was subsequently co-cultured with Raji B cells to assess binding and internalization by flow cytometry.
                 </div>
             </div>
             
             <!-- 副标题 4 -->
             <div id="4" class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <span class="accordion-icon">🌟</span>
-                    <span class="accordion-title">Bio-layer interferometry</span>
+                    <span class="accordion-title">Flow cytometric analysis</span>
                     <span class="accordion-arrow">▼</span>
                 </div>
                 <div class="accordion-body">
-                    <p>我们的目标是将社区科普模式推广到更多地区，与学校、医疗机构合作，建立长期、可持续的科学传播网络。</p>
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>Flow cytometry allows quantitative detection of intracellular APC fluorescence in cells that have internalized an APC-labeled protein complex. Because the APC fluorophore is attached to the complex via biotin-streptavidin linkage, any cell-associated APC signal may originate from either surface-bound or internalized complex. To distinguish internalization from mere surface binding, a 4 ℃ incubation control is included, in which endocytosis is inhibited but surface binding can still occur. Unstained cells are used to define the background fluorescence. By comparing the APC signal in cells incubated at 37 ℃ versus 4 ℃, the internalized fraction can be identified. Cells with the highest APC fluorescence intensity (e.g., top 5%) are then sorted as the positive population for downstream analysis.</p>
+                    <img src="../protocol/Protocol img/4/figure1.png">Figure 1. Flow Cytometric Analysis
+                    <h3 class="accordion-title">Method</h3>
+                     <h3 class="accordion-subtitle">A.Cell Preparation</h3>
                     <ul>
-                        <li>拓展至 15 个社区</li>
-                        <li>建立 8 个科普工作站</li>
-                        <li>培养 200 名科普志愿者</li>
+                        <li>1.Raji cell library was collected from culture flasks and centrifuged at 300 × g for 5 min at room temperature.</li>
+                        <li>2.The supernatant was discarded, and the cell pellet was resuspended in complete medium (RPMI-1640 with 10% FBS and 1% penicillin-streptomycin).</li>
+                        <li>3.Cell density was determined using an automated cell counter, and the suspension was adjusted to 1 × 106 cells/mL.</li>
+                        <li>4.An appropriate volume of cell suspension (e.g., 1 × 106 cells) was transferred to a flow cytometry tube and centrifuged at 300 × g for 5 min.</li>
+                        <li>5.The supernatant was removed, and the cells were washed once with pre-chilled PBS.</li></ul>
+                     <h3 class="accordion-subtitle">B.Co-incubation with Fluorescent Complex</h3>
+                     <ul>
+                        <li>1.The cell pellet was resuspended in complete medium, and the APC-labeled IL-6/sIL-6R complex was added at a final concentration of 50 nM.</li>
+                        <li>2.The cells were incubated at 37 ℃ for 4 h to allow binding and internalization of the complex.</li>
+                        <li>3.For the negative control, an identical aliquot of cells was incubated at 4 ℃ for 4 h to inhibit endocytosis.</li>
+                        <li>4.After incubation, the cells were centrifuged at 300 × g for 5 min, and the supernatant was discarded.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">C.Washing and Flow Cytometric Analysis</h3>
+                    <ul>
+                        <li>1.Cells were washed twice with pre-chilled PBS to terminate internalization and remove unbound fluorescent complex.</li>
+                        <li>2.After the final wash, the cell pellet was resuspended in 100 μL of FACS buffer (PBS containing 1% FBS).</li>
+                        <li>3.Optionally, 7-AAD or propidium iodide was added to exclude dead cells.</li>
+                        <li>4.The cell suspension was filtered through a 40 μm mesh to remove aggregates before acquisition.</li>
+                        <li>5.Flow cytometry was performed using a FACS Aria III (or equivalent) equipped with an APC channel.</li>
+                        <li>6.Gating strategy: cells were first gated on FSC/SSC to exclude debris, then on viable cells, and finally on APC fluorescence. Unstained cells and the 4 ℃ incubation control were used to define the background and surface-bound fluorescence, respectively.</li>
+                        <li>7.Cells with APC fluorescence intensity above the 4 ℃ background were considered positive for internalization.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">D.Sorting of APC-Positive Cells</h3>
+                    <ul>
+                    <li>1.The top 5% of cells with the highest APC fluorescence intensity were selected for sorting.</li>
+                    <li>2.Sorting was performed under sterile conditions using a 100 μm nozzle.</li>
+                    <li>3.Sorted cells were collected into sterile tubes containing complete medium with 10% FBS.</li>
+                    <li>4.The sorted APC-positive cells were then expanded in complete medium for subsequent analyses.</li></ul>
+                </div>
+            </div>
+             <div id="5" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Genomic DNA third-generation sequencing</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>Genomic DNA from the enriched Raji cell population was extracted and used as the template to PCR-amplify the complete integrated A-B-C insert using primers located in the flanking vector regions. The purified amplicons were subjected to PacBio third-generation sequencing, and full-length reads were deconvoluted according to the characteristic A/B and B/C junction sequences and vector-insert boundaries, allowing identification and quantification of individual library variants enriched during cell sorting.</p>
+                     <img src="../protocol/Protocol img/5/figure1.png">Figure 1. Schematic illustration of nanopore sequencing.
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.Genomic DNA Extraction</h3>
+                    <ul>
+                        <li>1.Cells harvested from the final round of sorting were collected by centrifugation at 300 × g for 5 min at room temperature. The supernatant was carefully removed and the cell pellet was resuspended in 200 μL of Buffer GA (provided in the TIANamp Genomic DNA Kit) and vortexed until completely suspended.</li>
+                        <li>2.Proteinase K (20 μL) was added to the suspension and mixed thoroughly.</li>
+                        <li>3.Buffer GB (200 μL) was added and the mixture was inverted to mix completely, followed by incubation at 70 ℃ for 10 min. The solution became clear upon complete lysis. A brief centrifugation was performed to remove droplets from the inner surface of the tube lid.</li>
+                        <li>4.An equal volume of anhydrous ethanol (200 μL) was added to the lysate and the mixture was vortexed vigorously for 15 s to ensure complete mixing, after which a brief centrifugation was performed to remove droplets from the tube lid.</li>
+                        <li>5.The entire mixture (including any flocculent precipitate) was transferred to a Spin Column CB3 placed in a 2 mL Collection Tube, and centrifuged at 12,000 rpm for 30 s. The flow-through was discarded and the column was placed back into the collection tube.</li>
+                        <li>6.Buffer GD (500 μL) was added to the column and centrifuged at 12,000 rpm for 30 s. The flow-through was discarded and the column was returned to the collection tube.</li>
+                        <li>7.Buffer PW (600 μL) was added to the column and centrifuged at 12,000 rpm for 30 s. The flow-through was discarded and the column was placed back into the collection tube. Repeat this step for collecting more end-product.</li>
+                        <li>8.The column was centrifuged at 12,000 rpm for 2 min to remove residual wash buffer, and the flow-through was discarded. The column was then placed at room temperature for 3 min to completely air-dry the membrane.</li>
+                        <li>9.The column was transferred to a clean 1.5 mL microcentrifuge tube, and 100 μL of Buffer TE was added dropwise onto the center of the membrane. After incubation at room temperature for 3 min, the column was centrifuged at 12,000 rpm for 2 min to elute the genomic DNA. The eluted DNA was quantified using a Nanodrop spectrophotometer and stored at -20 ℃ for subsequent PCR amplification.</li>
+                     </ul>
+                     <h3 class="accordion-subtitle">B.Polymerase Chain Reaction (PCR)</h3>   
+                     <ul>   
+                     <li>1.PCR primers were designed on the constant regions of the vector backbone, i.e., upstream of fragment A and downstream of fragment C, respectively, to amplify the complete inserted fragment.</li>
+                        <li>2.The PCR reaction was performed in a 20 μL volume. A negative control (nuclease-free water instead of DNA template) was included in each run. The reaction mixture composition was as follows:</li>
+                        <img src="../protocol/Protocol img/5/t1.png">
+                        <li>3.The PCR amplification was carried out under the following cycling conditions:</li>
+                        <img src="../protocol/Protocol img/5/t2.png"></ul>
+                    <h3 class="accordion-subtitle">C.Gel Purification and Quantification</h3>
+                    <ul>
+                        <li>1.The PCR products were verified by agarose gel electrophoresis to confirm the specificity of the amplified bands.</li>
+                        <li>2.The target bands were excised and purified using a gel extraction kit.</li>
+                        <li>3.The purified products were quantified using a Nanodrop spectrophotometer.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">D.PacBio Third-Generation Sequencing</h3>
+                        <ul>
+                        <li>1.The purified PCR products were submitted to a commercial sequencing service for third-generation sequencing on the PacBio platform. The sequencing data were then analyzed as follows: the reads were anchored by the homology arm sequences at both ends of each fragment. Specifically, the A/B junction (Flag tag sequence) defined the boundary between fragment A and B; the B/C junction (GGGGS linker sequence) defined the boundary between fragment B and C; and the left end of A and the right end of C defined the boundaries between the insert and the vector. Through localization of these homology arms, the exact nucleotide sequences of fragments A, B, and C were deconvoluted from the full-length sequences.</li>
+                        </ul>
+                    <h3 class="accordion-subtitle">AI Use Statement</h3>
+                    <p>AI-assisted data analysis and modeling were conducted in PacBio read anchoring and variant enrichment ranking. The methods and outputs were reviewed and validated by the team.</p>
+                </div>
+            </div>
+            <div id="6" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">RFDiffusion3 and ProteinMPNN-Based De Novo Binder Design</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>RFDiffusion3 enables de novo generation of protein binder backbones by using target-structure and hotspot-residue constraints while preserving the coordinates of the target protein. ProteinMPNN is subsequently used for fixed-backbone sequence design, taking the generated backbone coordinates as input and optimizing amino acid sequences compatible with the designed three-dimensional structures.</p>
+                    <img src="../protocol/Protocol img/6/f1.png">Figure 1. Workflow of RFdiffusion3 and ProteinMPNN for de novo binder design.
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.Structural Analysis and Hotspot Identification</h3>
+                    <ul>
+                        <li>1.The crystal structure of the IL-6/sIL-6Rα/gp130 ternary complex (PDB: 1P9M) was used as the structural template.</li>
+                        <li>2.For IL-6 binder design, gp130 was removed and IL-6 chain B was retained as the target. Residues were renumbered to match the full-length sequence, with Leu19 and Tyr31 corresponding to Leu1 and Tyr13 in the crystal structure.</li>
+                        <li>3.For IL-6Rα binder design, IL-6 and gp130 were removed and IL-6Rα was retained as the target. Trp249 and Trp296 in the full-length sequence corresponded to Trp154 and Trp201 in the crystal structure.</li>
+                        <li>4.Target chains were extracted and renumbered using PyMOL. Key epitope residues were defined as hotspot residues and used as structural constraints for subsequent binder design. Interface inspection and literature-based analysis were also used to avoid potential non-specific binding regions.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">B.Backbone Generation Using RFDiffusion3</h3>
+                    <ul>    
+                    <li>1.RFDiffusion3 was used to generate binder backbones targeting three epitopes: Leu19/Tyr31 on IL-6 (Part A), Trp249 on IL-6Rα (Part B), and Trp296 on IL-6Rα (Part C).</li>
+                    <li>2.For each target site, 40 batches were generated with 10 structures per batch, resulting in 400 candidate backbones per site and 1,200 backbones in total.</li>
+                    <li>3.During backbone generation, the target structure was kept fixed while hotspot-residue constraints guided the generation of diverse binder conformations around the selected epitope.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">C.Sequence Design Using ProteinMPNN</h3>
+                    <ul>
+                        <li>1.ProteinMPNN was used for fixed-backbone amino acid sequence design of the 1,200 RFDiffusion3-generated binder backbones.</li>
+                        <li>2.During sequence design, the target protein was fixed and only the binder sequence was optimized.</li>
+                        <li>3.For each backbone, 10 candidate amino acid sequences were generated, producing 12,000 sequences in total.</li>
+                        <li>4.Candidate sequences were ranked according to the average designed-residue ProteinMPNN score, and the top-ranked sequence for each backbone was retained.</li>
+                        <li>5.This procedure yielded 1,200 candidate binder sequences, including approximately 400 designs for each of the three target epitopes, for subsequent expression, purification, and functional screening.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">AI Use Statement</h3>
+                    <p>AI-assisted sequence design was performed. Computational predictions were distinguished from experimental validation. Computational prediction generated using AI, not experimentally validated by wet experiment. We employed a combined approach of computational design and experimental verification. Therefore, for results from AI-assisted prediction/simulation, we will continue to conduct wet experimental verification to confirm their validity.</p>
+                </div>
+            </div>
+             <div id="7" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">AlphaFold3 Prediction of Protein Complex Structures</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>AlphaFold3 is a deep learning-based method for predicting the three-dimensional structures of protein complexes, including protein-protein, protein-RNA, and protein-ligand assemblies. It integrates template structures from the PDB and evolutionary information from multiple sequence alignments (MSAs) to generate accurate structural models. The prediction pipeline involves tokenization of input sequences and ligands, embedding of tokens into high-dimensional representations, and iterative refinement through the Pairformer module. The output includes confidence metrics such as pTM and ipTM scores. In this protocol, AlphaFold3 is used to model the binding interfaces between designed binder candidates and the IL-6/sIL-6R complex.</p>
+                    <img src="../protocol/Protocol img/7/f1.png">Figure 1. Accurate structure prediction of biomolecular interactions with AlphaFold 3.
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.Data Retrieval</h3>
+                    <ul>
+                        <li>1.Template structures are retrieved from PDBx/mmCIF files and parsed to extract relevant structural information.</li>
+                        <li>2.Protein sequences are retrieved from five databases for multiple sequence alignment (MSA).</li>
+                        <li>3.RNA sequences are retrieved from three databases for MSA, providing evolutionary context for potential interactions.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">B.Sequence and Token Processing</h3>
+                    <ul><li>1.Input sequences (protein and RNA), ligands, and covalent bonds are converted into tokens.</li>
+                        <li>2.Tokens are passed through an embedder to generate three types of embeddings: input embeddings, single embeddings, and pair embeddings.</li>
+                        <li>3.The processed sequences are submitted to the AlphaFold3 web server.</li>
+                        <li>4.The order of the input sequences may be varied to obtain different structural outputs and different pTM and ipTM scores.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">C.Structure Generation and Refinement</h3>
+                    <ul>    
+                    <li>1.Template structure information is combined with pair embeddings, and MSA information is integrated to generate pair representations that capture evolutionary and structural relationships.</li>
+                        <li>2.The Pairformer module iteratively updates single and pair representations through multiple cycles to refine accuracy.</li>
+                        <li>3.The resulting protein structure files are imported into PyMOL, and distinct protein chains are labeled.</li>
+                        <li>4.Scripts are executed sequentially for hydrogen-bond analysis, electrostatic-interaction analysis, interface flexibility analysis, and buried surface area (BSA) calculation.</li>
+                    </ul> 
+                    <h3 class="accordion-subtitle">D.Selection and Analysis of High-Confidence Models</h3>
+                    <ul>  
+                        <li>1.Multiple replicate AlphaFold3 predictions (e.g., 90) are performed for each candidate combination and its binding model with the IL-6/sIL-6R complex.</li>
+                        <li>2.The predictions with the highest ipTM scores (e.g., top 5) are selected as high-confidence models for in silico complex construction.</li>
+                        <li>3.Alanine scanning may be performed to identify hotspot residues at the binding interfaces of the modeled complexes.</li>
+                    </ul>
+                    <img src="../protocol/Protocol img/7/f2.png">Figure 2. Structural models predicted by AlphaFold3 for the IL-6/sIL-6Rα complex bound to gp130 or the indicated designed proteins. Enlarged views show the modeled binding interfaces, with key residues highlighted in different colors.
+                    <h3 class="accordion-subtitle">AI Use Statement</h3>
+                    <p>AI tools were used to assist with AlphaFold code generation and debugging. The team reviewed and tested the code. All results are true results. Computational prediction generated using AI, not experimentally validated by wet experiment. We employed a combined approach of computational design and experimental verification. Therefore, for results from AI-assisted prediction/simulation, we will continue to conduct wet experimental verification to confirm their validity.</p>
+                </div>
+            </div>
+            <div id="8" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Detect the signal selectivity by Western Blotting</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>Western blotting (WB) enables semi-quantitative detection of pathway activation by measuring the phosphorylation level of key signaling proteins. In this experiment, IL-6 pathway activation was assessed by detecting phosphorylated STAT3 (p-STAT3) in endothelial cells representing trans-signaling and U266 cells representing classical signaling. Proteins were separated by SDS-PAGE, transferred to a PVDF membrane, and detected using a phospho-STAT3-specific antibody and chemiluminescence. Signal intensity was quantified to compare pathway activation between experimental groups, and phospho-flow cytometry was used as an orthogonal method to further assess p-STAT3 responses at the single-cell level.</p>
+                        <img src="../protocol/Protocol img/8/f1.png">Figure 1. Schematic illustration of direct and indirect detection strategies in Western blotting.
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.Protein Sample Preparation</h3>
+                    <ul>
+                        <li>1.Endothelial cells were used for trans-signaling analysis, while U266 cells were used for classical signaling analysis.</li>
+                        <li>2.Cells were lysed in lysis buffer supplemented with protease and phosphatase inhibitors and incubated on ice for approximately 30 min.</li>
+                        <li>3.Lysates were centrifuged at 14,000 rpm for 15 min at 4 ℃, and the supernatants were collected for subsequent analysis.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">B.SDS-PAGE Electrophoresis</h3>
+                    <ul><li>1.Glass plates were cleaned, aligned, and securely assembled in the gel-casting apparatus.</li>
+                        <li>2.After confirming that the system was leak-free, the plates were positioned vertically for gel preparation.</li>
+                        <li>3.A 10% separating gel was prepared, poured into the gel mold, and overlaid with water until polymerization was complete.</li>
+                        <li>4.After the separating gel solidified, the overlay was removed and the gel surface was dried.</li>
+                        <li>5.A 5% stacking gel was prepared and poured above the separating gel. A comb was inserted and removed after complete polymerization.</li>
+                        <li>6.The gel was rinsed and placed in the electrophoresis tank.</li>
+                        <li>7.The upper and lower chambers were filled with 1 × Tris-Glycine running buffer, and protein samples were loaded.</li>
+                        <li>8.Electrophoresis was initially performed at 80 V. After the dye front entered the separating gel, the voltage was increased to 120 V and electrophoresis was continued until the dye reached the bottom of the gel.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">C.Blotting</h3>
+                    <ul>    
+                    <li>1.The gel was equilibrated in transfer buffer for 10 min.</li>
+                    <li>2.PVDF membrane and filter papers were prepared according to the gel size and equilibrated in transfer buffer. The PVDF membrane was pre-activated in methanol for 1 min.</li>
+                        <li>3.The transfer sandwich was assembled in the order: sponge-filter paper-gel-PVDF membrane-filter paper-sponge, with air bubbles removed between layers.</li>
+                        <li>4.Protein transfer was performed in an ice bath at 100 V for 2 h, with the current limited to approximately 0.25 A.</li>
+                        <li>5.After transfer, the membrane was removed for subsequent blocking and antibody incubation.</li>
+                    </ul> 
+                    <h3 class="accordion-subtitle">D.Blocking and Hybridization</h3>
+                    <ul>  
+                        <li>1.5% BSA in TBST was prepared as the blocking solution.</li>
+                        <li>2.The membrane was blocked in 5% BSA for 2 h at room temperature and washed three times with TBST for 5 min each.</li>
+                        <li>3.For primary antibody incubation, the membrane was incubated with Phospho-STAT3 antibody (CST, 9145) overnight at 4 ℃.</li>
+                        <li>4.The membrane was washed three times with TBST for 15 min each, followed by incubation with the corresponding HRP-conjugated secondary antibody for 2 h at room temperature. The membrane was then washed three additional times with TBST.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">E.Visualization</h3>
+                    <ul>
+                        <li>1.ECL solutions A and B were mixed at a 1:1 ratio to prepare the working solution.</li>
+                        <li>2.Excess TBST was removed from the PVDF membrane, ECL substrate was applied evenly, and chemiluminescent signals were recorded using an imaging system.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">F.ImageJ Analysis</h3>
+                    <ul>
+                        <li>1.The intensity of the p-STAT3 bands was quantified using ImageJ software.</li>
+                        <li>2.β-actin was not used as a loading control in this experiment; signaling activity was therefore expressed directly as the measured p-STAT3 band intensity for each condition.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">G.Phospho-Flow Cytometry</h3>
+                    <ul>
+                        <li>1.Target-cell aliquots were immediately fixed, permeabilized, and stained with a fluorescent anti-p-STAT3 antibody.</li>
+                        <li>2.After singlet and viability gating, at least 50,000 events were acquired for each sample.</li>
+                        <li>3.The percentage of p-STAT3-positive cells and the median fluorescence intensity were compared between Groups 1 and 2 to further evaluate signaling selectivity.</li>
+                    </ul>
+                    </div>
+            </div>
+             <div id="9" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">SPR measurement of cytokine-receptor binding affinity</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>Surface plasmon resonance (SPR) enables real-time and label-free measurement of biomolecular interactions by monitoring changes in refractive index at a sensor surface. In this experiment, the candidate protein is captured on the sensor chip through an immobilized Anti-His antibody, while cytokine, soluble receptor, or cytokine-receptor complexes are injected as analytes at a series of concentrations. Association and dissociation sensorgrams are recorded and globally fitted using a 1:1 binding model to determine the association rate constant (kon), dissociation rate constant (koff), and equilibrium dissociation constant (KD), thereby quantitatively evaluating cytokine-receptor binding affinity.
+                    </p>
+                    <img src="../protocol/Protocol img/9/f1.png">Figure 1. Schematic illustration of the surface plasmon resonance (SPR) principle.
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.Experimental Parameter Setup</h3>
+                    <ul>
+                        <li>1.Analytes were prepared by 2-fold serial dilution to generate eight concentrations: 100, 50, 25, 12.5, 6.25, 3.125, 1.5625, and 0.78125 nM. A total of 200 μL of each sample was loaded into a 96-well plate.</li>
+                        <li>2.The SPR experiment was performed at 25 ℃ with a flow rate of 30 μL/min. The association and dissociation times were set to 180 s and 300 s, respectively.</li>
+                        <li>3.After each binding cycle, the chip surface was regenerated with 10 mM glycine-HCl (pH 2.0) for 30 s, followed by washing with running buffer until the baseline returned to the initial level.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">B.Chip Preparation and System Equilibration</h3>
+                    <ul><li>1.A new sensor chip was installed according to the manufacturer's instructions.</li>
+                        <li>2.Running buffer consisting of PBS containing 0.05% Tween 20 was prepared and degassed by sonication for 10 min.</li>
+                        <li>3.Running buffer was flowed over the chip surface at 30 μL/min for approximately 30 min until a stable baseline was obtained.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">C.SPR Measurement</h3>
+                    <ul>    
+                    <li>1.Flow Cell 1 was used as the reference cell, while Flow Cell 2 was used as the active cell for ligand immobilization.</li>
+                        <li>2.The sensor surface was activated with a 1:1 mixture of EDC and NHS at 10 μL/min for 7 min. Anti-His antibody (20 μg/mL in 10 mM sodium acetate, pH 5.0) was then immobilized to approximately 5,000 RU, followed by blocking with 1 M ethanolamine (pH 8.5) for 7 min.</li>
+                        <li>3.The His-tagged candidate protein was captured on the active flow cell. The IL-6/sIL-6Rα complex, IL-6, sIL-6Rα, and BSA were separately tested as analytes.</li>
+                        <li>4.Each analyte was injected from low to high concentration (0.78125-100 nM). Baseline stabilization was performed for 180 s, followed by 180 s association and 300 s dissociation.</li>
+                        <li>5.After each cycle, the surface was regenerated with 10 mM glycine-HCl (pH 2.0) for 30 s and washed with running buffer for 60 s. Each concentration was measured in duplicate.</li>
+                    </ul> 
+                    <h3 class="accordion-subtitle">D.Data Analysis</h3>
+                    <ul>  
+                        <li>1.The reference-cell sensorgram was subtracted from the active-cell sensorgram to correct for bulk refractive index changes and non-specific binding.</li>
+                        <li>2.Sensorgrams from all concentration gradients were globally fitted using a 1:1 binding model.</li>
+                        <li>3.The association rate constant (kon), dissociation rate constant (koff), and equilibrium dissociation constant (KD) were calculated from the fitted kinetic curves. We compared the fitted curves with the experimental curves; the R2 value of the fitted curves was 0.995, indicating a good quality of fit. The final KD value obtained for this sample was 8.5 × 10-8 M.</li>
                     </ul>
                 </div>
             </div>
-        </div>
+             <div id="10" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Molecular Dynamics for ABC Selection</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>Molecular dynamics (MD) simulation is a computational method used to evaluate the structural stability, flexibility, and interaction persistence of biomolecular complexes over time by numerically solving atomic motions under a defined force field. In this study, designed protein-IL-6/sIL-6Rα complexes were subjected to energy minimization, equilibration, and production simulations in an explicit solvent environment. Structural stability and binding-interface behavior were subsequently assessed using RMSD, RMSF, hydrogen-bond occupancy, buried solvent-accessible surface area, interaction energies, and conformational free-energy landscapes.
+                    </p>    
+                    <img src="../protocol/Protocol img/10/f1.png">Figure 1. Workflow of MD‑based validation and stability assessment.
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.System Preparation</h3>
+                    <ul>
+                        <li>1.Initial binding conformations of the designed protein-IL-6/sIL-6Rα complexes were obtained from previous virtual screening and subjected to Rosetta energy minimization.</li>
+                        <li>2.Models meeting the screening criteria, including RMSD < 10 Å, Binder PTM > 0.7, or PAE < 5, were retained and further evaluated using Rosetta statistical potential (ddG) calculations.</li>
+                        <li>3.Each complex was placed in a periodic cubic simulation box with a minimum distance of 12 Å between the protein and the box boundary.</li>
+                        <li>4.The system was solvated using the TIP3P water model, and Na+ and Cl- ions were added to neutralize the system and approximate physiological ionic conditions.</li>
+                        <li>5.Protein parameters were assigned using the CHARMM36m force field, with compatible TIP3P water and CHARMM ion parameters.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">B.Molecular Dynamics Simulation</h3>
+                    <ul><li>1.Template structure information is combined with pair embeddings, and MSA information is integrated to generate pair representations that capture evolutionary and structural relationships.</li>
+                        <li>2.The Pairformer module iteratively updates single and pair representations through multiple cycles to refine accuracy.</li>
+                        <li>3.The resulting protein structure files are imported into PyMOL, and distinct protein chains are labeled.</li>
+                        <li>4.Production simulations were conducted under the NPT ensemble at 310 K and 1 bar, using the velocity-rescaling thermostat and Parrinello-Rahman pressure coupling.</li>
+                        <li>5.Short-range van der Waals and electrostatic interactions were treated with a cutoff of 12 Å, while long-range electrostatic interactions were calculated using the particle mesh Ewald (PME) method.</li>
+                        <li>6.Each system was simulated for 50 ns. The first 20 ns were treated as extended equilibration and excluded from downstream analysis, while the final 30 ns were used for trajectory analysis.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">C.Data Analysis</h3>
+                    <ul>    
+                    <li>1.We used GROMACS built-in tools to process the trajectories. For stability assessment, we calculated Cα RMSD separately for the receptor (IL-6/sIL-6Rα) and the designed binder, rather than aligning the whole complex. We also computed RMSF per residue to pinpoint flexible loops, and counted interfacial hydrogen bonds (donor-acceptor distance ≤ 3.5 Å) and buried solvent-accessible surface area (BSA) to monitor interface persistence over time.</li>
+                        <li>2.We used VMD to visualize trajectories and extracted representative snapshots from the initial (t = 20 ns) and final (t = 50 ns) frames to compare binding-mode changes.</li>
+                        <li>3.To capture global conformational shifts, we constructed relative free-energy landscapes based on the first two principal components (PC1 and PC2) from the Cα covariance matrix, with ΔG = -kB T ln[P(PC1, PC2)/Pmax]. We also extracted van der Waals and electrostatic interaction energies along the trajectory and plotted them as radar charts for cross-comparison of the four complexes, alongside B-factor profiles to evaluate residue-level flexibility.</li>
+                        <li>4.Finally, we overlaid the initial and final binding interfaces to identify any loss or gain of key residue contacts during the simulation.</li>
+                    </ul> 
+                    <h3 class="accordion-subtitle">AI Use Statement</h3>
+                    <p>Computational prediction generated using AI, not experimentally validated by wet experiment. We employed a combined approach of computational design and experimental verification. Therefore, for results from AI-assisted prediction/simulation, we will continue to conduct wet experimental verification to confirm their validity.
+                </p>
+                </div>
+            </div>
+             <div id="11" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Polymerase Chain Reaction</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>Polymerase chain reaction (PCR) is an in vitro DNA replication process catalyzed by DNA polymerase. Using DNA as the template and specific primers as the extension initiation sites, DNA is amplified through repeated cycles of denaturation, annealing and extension.
+                    </p>
+                    <p>In this study, PCR was used to amplify the complete inserted fragment from genomic DNA extracted from the cells harvested at the final round of sorting. Primers were designed on the constant regions of the vector backbone (upstream of fragment A and downstream of fragment C) so that the full-length insert, comprising fragments A, B and C, was amplified in a single reaction for downstream sequencing.
+                    </p>
+                    <img src="../protocol/Protocol img/11/f1.png">Figure 1. Schematic illustration of the polymerase chain reaction (PCR) principle.
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.Primer Design</h3>
+                    <ul>
+                        <li>1.Primer design: PCR primers were designed on the constant regions of the vector backbone, i.e., upstream of fragment A and downstream of fragment C, respectively, to amplify the complete inserted fragment.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">B.PCR Amplification</h3>
+                    <ul><li>1.Reaction setup: The PCR reaction was performed in a 20 μL volume. A negative control (nuclease-free water instead of DNA template) was included in each run. The reaction mixture composition is as follows:</li>
+                        <img src="../protocol/Protocol img/11/t1.png">
+                        <li>2.Cycling conditions: The PCR amplification was carried out under the following cycling conditions:</li>
+                        <img src="../protocol/Protocol img/11/t2.png">
+                    </ul>
+                    <h3 class="accordion-subtitle">C.Verification and Purification</h3>
+                    <ul>    
+                    <li>1.Gel verification: The PCR products were verified by agarose gel electrophoresis to confirm the specificity of the amplified bands.</li>
+                        <li>2.Gel purification: The target bands were excised and purified using a gel extraction kit.</li>
+                        <li>3.Quantification: The purified products were quantified using a Nanodrop spectrophotometer.</li>
+                    </ul> 
+                    </div>
+            </div>
+             <div id="12" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Plasmid Maxiprep</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>Plasmid maxiprep is a procedure for isolating large quantities of plasmid DNA from an overnight bacterial culture. The cells are harvested by centrifugation and resuspended, then lysed to release the plasmid DNA. Cellular debris, membrane fragments and other macromolecular impurities are removed by precipitation, which aggregates them into a pellet while the plasmid DNA remains in solution. The cleared lysate is then passed through a purification column, to which the plasmid DNA binds while soluble impurities flow through; impurities that are only weakly bound to the column are removed by washing. Finally, the bound plasmid DNA is eluted in a defined volume of elution buffer. The DNA is concentrated by isopropanol precipitation, and residual salts are removed by a 70% ethanol wash.
+                    </p>
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.Preparation of the Overnight Culture and Reagents</h3>
+                    <ul>
+                        <li>1.Bacterial culture: Transformed E. coli was grown in LB medium. An overnight culture of 100 mL (high copy number plasmid) or 250 mL (low copy number plasmid) was used.</li>
+                        <li>2.RNase A addition: RNase A was added to Resuspension Buffer (R3) according to the instructions on the label.</li>
+                        <li>3.Lysis buffer warming: Lysis Buffer (L7) was warmed briefly at 37 ℃ to redissolve any particulate matter, if necessary.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">B.Column Equilibration</h3>
+                    <ul><li>1.Equilibration: 30 mL of Equilibration Buffer (EQ1) was applied directly into the Filtration Cartridge inserted in the PureLink HiPure Maxi Column, and the solution was allowed to drain through the column by gravity flow.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">C.Cell Harvest and Lysis</h3>
+                    <ul>    
+                    <li>1.Harvest: The overnight LB culture was centrifuged at 4,000 × g for 10 min and the medium was removed.</li>
+                        <li>2.Resuspension: 10 mL of Resuspension Buffer (R3) with RNase A was added to the cell pellet and the pellet was gently shaken until the cell suspension was homogeneous.</li>
+                        <li>3.Lysis: 10 mL of Lysis Buffer (L7) was added. The mixture was mixed gently by inverting the capped tube until homogeneous and incubated at room temperature for 5 min.</li>
+                        <li>4.Precipitation: 10 mL of Precipitation Buffer (N3) was added. The mixture was mixed immediately by inverting the tube until homogeneous. Vortexing was avoided.</li>
+                    </ul> 
+                    <h3 class="accordion-subtitle">D.Column Purification</h3>
+                    <ul>  
+                        <li>1.Clarification: The precipitated lysate was transferred into the column and allowed to filter through by gravity flow.</li>
+                        <li>2.Optional wash: The column was washed with 10 mL of Wash Buffer (W8), which was allowed to flow through by gravity flow.</li>
+                        <li>3.Wash: The inner filtration cartridge was discarded. The column was washed with 50 mL of Wash Buffer (W8), and the flow-through was discarded after the buffer drained.</li>
+                        <li>4.Elution: A sterile 50 mL centrifuge tube was placed under the HiPure Filter Column. 15 mL of Elution Buffer (E4) was added to the column and allowed to drain by gravity flow. The column was discarded and the elution tube containing the purified DNA was retained.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">E.Precipitation and Resuspension</h3>
+                    <ul>  
+                        <li>1.Isopropanol precipitation: 10.5 mL of isopropanol was added to the eluate and mixed well. The DNA was incubated with isopropanol for 2 min at room temperature, then centrifuged at 12,000 × g for 30 min at 4 ℃. The supernatant was discarded.</li>
+                        <li>2.Ethanol wash: 5 mL of 70% ethanol was added to the pellet and the tube was centrifuged at 12,000 × g for 5 min at 4 ℃. The supernatant was removed.</li>
+                        <li>3.Drying and resuspension: The pellet was air-dried for 10 min and dissolved in 500 μL of TE buffer. The concentration was measured using E4 as the blank, and the plasmid DNA was labelled and stored at -20 ℃.</li>
+                    </ul>
+                </div>
+            </div>
+             <div id="13" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Genomic DNA Extraction</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>Genomic DNA extraction is a fundamental procedure that isolates total genomic DNA from biological samples by disrupting cellular membranes, removing proteins and other contaminants, and recovering purified DNA. This protocol employs a silica-membrane-based spin column method combined with protease digestion to efficiently lyse cells, digest proteins, and bind DNA to the column matrix under specific buffer conditions. After washing steps to remove impurities, purified genomic DNA is eluted in low-salt buffer and is suitable for downstream applications such as PCR amplification and sequencing.
+                    </p>
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.Cell Collection</h3>
+                    <ul>
+                        <li>1.Harvest: Cells harvested from the final round of sorting were collected by centrifugation at 300 × g for 5 min at room temperature. The supernatant was carefully removed and the cell pellet was resuspended in 200 μL of Buffer GA (provided in the TIANamp Genomic DNA Kit) and vortexed until completely suspended.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">B.Cell Lysis and Protein Digestion</h3>
+                    <ul><li>1.Proteinase K digestion: Proteinase K (20 μL) was added to the suspension and mixed thoroughly.</li>
+                        <li>2.Lysis: Buffer GB (200 μL) was added and the mixture was inverted to mix completely, followed by incubation at 70 ℃ for 10 min. The solution became clear upon complete lysis. A brief centrifugation was performed to remove droplets from the inner surface of the tube lid.</li>
+                        <li>3.Ethanol precipitation: An equal volume of anhydrous ethanol (200 μL) was added to the lysate and the mixture was vortexed vigorously for 15 s to ensure complete mixing, after which a brief centrifugation was performed to remove droplets from the tube lid.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">C.Column Binding and Washing</h3>
+                    <ul>    
+                    <li>1.Binding: The entire mixture (including any flocculent precipitate) was transferred to a Spin Column CB3 placed in a 2 mL Collection Tube, and centrifuged at 12,000 rpm for 30 s. The flow-through was discarded and the column was placed back into the collection tube.</li>
+                        <li>2.Wash with Buffer GD: Buffer GD (500 μL) was added to the column and centrifuged at 12,000 rpm for 30 s. The flow-through was discarded and the column was returned to the collection tube.</li>
+                        <li>3.Wash with Buffer PW: Buffer PW (600 μL) was added to the column and centrifuged at 12,000 rpm for 30 s. The flow-through was discarded and the column was placed back into the collection tube. Repeat this step for collecting more end-product.</li>
+                        <li>4.Membrane drying: The column was centrifuged at 12,000 rpm for 2 min to remove residual wash buffer, and the flow-through was discarded. The column was then placed at room temperature for 3 min to completely air-dry the membrane.</li>
+                    </ul> 
+                    <h3 class="accordion-subtitle">D.DNA Elution and Quantification</h3>
+                    <ul>  
+                        <li>1.Elution: The column was transferred to a clean 1.5 mL microcentrifuge tube, and 100 μL of Buffer TE was added dropwise onto the center of the membrane. After incubation at room temperature for 3 min, the column was centrifuged at 12,000 rpm for 2 min to elute the genomic DNA.</li>
+                        <li>2.Quantification: The eluted DNA was quantified using a Nanodrop spectrophotometer and stored at -20 ℃ for subsequent PCR amplification.</li>
+                    </ul>
+                </div>
+            </div>
+             <div id="14" class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Sanger sequencing</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <h3 class="accordion-title">Principal</h3>
+                    <p>Sanger sequencing determines the nucleotide sequence of a DNA fragment by controlled interruption of enzymatic DNA synthesis. The reaction contains a DNA polymerase, a primer annealed to the template, the four deoxynucleoside triphosphates that serve as the normal building blocks, and a small proportion of the corresponding 2', 3'-dideoxynucleoside triphosphates. A dideoxynucleotide lacks the 3'-hydroxyl group that the polymerase requires to form the next phosphodiester bond, so once one is incorporated the chain can no longer be extended. The reaction therefore generates a nested set of extension products that all begin at the same primer and terminate at a defined base, each one nucleotide longer than the last. In dye-terminator chemistry the four dideoxynucleotides carry spectrally distinct fluorescent labels, so the termination reactions are carried out in a single tube and the products are separated by capillary electrophoresis according to length. A laser excites the fluorophores as the fragments migrate past the detector, and the emission color recorded at each position identifies the base that terminated that fragment. The instrument reports the result as an electropherogram, in which the sequence appears as a series of colored peaks, together with a base-called sequence file. Read quality is highest immediately downstream of the primer and decays with length, so the terminal region of a read is normally trimmed before the sequence is used.
+                    </p>
+                    <p>Sequencing the same template from both ends, with a forward and a reverse primer, is referred to as bidirectional sequencing and yields two independent reads of the amplicon. Because the two reads are reverse complements of one another, they can be assembled into a single consensus sequence that covers the whole insert and cross-validates each base; positions where the two reads disagree, or where one read shows double or mixed peaks, identify bases that cannot be called with confidence. Double or mixed peaks within a single read indicate that the template is not clonal, which in a library context points to contamination or to a sample containing more than one variant. When the amplicon is the binder gene recovered from the enriched cell population, the consensus sequence of each clone can be translated and matched back to the designed variants, so that the occurrence of each variant among the surviving cells can be counted and the population ranked by enrichment.</p>
+                    <img src="../protocol/Protocol img/14/f1.png">Figure 1. Schematic illustration of Sanger sequencing.
+                    <h3 class="accordion-title">Method</h3>
+                    <h3 class="accordion-subtitle">A.Template Preparation</h3>
+                    <ul>
+                        <li>1.Gel purification: The PCR product was purified by agarose gel extraction.</li>
+                        <li>2.Quantification: The purified PCR product was quantified by Nanodrop.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">B.Bidirectional Sanger Sequencing</h3>
+                    <ul><li>1.Sample submission: The purified PCR product was submitted together with the forward primer (PRIMIL-F1) and the reverse primer (PRIMIL-R1) to a commercial sequencing service for bidirectional Sanger sequencing.</li>
+                        <li>2.Data return: The service returned the chromatogram and the base-called sequence files.</li>
+                    </ul>
+                    <h3 class="accordion-subtitle">C.Sequence Assembly and Quality Control</h3>
+                    <ul>    
+                    <li>1.Trimming and assembly: The low-quality ends were trimmed, and the forward (PRIMIL-F1) and reverse (PRIMIL-R1) reads were assembled into a consensus sequence covering the full binder gene.</li>
+                        <li>2.Translation: The consensus sequence was translated into amino acids.</li>
+                        <li>3.Quality filtering: Clones showing double or mixed peaks, which indicate contamination or multi-clone samples, were discarded.</li>
+                    </ul> 
+                    <h3 class="accordion-subtitle">D.Variant Identification and Ranking</h3>
+                    <ul>  
+                        <li>1.Variant assignment: Each clone was mapped to a binder variant, and the occurrence of each variant among the surviving cells was counted.</li>
+                        <li>2.Ranking and selection: Variants were ranked by enrichment, and the top candidate sequences were selected for downstream affinity validation.</li>
+                    </ul>
+                </div>
+            </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     </section>
     <script>
         function toggleAccordion(headerElement) {

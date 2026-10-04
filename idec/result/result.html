@@ -210,59 +210,6 @@
             40% { transform: translateX(-50%) translateY(-2rem); }
             60% { transform: translateX(-50%) translateY(-1rem); }
         }        
-/* 侧边栏优化 - 按钮样式 */
-.sidebar {
-    width: 320px;
-    flex-shrink: 0;
-    background: url('../image/所有图（除design头图）/background侧面导航栏2 (1).png') right top/100% no-repeat;
-    padding: 30px 0;
-    position: sticky;
-    top: 100px;
-    overflow: visible;}
-
-.sidebar-nav ul {
-    list-style: none;
-    padding:  5px 0 20px 0;
-    transform: translateY(-12px);     /* 整个导航列表上移15px */
-}
-
-.sidebar-nav li {
-    margin: 25px 15px; /* 增加间距，让按钮更明显 */
-}
-
-.sidebar-nav a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 0;
-    color: #444;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    background: transparent;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    width: auto;
-    max-width: 160px;
-    margin: 5px 0 0 95px;   
-}
-
-.sidebar-nav a:hover {
-    background: transparent;
-    color: #1a237e;
-    border: none;                      /* 去掉边框 */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
-}
-
-.sidebar-nav a.active {
-    background: transparent;
-    color: #1a237e;
-    border: none;                      /* 去掉边框 */
-    box-shadow: 0 4px 12px rgba(255, 145, 0, 0.3);
-}
          /* === 重新设计的主内容区域 === */
         .main-wrapper {
             max-width: 1400px;
@@ -450,8 +397,8 @@
                         <a href="../background/background.html">Background</a>
                         <a href="../design/design.html">Design</a>
                         <a href="../result/result.html">Result</a>
-                        <a href="../report_maintext_SynthImmunol.pdf">Report</a>
-                        <a href="../Extended Data _SynthImmunol.pdf">Supplement</a>
+                        <a href="../report_maintext_SynthImmunol.pdf"target="_blank">Report</a>
+                        <a href="../Extended Data _SynthImmunol.pdf"target="_blank">Supplement</a>
                     </div>
                 </div>
                 
@@ -463,9 +410,9 @@
                         <a href="../protocol/protocol.html">Protocols</a>  
                     </div>
                 </div>
-                 <div class="nav-item" id="publications">
-                    <a href="#publications" class="nav-link has-dropdown">Challenge</a>
-                </div>
+                <div class="nav-item" id="publications">
+                    <a href="../challenge/challenge.html" class="nav-link">
+                    <img src="../image/图标/challenge.png"alt="" class="nav-icon">Challenge</a></div>
                 <div class="nav-item" id="team">
                     <a href="#team" class="nav-link has-dropdown">
                         <img src="../image/图标/team.png"alt="" class="nav-icon">Team</a>
@@ -489,82 +436,369 @@
 
     <!-- 重新设计的主内容区域 -->
     <div class="main-wrapper">
-        <aside class="sidebar">
-            <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="#preface" class="active">Preface</a></li>
-                    <li><a href="#denovo">Denovo</a></li>
-                    <li><a href="#bcell">B cell</a></li>
-                    <li><a href="#AID">AID</a></li>
-                </ul>
-            </nav>
-        </aside>
-
         <main class="content-main">
             <!-- 内容区域 -->
             <div class="content-section">
-                <h2 class="section-title" id="preface">Preface</h2>
+                <h2 class="section-title">Result 1. Functional enrichment of the B cell display library and identification of top 
+candidates</h2>
                 <p class="section-text">
-                   炎症是机体应对感染和组织损伤的重要防御反应，其强度和持续时间受到免疫系统的严格调控。多种细胞因子既参与宿主防御、组织修复和免疫稳态维持，又可在持续产生或异常激活时驱动慢性炎症和组织损伤。因此，炎症调控并不只是降低某一种炎症介质的水平，更重要的是区分同一分子介导的生理性和病理性信号，并选择性削弱疾病相关的信号输出。白细胞介素-6（interleukin-6, IL-6）正是这种功能分化最为典型的细胞因子之一。IL-6通过两种不同的信号方式发挥作用，其中，经典信号（classical signalling）依赖膜结合型IL-6受体α（membrane-bound IL-6 receptor α, mIL-6Rα），主要存在于少数免疫细胞和肝细胞等特定细胞群中；而反式信号（trans-signalling）则通过IL-6与可溶性IL-6Rα（soluble IL-6 receptor α, sIL-6Rα）形成复合物后募集广泛表达的gp130，从而突破mIL-6Rα表达范围的限制，将IL-6应答扩展至更多细胞类型，并参与炎症细胞募集、血管内皮激活、纤维化及慢性炎症的维持和放大1。经典信号与反式信号在作用细胞和生物学效应上的差异，使选择性调控IL-6的不同信号模式成为控制炎症而保留其生理功能的重要切入点。这一特征决定了对IL-6信号通路的干预不能简单等同于阻断IL-6本身。现有靶向IL-6或IL-6R的阻断策略，例如抗IL-6R单克隆抗体托珠单抗可阻断IL-6与mIL-6R以及sIL-6R结合，因此同时影响经典信号和反式信号2。，继而在抑制病理炎症的同时，也削弱经典IL-6信号参与的生理功能。相比之下，选择性靶向IL-6反式信号有望将炎症放大回路与基础免疫稳态相分离。机制上，IL-6反式信号具有一个可以被选择性识别的结构基础：IL-6与sIL-6Rα结合后形成复合物，并共同构成gp130识别所需的结合表面；随后gp130的募集和二聚化启动JAK/STAT等下游信号3。因此，如果能够直接识别IL-6/sIL-6Rα复合物，并阻断其与gp130结合，就可以在不直接靶向游离IL-6或mIL-6Rα的情况下抑制反式信号。这一策略的关键在于获得能够区分复合物与其游离组分，且对复合物具有足够亲和力以竞争gp130结合的结合分子。
-                </p>
-
+                   We sought to design a de novo protein that selectively binds the IL-6/sIL-6Rα complex and 
+blocks gp130 engagement (Fig. 1a). The protein comprises three segments: A targets the gp130-
+binding interface on IL-6; B targets IL-6Rα Trp249, which participates in gp130 binding; and 
+C targets Trp296 in the membrane-proximal region of IL-6Rα.</p>
+<p class="section-text">Using the crystal structure of the IL-6/sIL-6Rα/gp130 complex (PDB ID: 1P9M), we 
+defined three target epitopes and corresponding hotspot constraints. RFdiffusion generated 400 
+backbones per site across 40 batches, yielding 1,200 backbones in total. ProteinMPNN 
+generated 10 sequences per backbone, which were ranked by their mean per-residue scores; 
+approximately 78 candidates were retained (Extended Data Table 1). AlphaFold-predicted 
+complexes were filtered using a target-aligned binder RMSD < 10 Å and either a binder pTM > 
+0.7 or a minimum interchain PAE < 5 Å. The three highest-ranking designs per site yielded nine 
+segment designs (Fig. 1b), which were combinatorially assembled into 27 full-length sequences 
+(Extended Data Table 2).</p>
+<p class="section-text">Each design was fused to the FcRγ transmembrane and cytoplasmic domains to enable 
+surface display and receptor-mediated internalization, and the lentiviral library was transduced 
+into Raji cells and puromycin-selected to establish a stable library, with surface expression 
+confirmed by flow cytometry (Fig. 1c)</p>
+<p class="section-text">Library-transduced cells were incubated with the biotinylated IL-6/sIL-6Rα complex and 
+stained with streptavidin-APC (Extended Data Fig. 2). A membrane-impermeable fluorescence 
+quencher was then applied to suppress surface-associated fluorescence, allowing retained 
+intracellular APC fluorescence to serve as a readout of complex internalization. Cells were 
+isolated by fluorescence-activated cell sorting according to this signal.</p>
+<p class="section-text">Following the final sorting round, full-length inserts were amplified from genomic DNA 
+using primers targeting conserved vector regions and subjected to long-read sequencing. Of 
+19,606 valid reads, 14,894 contained complete sequences, corresponding to 75.97% of valid 
+reads (Extended Data Tables 3-4).</p>
+<p class="section-text">Following the final sorting round, full-length inserts were amplified from genomic DNA 
+using primers targeting conserved vector regions and subjected to long-read sequencing. Of 
+19,606 valid reads, 14,894 contained complete sequences, corresponding to 75.97% of valid 
+reads (Extended Data Tables 3-4). 
+A2B3C3 was the most abundant variant, with 2,530 reads (17.0% of full-length sequences), 
+followed by A2B3C2 with 1,157 reads (7.8%) and A3B2C2 with 1,012 reads (6.8%). Together, 
+these variants accounted for 31.6% of full-length sequences after screening. Each exceeded the 
+3.7% frequency expected under equal representation of the 27 variants, identifying them as the 
+top candidates from the functional screen (Fig. 1d). We also evaluated the top three variants 
+using AlphaFold3 (AF3) structural modeling. AF3 predictions showed that A2B3C3 exhibited 
+the largest buried surface area and formed hydrophobic contacts with both IL-6 and sIL-6Rα 
+(Extended Data Tables 5–7).</p>
                 <!-- 图片网格1 -->
                 <div class="image-div">
-                    <img src="../image/wiki绘图/gp130.png" style="width: 100%; border-radius: 12px;">
+                    <img src="../result/r  img/r1/r1.png" style="width: 100%; border-radius: 12px;">
                 </div>
+                <div class="image-div">
+                    <img src="../result/r  img/r1/r2.png" style="width: 100%; border-radius: 12px;">
+                </div>
+                <p class="section-text">Fig. 1 | Computational design and B cell display screening of proteins targeting the IL-
+6/sIL-6Rα complex. a, Schematic of the design and screening workflow. Three binding regions 
+on the IL-6/sIL-6Rα complex were selected using the gp130-bound structure as a reference. 
+Candidate segments A, B and C were designed and combined into 27 full-length sequences for 
+lentiviral expression in Raji B cells, followed by complex-based cell sorting and sequencing. b,
+Structural models of the IL-6/sIL-6Rα complex bound to gp130 or the indicated designed 
+proteins. Enlarged views show the modeled binding interfaces. c, Representative flowcytometry histograms of FLAG staining in Raji cells. Grey, empty-vector control; red, Raji cells 
+expressing the indicated candidate protein. d, Distribution of full-length A-B-C combinations 
+among 14,894 sequencing reads recovered after sorting.</p>
 
-                <h2 class="section-title" id="denovo">Denovo</h2>
+                <h2 class="section-title">Result 2. Structural interface and molecular dynamics analyses identify A2B3C3 as the 
+starting sequence for directed evolution</h2>
                 <p class="section-text">
-                   从头蛋白质设计的发展使针对预定义三维表面的结合蛋白设计成为可能。基于结构生成和序列优化的计算方法能够围绕特定靶表面构建新的蛋白骨架，为识别蛋白质复合物形成后出现的结构表位提供了新的技术基础。然而，从头设计得到的候选分子通常只是功能优化的起点。静态结构上的界面互补并不能完全预测实际生物环境中的结合亲和力、复合物选择性以及对天然受体的竞争能力；同时，人工设计蛋白还必须满足折叠、表达、稳定性和细胞环境适应性等多重约束。因此，在计算设计获得初始骨架后，仍需要一种能够持续产生序列多样性，并在哺乳动物细胞环境中接受功能选择的进化体系，使候选分子进一步跨越由结构可行性到生物学功能之间的差距4。
+                   To further assess the binding of the candidates to the IL-6/sIL-6Rα complex, we first performed 
+static interface analyses of representative optimized structures for each system using Rosetta. 
+A2B3C3 exhibited the most favorable interface energy (−16.285 Rosetta energy units [REU]) 
+and the largest buried interface area (2,423.6 Å²), indicating that it formed an extensive and 
+energetically favorable binding interface with the IL-6/sIL-6Rα complex (Fig. 2a-c). Although 
+A3B2C2 had a relatively smaller interface area, it exhibited the most favorable interface energy 
+density (−0.958) and the highest interface packing score (0.459), indicating a more compact 
+interface with interactions concentrated within a smaller contact area (Fig. 2d-f). The static 
+interface metrics of A2B3C2 were generally intermediate: its predicted interface energy was 
+slightly more favorable than that of gp130, whereas its interface packing was comparable to 
+that of gp130.</p>
+            <p class="section-text">To determine whether these static binding conformations could be maintained in solution, 
+we performed 100-ns molecular dynamics (MD) simulations of the three candidate complexes 
+and the gp130 reference complex. A2B3C3 maintained an extensive and stable binding 
+interface throughout the simulation, exhibiting the lowest receptor-side root-mean-square 
+deviation (RMSD; 1.34 ± 0.24 Å) and the largest mean buried surface area (31.82 ± 1.73 nm²) 
+(Fig. 2g-j, Extended Data Fig. 3). Radar-plot analysis further showed relatively limited 
+fluctuations in its interfacial van der Waals and electrostatic energies and in residue B factors, 
+indicating that its overall conformation remained well constrained (Fig. 2m).</p>
+<p class="section-text">A3B2C2 had the lowest candidate-protein RMSD (2.23 ± 0.55 Å) and the highest number 
+of interfacial hydrogen bonds (13.34 ± 2.60), consistent with stabilization through a tightly 
+organized polar interaction network despite its smaller interface (Fig. 2g-l). A2B3C2 underwent 
+greater candidate-side conformational rearrangement but retained its interface during the later 
+simulation stages. Its buried surface area and hydrogen-bond retention over the final 20 ns were 
+slightly higher than those of gp130.</p>
+<p class="section-text">Overall, the Rosetta static interface analyses and MD simulations yielded concordant 
+results. The resulting computational prioritization was A2B3C3 (candidate 1) > A3B2C2 
+(candidate 3) > A2B3C2 (candidate 2) > the gp130 reference complex (Fig. 2; Extended Data 
+Table 8). On the basis of its sequencing enrichment and overall performance in the MD-based 
+evaluation, A2B3C3 was selected as the starting sequence (TOP1) for the second round of 
+directed evolution and screening.</p>
+                <div class="image-div">
+                    <img src="../result/r  img/r2/1.png" style="width: 100%; border-radius: 12px;">
+                </div>
+                <div class="image-div">
+                    <img src="../result/r  img/r2/2.png" style="width: 100%; border-radius: 12px;">
+                </div>
+                <p class="section-text">
+                  Fig. 2 | Structural, molecular-dynamics and biophysical characterization of the first￾round candidate binders. a, b, Rosetta-derived interface energy (a) and buried interface area 
+(b) of representative optimized models of A2B3C3, A2B3C2 and A3B2C2, with native gp130 
+included as the reference. c, Structural model of A2B3C3 bound to the IL-6/sIL-6Rα complex, 
+showing its buried interface area and Rosetta interface energy. d, e, Interface energy density (d) 
+and interface packing score (e) of the three candidate binders and gp130. f, Structural model of 
+A3B2C2 bound to the IL-6/sIL-6Rα complex, illustrating its compact binding interface. g-j, 
+Root-mean-square deviation (RMSD) trajectories and corresponding normalized probability 
+distributions obtained from 100-ns molecular-dynamics simulations. Candidate-protein or 
+gp130 RMSDs are shown in g, and IL-6/sIL-6Rα receptor-side RMSDs are shown in i; 
+component-resolved RMSD analyses of the A2B3C3-bound system are shown in h and j. k, 
+Number of interfacial hydrogen bonds formed during the 100-ns simulations of the three 
+candidate complexes and the gp130 reference complex. l, Component-resolved hydrogen-bond 
+analysis of A2B3C3 with the complete IL-6/sIL-6Rα complex or with the individual IL-6 and 
+sIL-6Rα components. m, Radar plot comparing the normalized fluctuations in interfacial van 
+der Waals energy, electrostatic energy and interface-residue B factors. n, SPR sensorgrams 
+comparing the interactions of the IL-6/sIL-6Rα complex with gp130 or A2B3C3 at the indicated 
+concentrations. The complete 100-ns trajectories are displayed; the first 20 ns were treated as 
+structural relaxation, and the values reported in the text were calculated over 20-100 ns.
                 </p>
 
-                <!-- 图片网格1 -->
-                <div class="image-div">
-                    <img src="../image/wiki绘图/denovo.jpg" style="width: 100%; border-radius: 12px;">
-                </div>
-
-                <h2 class="section-title"id="bcell">B cell</h2>
+                <h2 class="section-title">Result 3. dCas9-AID*Δ-driven directed evolution of A2B3C3 yields a potent IL-6/sIL-
+6Rα-capturing molecule</h2>
                 <p class="section-text">
-                   B细胞天然的体细胞高频突变（somatic hypermutation，SHM）及其驱动的抗体亲和力成熟，是适应性免疫中经典的分子进化过程。
+                  Building on A2B3C3, which was identified through computational design and B cell surfacedisplay screening, we initiated directed evolution to further optimize this lead sequence. 
+Localized point mutations were introduced into the A2, B3, and C3 coding regions, and binding 
+to and uptake of the IL-6/sIL-6Rα complex were used as selection pressures to iteratively enrich 
+full-length variants with enhanced complex-capture capacity, thereby improving their ability to 
+compete with gp130.
                 </p>
+                <p class="section-text">To enable programmable hypermutation of A2B3C3 in Raji B cells, we developed dCas9-
+AID*Δ by combining design features of CRISPR-X and targeted AID-mediated mutagenesis 
+(TAM). CRISPR-X uses sgRNAs containing two MS2 aptamers to recruit MS2-AID fusion 
+proteins. Its hyperactive AID*Δ variant incorporates three gain-of-function substitutions (K10E, 
+T82I, and E156G) and deletion of the three C-terminal residues8
+. TAM instead directly fuses a 
+P182X-truncated AID variant, termed AIDx, to dCas9 to target mutagenesis to sgRNA-defined 
+regions9
+. Following this direct fusion architecture, we fused the hyperactive AID*Δ variant to 
+dCas9 to generate dCas9-AID*Δ, coupling programmable DNA targeting with enhanced AID 
+activity (Fig. 3b).</p>
+<p class="section-text">For the second round of directed evolution, full-length A2B3C3 identified in the firstround screen was used as a single evolutionary unit. The A2, B3, and C3 binding segments were 
+assembled in frame by Golden Gate cloning to generate a continuous open reading frame, which 
+was subsequently linked to the transmembrane and intracellular signaling modules for surface 
+display in Raji B cells (Fig. 3a)10. sgRNAs were designed to target the A2, B3, and C3 coding 
+regions and direct dCas9-AID*Δ-mediated sequence diversification to the three corresponding 
+regions. Thus, rather than generating predetermined substitutions at individual nucleotide 
+positions, the three sgRNAs established three locally enriched mutational windows within the 
+same full-length A2B3C3 coding sequence. Following activation of the targeted mutagenesis 
+system in Raji B cells, the cells were incubated with a fluorescently labeled IL-6/sIL-6Rα 
+complex and subjected to flow cytometric sorting based on retained complex-associated 
+fluorescence.</p>
+<p class="section-text">To characterize AID*Δ-generated mutational profiles, PacBio HiFi full-length reads were 
+aligned to the Golden Gate-assembled A2B3C3 reference sequence, and nucleotide substitution 
+frequencies were calculated at each position11. Using an operational threshold of 0.1%, 
+substitutions were preferentially enriched within the three sgRNA-targeted regions in A2, B3, 
+and C3 and their flanking sequences, whereas most distal positions remained at or below this 
+threshold (Fig. 3c). Substitutions included G>A, C>T, G>C, C>A, and C>G across the targeted 
+regions.</p>
+<p class="section-text">To further characterize the nucleotide preference of the induced mutations, substitution 
+events detected within the A2, B3, and C3 regions were classified according to the 
+corresponding reference nucleotide. Substitutions originating from C or G accounted for 54.7%, 
+68.6%, and 65.0% of all substitutions detected in the A2, B3, and C3 regions, respectively (Fig. 
+3d), indicating that the mutations predominantly originated from C:G base pairs. Because AID 
+directly catalyzes cytosine deamination in single-stranded DNA, the resulting mutation may be 
+recorded as either a C- or G-derived substitution depending on the orientation of the reference 
+strand. This distribution was therefore consistent with the biochemical mechanism of AIDmediated cytosine deamination.</p>
+<p class="section-text">The substitution outcomes of mutations originating from C, G, A, or T were subsequently 
+analyzed separately. In addition to the canonical C>T and complementary G>A transitions, the 
+dCas9-AID*Δ system generated a broader spectrum of nucleotide substitutions through 
+subsequent DNA replication and mismatch-repair processes. The resulting candidate sequences 
+were prioritized for variant reconstruction and further evaluation of IL-6/sIL-6Rα binding and 
+cellular internalization (Fig. 3c).</p>
 
                 <!-- 图片网格1 -->
-                <div class="image-div">
-                    <img src="../image/wiki绘图/B细胞高频突变发展史 袁馨茹.png" style="width: 100%; border-radius: 12px;">
+                 <div class="image-div">
+                    <img src="../result/r  img/r3/1.png" style="width: 100%; border-radius: 12px;">
                 </div>
-                <div class="image-div">
-                    <img src="../image/wiki绘图/B细胞高频突变示意图 邓哲元.png" style="width: 100%; border-radius: 12px;">
+                <p class="section-text">Fig. 3 | Localized mutation distribution and nucleotide-substitution spectrum across the 
+full-length A2B3C3 coding sequence. a, Schematic of the second-round directed-evolution 
+and sequencing workflow. The A2, B3 and C3 segments were assembled into a continuous open 
+reading frame, and the experimental group was established using sgRNAs targeting the A2, B3 
+or C3 region. Following fluorescence-based sorting with the IL-6/sIL-6Rα complex, an 
+amplicon spanning all three segments was subjected to PacBio HiFi full-length sequencing. b,
+Schematic of dCas9-AID variants and the final expression cassette. Domain organization of 
+dCas9-AID, dCas9-AIDΔ, and dCas9-AID*Δ. The NLS (aa 9-26), deaminase domain (aa 56-
+94), and NES (aa 190-198) are indicated. Compared with dCas9-AID, dCas9-AIDΔ lacks the 
+C-terminal three amino acids. dCas9-AID*Δ is based on dCas9-AID and additionally carries 
+the K10E, T82I, and E156G mutations. The NLS, deaminase domain, and NES are retained in 
+these constructs. c, Representative high-frequency mutations within the A2, B3 and C3 regions. 
+Per-nucleotide substitution frequencies relative to the 789-nt reference sequence. Position 1 of 
+the reference sequence was defined as the origin of the x axis, and the start codon of the coding 
+region was located at nt 13. The substitution frequency at each position was calculated as the 
+number of high-quality reads containing a nucleotide substitution divided by the total number 
+of reads covering that position. Colors indicate the corresponding reference nucleotide, and the 
+dashed line denotes the 0.1% frequency threshold used to define detectable mutated sites. The 
+principal mutations in group A included G169>A (24.44%), G187>A (15.38%), G196>C 
+(8.76%) and C199>A (4.99%); those in group B included G370>A (19.20%), C383>T (13.07%), 
+G391>A (7.95%) and C377>G (5.67%); and those in group C included G553>A (24.68%), 
+G559>A (16.98%), G568>A (9.21%) and C577>A (7.08%). All nucleotide positions are 
+numbered according to the same 789-nt reference sequence. d, Composition of detectable 
+mutated sites in the A2-, B3- and C3-targeted groups, classified according to the reference 
+nucleotide (A, T, C or G).</p>
+                <h2 class="section-title">Result 4. Second-round evolution enhances interfacial interactions between candidate 
+proteins and the IL-6/sIL-6Rα complex</h2>
+<p class="section-text">To further investigate the structural basis underlying the stable association of the evolved 
+candidates with the IL-6/sIL-6Rα complex, we used AlphaFold 3 to generate structural models 
+of the corresponding protein complexes (Fig. 4a-c). Computational alanine scanning was 
+subsequently performed to identify hotspot residues at the predicted binding interfaces (Fig. 4d; 
+Extended Data Table 12). All three evolved candidates exhibited substantially increased buried 
+surface areas relative to the first-round candidates. Among them, S2 formed the largest buried 
+interface, with a buried surface area of 2,146.193 Å², compared with 1,744.917 Å² for S1 and 
+1,423.955 Å² for S3. Although the three candidates showed no appreciable difference in their 
+propensity to form hydrogen bonds, S2 formed a greater number of hydrophobic contacts 
+(Extended Data Table 9-11), which may contribute to the stabilization of its bound 
+conformation.</p>
+<p class="section-text">Separate analysis of the candidate interfaces with IL-6 and sIL-6Rα revealed that all three 
+candidates adopted a relatively conserved interaction pattern at the IL-6-binding interface, 
+involving the Tyr13-Arg6-Leu1 interaction network. By contrast, the C-terminal helical region 
+of S2 inserted more deeply into the sIL-6Rα interface, resulting in a marked increase in contacts 
+with hotspot residues. Among these residues, sIL-6Rα Trp169 exhibited the highest contact 
+count (1,468) and was identified as the predominant hotspot residue at the interface.
+</p>
+
+
+                 <div class="image-div">
+                    <img src="../result/r  img/r4/1.png" style="width: 100%; border-radius: 12px;">
                 </div>
-                <h2 class="section-title"id="AID">AID</h2>
+                <p class="section-text">Fig. 4 |In silico construction of second-round evolution candidates. a-c, Ninety repeated 
+predictions of S1, S2, and S3 were performed using AlphaFold3. The five predictions with the 
+highest ipTM scores were selected as high-confidence models, and the averaged virtual 
+complex structures derived from their superposition (left), together with the hot-spot residues 
+identified by alanine scanning (Z-score > 2) (right), are shown. S1, S2, and S3 are shown in 
+cyan, gold, and salmon, respectively; IL-6 and sIL-6Rα are shown in yellow and pink, 
+respectively. Hot-spot residues on the IL-6/sIL-6Rα complex are highlighted in magenta, and 
+those on the candidates are highlighted in purple. The binding interface is highlighted in red in 
+the left panels. d, Heatmap of Z-scores for hot-spot residues on the IL-6/sIL-6R complex side. 
+The vertical axis represents the three candidates, and the horizontal axis corresponds to alanine 
+mutations of the hot-spot residues. The white-to-orange gradient indicates increasing Z-scores, 
+red denotes hot-spot residues with Z-scores > 2, and grey indicates residues absent from the 
+binding interface of the corresponding complex.</p>
+<h2 class="section-title">rom the 
+binding interface of the corresponding complex. 
+Result 5. STAR6 binds the IL-6/sIL-6Rα complex with picomolar affinity</h2>
+<p class="section-text">We designated the selected candidate S2 as STAR6. To characterize the binding properties of 
+STAR6, we measured its affinity for the IL-6/sIL-6Rα complex using SPR. As the concentration 
+of the IL-6/sIL-6Rα complex increased from 15.625 to 2,000 pM, the SPR response of STAR 
+increased in a concentration-dependent manner. Kinetic analysis yielded an equilibrium 
+dissociation constant (K_D) of approximately 52 pM, demonstrating that STAR bound the IL-
+6/sIL-6Rα complex with high affinity (Fig. 5a). Thus, directed evolution improved the affinity 
+of STAR6 for the IL-6/sIL-6Rα complex by approximately 14.3-fold relative to A2B3C3 (Fig. 
+2n). Having established that STAR6 recognized the IL-6/sIL-6Rα complex with high affinity 
+and competitively inhibited its interaction with gp130, we next displayed STAR6 on the surface 
+of macrophages as an extracellular recognition module coupled to the cytoplasmic domain of 
+FcRγ (Fig. 5b). We termed these engineered macrophages STAR-Trap to reflect their intended 
+ability to capture and clear the complex through receptor-mediated internalization. Stable 
+establishment of the STAR-Trap population and surface expression of the STAR6–FcRγ 
+receptor were confirmed by flow cytometry (Fig. 5c).</p>
+<p class="section-text">To assess STAR-Trap-mediated internalization of the IL-6/sIL-6Rα complex, STAR-Trap 
+were incubated with biotinylated IL-6/sIL-6Rα complexes fluorescently labeled with 
+streptavidin-APC. Extracellular fluorescence was then quenched, leaving only intracellular 
+signals detectable. Flow cytometry revealed a higher proportion of fluorescence-positive cells 
+and greater mean intracellular fluorescence intensity in STAR-Trap cells than in control 
+macrophages, indicating enhanced internalization of the complex (Fig. 5d).</p>
+<p class="section-text">Confocal fluorescence imaging provided further spatial evidence for the intracellular fate 
+of the captured complex. STAR-Trap exhibited prominent intracellular signals derived from the 
+fluorescent IL-6/sIL-6Rα complex probe, whereas little probe fluorescence was detected in 
+control macrophages (Fig. 5e). Moreover, the internalized complex showed substantial 
+colocalization with LysoTracker-positive compartments, indicating that STAR-Trap-mediated 
+uptake was followed by trafficking of the complex to lysosomes. Together, these findings 
+demonstrate that STAR6 combines high-affinity recognition of the IL-6/sIL-6Rα complex with 
+competitive inhibition of its interaction with gp130. Incorporation of STAR6 into an FcRγ-
+containing macrophage surface receptor equipped STAR-Trap cells with the capacity to capture, 
+internalize and deliver the complex to lysosomal compartments.</p>
+                 <div class="image-div">
+                    <img src="../result/r  img/r5/1.png" style="width: 100%; border-radius: 12px;">
+                </div>
+                <p class="section-text">Fig. 5 | STAR6 binds the IL-6/sIL-6Rα complex with picomolar affinity and enables its 
+macrophage-mediated internalization and lysosomal trafficking. a, Representative surface 
+plasmon resonance (SPR) sensorgrams showing the binding of STAR to the IL-6/sIL-6Rα 
+complex at the indicated concentrations (15.625-2,000 pM). Kinetic fitting yielded an 
+equilibrium dissociation constant (K_D) of 52 pM. b, Schematic of the lentiviral expression 
+cassette encoding the STAR-6-FcRγ receptor used to generate STAR-Trap. The evolved A2*, 
+B3* and C3* segments constitute the extracellular STAR-6 recognition domain, which was 
+placed downstream of an insulin signal peptide and fused to the transmembrane (TM) and 
+intracellular signaling domains (ICD) of FcRγ under the control of the EF-1α promoter. c,
+Representative flow-cytometry histograms confirming the establishment of a stable STAR-Trap 
+population and surface expression of the STAR6-FcRγ receptor. Grey, control macrophages; 
+red, STAR-Trap. d, Representative flow-cytometry plots showing uptake of the biotinylated IL-
+6/sIL-6Rα complex labeled with streptavidin-APC by control macrophages (Control) and 
+STAR-Trap after quenching extracellular fluorescence. Numbers indicate the percentages of 
+APC-positive cells within the indicated gates. e, Confocal fluorescence images showing the 
+intracellular distribution of the fluorescent IL-6/sIL-6Rα complex probe and its colocalization 
+with lysosomes in control and STAR-Trap. Nuclei were stained with DAPI (blue), the IL-6/sIL-
+6Rα complex probe is shown in green, and lysosomes were labeled with LysoTracker (red). 
+Scale bars, 5 μm.</p>
+ <h2 class="section-title">Result 6. STAR-Trap engineering biases macrophages toward an M1-like phenotype</h2>
+ <p class="section-text">We next examined whether STAR-Trap engineering altered the polarization state of 
+macrophages. Flow cytometry was used to evaluate the M1-associated markers HLA-DR and 
+CD86, intracellular reactive oxygen species (ROS), and the M2-associated markers CD206, 
+Arg-1, and IL-10 (Fig. 6a-b). Compared with control macrophages, STAR-Trap cells exhibited 
+increased HLA-DR and CD86 expression together with elevated intracellular ROS levels. In 
+contrast, CD206 and IL-10 levels were reduced, whereas Arg-1 showed only a minimal change. 
+Collectively, the coordinated increase in M1-associated features and reduction in several M2-
+associated markers indicate that STAR-Trap engineering was associated with a shift toward an 
+M1-like macrophage phenotype.</p>
+
+ 
+                <div class="image-div">
+                    <img src="../result/r  img/r6/1.png" style="width: 100%; border-radius: 12px;">
+                </div>
+                 <p class="section-text">Fig. 6 | STAR-Trap exhibit an M1-like phenotypic shift. a, Representative flow-cytometry 
+histograms showing the expression of the M1-associated markers HLA-DR and CD86 and 
+intracellular ROS levels in wild-type macrophages (WT Mφ) and STAR-Trap. b,
+Representative flow-cytometry histograms showing the expression of the M2-associated 
+markers CD206, Arg-1 and IL-10 in WT and STAR-Trap. Grey histograms represent WT 
+macrophages, and blue histograms represent STAR-Trap. Numbers indicate the median 
+fluorescence intensity of the corresponding cell populations.</p>
+<h2 class="section-title">Result 7. STAR-Trap selectively suppresses IL-6 trans-signaling while preserving classical 
+signaling</h2>
+<p class="section-text">To determine whether STAR-Trap selectively inhibited IL-6 trans-signaling while 
+preserving classical signaling, we established two separate cell-based assays to evaluate 
+classical signaling and trans-signaling, respectively. To assess IL-6 trans-signaling, the IL-
+6/sIL-6Rα complex was preincubated with wild-type macrophages or STAR-Trap. After 
+removal of the macrophages, the resulting supernatants were applied to human umbilical vein 
+endothelial cells (HUVECs). The IL-6/sIL-6Rα complex induced robust STAT3 
+phosphorylation and increased MCP-1 and ICAM-1 expression in HUVECs (Fig. 7a). These 
+responses remained pronounced in HUVECs treated with supernatants collected after 
+preincubation of the complex with wild-type macrophages, but were markedly reduced in 
+HUVECs treated with supernatants from the STAR-Trap condition, as demonstrated by 
+decreased intracellular pSTAT3 levels and reduced MCP-1 and ICAM-1 expression.</p>
+ <p class="section-text">To assess classical signaling, free IL-6 was preincubated with either wild-type 
+macrophages or STAR-Trap. Cell-free supernatants were subsequently collected and applied to 
+U266 human multiple myeloma cells, which express both membrane-bound IL-6Rα (mIL-6Rα) 
+and gp130. Free IL-6 induced robust STAT3 and ERK1/2 phosphorylation together with 
+increased SOCS3 expression in U266 cells (Fig. 7b). These responses remained largely 
+unchanged when U266 cells were treated with supernatants collected after preincubation of free 
+IL-6 with either wild-type or STAR-Trap. By contrast, treatment with the IL-6R-blocking 
+antibody tocilizumab substantially reduced pSTAT3, pERK1/2, and SOCS3 levels in U266 cells. 
+Thus, STAR-Trap did not measurably impair classical signaling mediated by free IL-6.</p>
+ <p class="section-text">Together, these findings demonstrate that STAR-Trap selectively removes the IL-6/sIL-
+6Rα complex and suppresses the associated trans-signaling response while largely preserving 
+classical signaling mediated by free IL-6.</p>
+                 <div class="image-div">
+                    <img src="../result/r  img/r7/1.png" style="width: 100%; border-radius: 12px;">
+                </div>
+                
                 <p class="section-text">
-                   生发中心反应中，激活诱导的胞嘧啶脱氨酶（activation-induced cytidine deaminase，AID）在免疫球蛋白可变区持续引入高频突变，产生具有不同抗原结合能力的B细胞克隆，随后通过抗原依赖的选择和克隆扩增逐步富集高亲和力变体。该过程将序列多样化、功能选择和克隆扩增连续耦联于哺乳动物细胞中，为人工蛋白的定向进化提供了天然的免疫学基础5。因此，将这一经典的B细胞抗体进化机制重新定向至人工设计序列，有望进一步优化从头设计蛋白的亲和力和功能。
-                </p>
-
-                <!-- 图片网格1 -->
-                <div class="image-div">
-                    <img src="../image/wiki绘图/AID 王雨萱.png" style="width: 100%; border-radius: 12px;">
-                </div>
-                <div class="image-div">
-                    <img src="../image/wiki绘图/high affinity.png" style="width: 100%; border-radius: 12px;">
-                </div>
-                <div class="image-div">
-                    <img src="../image/wiki绘图/low affinity.png" style="width: 100%; border-radius: 12px;">
-                </div>
-                <div class="image-div">
-                    <img src="../image/wiki绘图/low_high affinity.png" style="width: 100%; border-radius: 12px;">
-                </div>
-                <!-- 引用区域 -->
-                <div class="reference">
-                    <i class="fas fa-quote-left" style="color: #ff9100; margin-right: 10px;"></i>
-                    <strong>References:</strong>  
-                    <li>Wang, M. J. et al. The double-edged effects of IL-6 in liver regeneration, aging, inflammation, and diseases. <em>Exp Hematol Oncol</em> <strong>13</strong>, 62 (2024). https://doi.org/10.1186/s40164-024-00527-1</li>
-                    <li>Wang, M. et al. Structural insights into IL-6 signaling inhibition by therapeutic antibodies. <em>Cell Rep</em> <strong>43</strong>, 113819 (2024). https://doi.org/10.1016/j.celrep.2024.113819</li>
-                    <li>Boulanger, M. J., Chow, D. C., Brevnova, E. E. &amp; Garcia, K. C. Hexameric structure and assembly of the interleukin-6/IL-6 alpha-receptor/gp130 complex. <em>Science</em> <strong>300</strong>, 2101-2104 (2003). https://doi.org/10.1126/science.1083901</li>
-                    <li>Cao, L. et al. Design of protein-binding proteins from the target structure alone. <em>Nature</em> <strong>605</strong>, 551-560 (2022). https://doi.org/10.1038/s41586-022-04654-9</li>
-                    <li>Turner, J. S. et al. Human germinal centres engage memory and naive B cells after influenza vaccination. <em>Nature</em> <strong>586</strong>, 127-132 (2020). https://doi.org/10.1038/s41586-020-2711-0</li>
-                    <li>Hess, G. T. et al. Directed evolution using dCas9-targeted somatic hypermutation in mammalian cells. <em>Nat Methods</em> <strong>13</strong>, 1036-1042 (2016). https://doi.org/10.1038/nmeth.4038</li>
-                    <li>Ma, Y. et al. Targeted AID-mediated mutagenesis (TAM) enables efficient genomic diversification in mammalian cells. <em>Nat Methods</em> <strong>13</strong>, 1029-1035 (2016). https://doi.org/10.1038/nmeth.4027</li>
-</ol>
+                   Fig. 7 | STAR-Trap attenuates IL-6 trans-signaling while preserving classical signaling.
+a, Representative flow-cytometry histograms showing IL-6 trans-signaling responses. The IL-
+6/sIL-6Rα complex was incubated alone or preincubated with WT or STAR-Trap. After 
+removal of the macrophages, the resulting cell-free supernatants were applied to gp130-positive 
+responder cells with low or undetectable mIL-6Rα expression. Intracellular pSTAT3 and the 
+downstream inflammatory markers MCP-1 and ICAM-1 were subsequently measured. Grey, 
+IL-6/sIL-6Rα complex alone; blue, complex preincubated with WT macrophages; red, complex 
+preincubated with STAR-Trap. b, Representative flow-cytometry histograms showing classical 
+IL-6 signaling responses. Free IL-6 was incubated alone or preincubated with WT or STARTrap, and the resulting cell-free supernatants were applied to responder cells expressing both 
+mIL-6Rα and gp130. Intracellular pSTAT3, SOCS3 and pERK1/2 were measured, with 
+tocilizumab included as an IL-6R-blocking control. Grey, IL-6 alone; blue, IL-6 preincubated 
+with WT macrophages; red, IL-6 preincubated with STAR-Trap; purple, tocilizumab-treated 
+control. Numbers indicate the median fluorescence intensity of the corresponding cell 
+populations.</p>
             </div>
         </main>
     </div>
