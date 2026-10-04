@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background</title>
+    <title>Challenge</title>
     <link rel="icon" href="../image/所有图（除design头图）/community图标.png" type="image/png">
     <style>
         /* 基础样式 */
@@ -15,7 +15,7 @@
         
         body {
             font-family: 'Arial', 'Microsoft YaHei', sans-serif;
-            background: #f5f5f5 url('../image/所有图（除design头图）/background背景横版.png') no-repeat center center fixed;
+            background: #f5f5f5 url('../image/challenge/challenge背景.png') no-repeat center center fixed;
             background-size: cover;
             position: relative;
             min-height: 100vh;
@@ -181,7 +181,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background:url('../image/头图/bk头图.jpg')center 90%/cover no-repeat;
+            background:url('../image/头图/challenge头图.jpg')center 90%/cover no-repeat;
             z-index: 1;
         }
 
@@ -209,59 +209,6 @@
             40% { transform: translateX(-50%) translateY(-2rem); }
             60% { transform: translateX(-50%) translateY(-1rem); }
         }        
-/* 侧边栏优化 - 按钮样式 */
-.sidebar {
-    width: 320px;
-    flex-shrink: 0;
-    background: url('../image/所有图（除design头图）/background侧面导航栏2 (1).png') right top/100% no-repeat;
-    padding: 30px 0;
-    position: sticky;
-    top: 100px;
-    overflow: visible;}
-
-.sidebar-nav ul {
-    list-style: none;
-    padding:  5px 0 20px 0;
-    transform: translateY(-12px);     /* 整个导航列表上移15px */
-}
-
-.sidebar-nav li {
-    margin: 25px 15px; /* 增加间距，让按钮更明显 */
-}
-
-.sidebar-nav a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 0;
-    color: #444;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    background: transparent;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    width: auto;
-    max-width: 160px;
-    margin: 5px 0 0 95px;   
-}
-
-.sidebar-nav a:hover {
-    background: transparent;
-    color: #1a237e;
-    border: none;                      /* 去掉边框 */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
-}
-
-.sidebar-nav a.active {
-    background: transparent;
-    color: #1a237e;
-    border: none;                      /* 去掉边框 */
-    box-shadow: 0 4px 12px rgba(255, 145, 0, 0.3);
-}
          /* === 重新设计的主内容区域 === */
         .main-wrapper {
             max-width: 1400px;
@@ -288,10 +235,31 @@
         }
         
         /* 内容样式优化 */
-        .content-section {
-            margin-top: 40px;
-        }
-        
+       .content-section {
+    margin-top: 40px;
+    position: relative;
+    padding: 90px 120px;              /* 根据边框图案留出内边距，避免文字压到边框 */
+    border-radius: 12px;
+    background-image: url('../image/challenge/challenge摘要边框.png');
+    background-size: 100% 100%;      /* 让边框图完整铺满整个区块 */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;   /* 不要额外底色，避免遮住边框 */
+    overflow: hidden;
+}
+        .content-section::before {
+    content: "";
+    position: absolute;
+    inset: 30px;                     /* 内缩距离，根据边框粗细调整 */
+    background: rgba(255, 255, 255, 0);
+    border-radius: 8px;
+    z-index: 0;
+}
+
+.content-section > * {
+    position: relative;
+    z-index: 1;
+}
         .section-title {
             font-size: 2.2rem;
             color: #1a237e;
@@ -319,81 +287,6 @@
             margin-bottom: 30px;
             text-align: justify;
         }
-         /* 视频容器 */
-        .video-container {
-            width: 100%;
-            margin-bottom: 40px;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #000;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 宽高比 */
-        }
-        
-        .video-wrapper video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .video-controls {
-            padding: 15px 20px;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .progress-container {
-            flex: 1;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: #ff9100;
-            width: 0%;
-            border-radius: 3px;
-            transition: width 0.1s linear;
-        }
-        
-        .time-display {
-            color: white;
-            font-size: 0.9rem;
-            font-family: monospace;
-        }
-        
-        .control-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .control-btn:hover {
-            background: rgba(255, 145, 0, 0.3);
-        }
-        /* 图片表格优化 */
-                /* 图片容器优化 */
         .img-div {
             width: 100%;
             padding-left: 2vw;
@@ -534,9 +427,10 @@
                         <a href="../protocol/protocol.html">Protocols</a>  
                     </div>
                 </div>
-                  <div class="nav-item" id="publications">
+                 <div class="nav-item" id="publications">
                     <a href="../challenge/challenge.html" class="nav-link">
-                    <img src="../image/图标/challenge.png"alt="" class="nav-icon">Challenge</a></div>
+                    <img src="../image/图标/challenge.png"alt="" class="nav-icon">Challenge</a>
+                </div>
                 <div class="nav-item" id="team">
                     <a href="#team" class="nav-link has-dropdown">
                         <img src="../image/图标/team.png"alt="" class="nav-icon">Team</a>
@@ -560,86 +454,29 @@
 
     <!-- 重新设计的主内容区域 -->
     <div class="main-wrapper">
-        <aside class="sidebar">
-            <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="#preface" class="active">Preface</a></li>
-                    <li><a href="#denovo">Denovo Design</a></li>
-                    <li><a href="#AID">AID</a></li>
-                </ul>
-            </nav>
-        </aside>
 
         <main class="content-main">
            
             <!-- 内容区域 -->
             <div class="content-section">
-                <h2 class="section-title" id="preface">Preface</h2>
-                 <div class="image-div">
-                    <img src="../image/wiki绘图/gp130.png" style="width: 100%; border-radius: 12px;">
-                </div>
-            <!-- 图片网格1 -->
-                <div class="image-div">
-                    <img src="../image/wiki绘图/gp130(2).png" style="width: 100%; border-radius: 12px;">
-                </div>
+                <h2 class="section-title">Abstract</h2>
                 <p class="section-text">
-                   IL-6 signaling occurs through two principal modes. In classical signaling, IL-6 first binds membrane-bound IL-6 receptor α (mIL-6Rα), which is expressed mainly by hepatocytes and selected leukocyte subsets. By contrast, trans-signaling is initiated when IL-6 forms a complex with soluble IL-6Rα (sIL-6Rα), which subsequently recruits the ubiquitously expressed gp130. Because gp130 is broadly expressed across virtually all cell types, albeit at variable levels, trans-signaling extends IL-6 responsiveness to cells lacking mIL-6Rα, thereby contributing to inflammatory-cell recruitment, vascular endothelial activation, fibrosis, and the maintenance and amplification of chronic inflammation. Selective targeting of IL-6 trans-signaling may enable the inflammatory amplification loop to be uncoupled from basal immune homeostasis. The key is to obtain binders that selectively recognize the IL-6/sIL-6Rα complex over its free components and bind it tightly enough to compete with gp130. 
+                   Bacterial conjugation enables large-scale plasmid transfer between cells through direct cell-to-cell contact; however, the spontaneous transfer of conjugative plasmids is difficult to control, which limits their operability as tools for horizontal gene transfer. To achieve precise exogenous regulation of the constitutive transfer of conjugative plasmids between donors and recipients, we propose a design for an inducible bacterial conjugation system, in which the arabinose-inducible expression vector pAJM.677 regulates conjugation factors in trans, thereby taking over the conjugative transfer of the natural broad-host-range conjugative plasmid pRK24. To this end, we first completed the full-sequence annotation of pRK24 using the RK2 reference sequence, identified and mapped the genetic coordinates of the conjugative transfer elements and their regulatory elements, and revealed numerous functionally uncharacterized redundant regions and transposon remnants. Furthermore, using CRISPR/Cas9 in combination with λRed recombination, we performed three rounds of stepwise targeted deletion of the redundant sequences and obtained the minimized plasmid pRK24-v2, which retains intact conjugative and autonomous replication functions and exhibits a conjugation efficiency comparable to that of the wild type. We also found that korB deletion significantly impaired plasmid maintenance, thereby defining the functional boundary of minimization. On this basis, we propose a two-pronged regulatory strategy of trans-complementing the trb/tra transfer machinery and silencing the repressor TrbA, which provides a framework for the future construction of a complete inducible conjugation system.
                 </p>
-                <div class="reference">
-                    <li>Figure quoted from Wang, M. J., Zhang, H. L., Chen, F., Guo, X. J., Liu, Q. G., & Hou, J. (2024). The double-edged effects of IL-6 in liver regeneration, aging, inflammation, and diseases. <em>Experimental Hematology &amp; Oncology, 13</em>(1), 62. <a href="https://doi.org/10.1186/s40164-024-00527-1" target="_blank">https://doi.org/10.1186/s40164-024-00527-1</a></li>
-                </div>
-                <h2 class="section-title" id="denovo">Denovo Design</h2>
                 <p class="section-text">
-                   The advancement of de novo design has made it possible to design binding proteins targeting predefined three-dimensional surfaces. Computational methods based on structural generation and sequence optimization can construct novel protein scaffolds around specific target surfaces, providing a new technological foundation for identifying structural epitopes that emerge upon protein complex formation. However, candidate molecules generated through de novo design typically serve only as starting points for functional optimization. Interface complementarity observed in static structures cannot fully predict binding affinity, complex selectivity, or competitive ability against natural receptors in real biological environments; additionally, artificially designed proteins must satisfy multiple constraints, including folding efficiency, expression, stability, and adaptability to cellular conditions. Therefore, after obtaining an initial scaffold via computational design, an evolutionary system capable of continuously generating sequence diversity and undergoing functional selection in mammalian cell environments is still required to bridge the gap between structural feasibility and biological function.
-                </p>
-                 <!-- 视频区域 -->
-            <div class="video-container">
-                <div class="video-wrapper">
-                    <video id="video">
-                       <source src="video1.mp4" type="video/mp4"> 
-                    </video>
-                </div>
-                <div class="video-controls">
-                    <button class="control-btn" id="playPause"><i class="fas fa-play"></i></button>
-                    <div class="progress-container" id="progressContainer">
-                        <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
-                    </div>
-                    <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
-                    <button class="control-btn" id="muteBtn"><i class="fas fa-volume-up"></i></button>
-                </div>
+                   <em>Keywords</em>: bacterial conjugation; horizontal gene transfer; pRK24; CRISPR/Cas9; inducible regulation</p>
             </div>
-                <h2 class="section-title"id="AID">AID</h2>
+                <h2 class="section-title"></h2>
                 <div class="image-div">
                     <img src="../image/wiki绘图/AID 王雨萱.png" style="width: 100%; border-radius: 12px;">
                 </div>
-                <p class="section-text">
-                   During the germinal center reaction, activation-induced cytidine deaminase (AID) continuously introduces high-frequency mutations into immunoglobulin variable regions, generating B cell clones with diverse antigen-binding capacities. 
-                   These clones are then gradually enriched for high-affinity variants through antigen-dependent selection and clonal expansion. 
-                   This process couples sequence diversification, functional selection, and clonal amplification in a continuous manner within mammalian cells, providing a natural immunological foundation for the directed evolution of artificial proteins.
-                </p>
+               
                 <div class="image-div">
                     <img src="../image/wiki绘图/B细胞高频突变发展史 袁馨茹.png" style="width: 100%; border-radius: 12px;">
                 </div>
-                <p class="section-text">
-                  Somatic hypermutation (SHM) in B cells and the antibody affinity maturation that it drives constitute a canonical process of molecular evolution in adaptive immunity. </p>
-                <div class="image-div">
-                    <img src="../image/wiki绘图/B细胞高频突变示意图 邓哲元.png" style="width: 100%; border-radius: 12px;">
-                </div>
-                 <p class="section-text">When pathogens enter the body, B cells do not simply rely on fixed antibody templates. Instead, they actively introduce point mutations into immunoglobulin genes and then select antibodies with stronger binding capabilities. This process, the SHM, forms the basis of antibody affinity maturation. High-affinity variants are subsequently enriched through iterative rounds of antigen-dependent selection and clonal expansion</p>
                 <div class="image-div">
                     <img src="../image/wiki绘图/low_high affinity.png" style="width: 100%; border-radius: 12px;">
                 </div>
-                <!-- 引用区域 -->
-                <div class="reference">
-                    <i class="fas fa-quote-left" style="color: #ff9100; margin-right: 10px;"></i>
-                    <strong>References:</strong>  
-                    <li>Wang, M. J. et al. The double-edged effects of IL-6 in liver regeneration, aging, inflammation, and diseases. <em>Exp Hematol Oncol</em> <strong>13</strong>, 62 (2024). https://doi.org/10.1186/s40164-024-00527-1</li>
-                    <li>Wang, M. et al. Structural insights into IL-6 signaling inhibition by therapeutic antibodies. <em>Cell Rep</em> <strong>43</strong>, 113819 (2024). https://doi.org/10.1016/j.celrep.2024.113819</li>
-                    <li>Boulanger, M. J., Chow, D. C., Brevnova, E. E. &amp; Garcia, K. C. Hexameric structure and assembly of the interleukin-6/IL-6 alpha-receptor/gp130 complex. <em>Science</em> <strong>300</strong>, 2101-2104 (2003). https://doi.org/10.1126/science.1083901</li>
-                    <li>Cao, L. et al. Design of protein-binding proteins from the target structure alone. <em>Nature</em> <strong>605</strong>, 551-560 (2022). https://doi.org/10.1038/s41586-022-04654-9</li>
-                    <li>Turner, J. S. et al. Human germinal centres engage memory and naive B cells after influenza vaccination. <em>Nature</em> <strong>586</strong>, 127-132 (2020). https://doi.org/10.1038/s41586-020-2711-0</li>
-                    <li>Hess, G. T. et al. Directed evolution using dCas9-targeted somatic hypermutation in mammalian cells. <em>Nat Methods</em> <strong>13</strong>, 1036-1042 (2016). https://doi.org/10.1038/nmeth.4038</li>
-                    <li>Ma, Y. et al. Targeted AID-mediated mutagenesis (TAM) enables efficient genomic diversification in mammalian cells. <em>Nat Methods</em> <strong>13</strong>, 1029-1035 (2016). https://doi.org/10.1038/nmeth.4027</li>
             </div>
         </main>
     </div>
@@ -649,52 +486,5 @@
             <i class="far fa-copyright"></i> 2025 SynthImmunol NMU. All rights reserved.
         </div>
     </footer>
-
-      <script>
-const video = document.getElementById('video');
-const playBtn = document.getElementById('playPause');
-const muteBtn = document.getElementById('muteBtn');
-const progressBar = document.getElementById('progressBar');
-const progressContainer = document.getElementById('progressContainer');
-const timeDisplay = document.getElementById('timeDisplay');
-
-// 播放 / 暂停
-playBtn.addEventListener('click', () => {
-    if (video.paused) {
-        video.play();
-        playBtn.querySelector('i').className = 'fas fa-pause';
-    } else {
-        video.pause();
-        playBtn.querySelector('i').className = 'fas fa-play';
-    }
-});
-
-// 静音
-muteBtn.addEventListener('click', () => {
-    video.muted = !video.muted;
-    muteBtn.querySelector('i').className = video.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
-});
-
-// 进度更新
-video.addEventListener('timeupdate', () => {
-    const percent = (video.currentTime / video.duration) * 100 || 0;
-    progressBar.style.width = percent + '%';
-    timeDisplay.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
-});
-
-// 点击进度条跳转
-progressContainer.addEventListener('click', (e) => {
-    const rect = progressContainer.getBoundingClientRect();
-    const ratio = (e.clientX - rect.left) / rect.width;
-    video.currentTime = ratio * video.duration;
-});
-
-function formatTime(sec) {
-    if (isNaN(sec)) return '0:00';
-    const m = Math.floor(sec / 60);
-    const s = Math.floor(sec % 60).toString().padStart(2, '0');
-    return `${m}:${s}`;
-}
-    </script>
 </body>
 </html>
