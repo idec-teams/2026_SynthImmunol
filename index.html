@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
+        <link rel="icon" href="/2026_SynthImmunol/idec/image/所有图（除design头图）/community图标.png" type="image/png">
     <style>
         /* 基础样式 */
         * {
@@ -14,7 +15,7 @@
         
         body {
             font-family: 'Arial', 'Microsoft YaHei', sans-serif;
-            background: #f5f5f5 url('../image/背景/home视频背景.jpg') no-repeat center center fixed;
+            background: #f5f5f5 url('/2026_SynthImmunol/idec/image/背景/home视频背景.jpg') no-repeat center center fixed;
             background-size: cover;
             position: relative;
             min-height: 100vh;
@@ -56,7 +57,7 @@
     width: 100%;
     height: 200px;          /* 比容器 85px 高，就能上下超出 */
     transform: translate(-50%, -50%);
-    background-image: url('../image/所有图（除design头图）/导航栏.png');
+    background-image: url('/2026_SynthImmunol/idec/image/所有图（除design头图）/导航栏.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -79,22 +80,31 @@
             position: relative;
         }
         
+         .nav-icon {
+    width: 50px;         /* 控制图标大小，按需调整 */
+    height: 50px;
+    object-fit: contain; /* 保持图片比例，不变形 */
+    flex-shrink: 0;      /* 防止图标被文字挤压变形 */
+    margin-right: 8px;   /* 图标与文字的间距 */
+}
         .nav-link {
             display: flex;
             align-items: center;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(8, 0, 0, 0.9);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.2rem;
             padding: 10px 15px;
             transition: all 0.3s;
             height: 70px;
             cursor: pointer;
+            font-weight: 600;   /* 新增：让文字变粗 */
         }
         
         .nav-link:hover {
-            color: #64ffda;
+            color: #f5cd1acb;
             background: rgba(100, 255, 218, 0.1);
         }
+        
         
         .nav-link.has-dropdown::after {
             content: '▾';
@@ -171,7 +181,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background:url('../image/头图/home头图.png')center /cover no-repeat;
+            background:url('/2026_SynthImmunol/idec/image/头图/home头图.png')center /cover no-repeat;
             z-index: 1;
         }
 
@@ -346,7 +356,7 @@
         }
         
         footer {
-            background:url("../image/所有图（除design头图）/底部.png");
+            background:url("../idec/image/所有图（除design头图）/底部.png");
             color: white;
             padding: 40px 20px;
             text-align: center;
@@ -365,39 +375,43 @@
 <body>
     <div class="star-background" id="starBackground"></div>
     
-    <header class="site-header">
+        <header class="site-header">
         <div class="site-logo">SynthImmunol NMU</div>
        <nav class="site-nav">
              <div class="nav-item" id="home">
-                    <a href="C:\Users\25233\Desktop\idec\home\home.html" class="nav-link">Home</a>
+                    <a href="/2026_SynthImmunol/idec/home/index.html" class="nav-link">
+                        <img src="/2026_SynthImmunol/idec/image/图标/home.png"alt="" class="nav-icon">Home</a>
                 </div>
                 
                 <div class="nav-item" id="experiments">
-                    <a href="#experiments" class="nav-link has-dropdown">Project</a>
+                    <a href="#experiments" class="nav-link has-dropdown">
+                        <img src="/2026_SynthImmunol/idec/image/图标/project.png"alt="" class="nav-icon">Project</a>
                     <div class="dropdown-menu">
-                        <a href="C:\Users\25233\Desktop\idec\background\background.html">Background</a>
-                        <a href="C:\Users\25233\Desktop\idec\design\design.html">Design</a>
-                        <a href="C:\Users\25233\Desktop\idec\result\result.html">Result</a>
-                        <a href="#flow-cytometry">Report</a>
-                        <a href="#data-analysis">Supplement</a>
+                        <a href="/2026_SynthImmunol/idec/background/background.html">Background</a>
+                        <a href="/2026_SynthImmunol/idec/design/design.html">Design</a>
+                        <a href="/2026_SynthImmunol/idec/result/result.html">Result</a>
+                        <a href="/2026_SynthImmunol/idec/report_maintext_SynthImmunol.pdf">Report</a>
+                        <a href="/2026_SynthImmunol/idec/Extended Data _SynthImmunol.pdf">Supplement</a>
                     </div>
                 </div>
                 
                 <div class="nav-item" id="projects">
-                    <a href="#projects" class="nav-link has-dropdown">Documents</a>
+                    <a href="#projects" class="nav-link has-dropdown">
+                        <img src="/2026_SynthImmunol/idec/image/图标/document.png"alt="" class="nav-icon">Documents</a>
                     <div class="dropdown-menu">
-                        <a href="C:\Users\25233\Desktop\idec\notebook\notebook.html">Lab notebook</a>
-                        <a href="C:\Users\25233\Desktop\idec\protocol\protocol.html">Protocols</a>  
+                        <a href="/2026_SynthImmunol/idec/notebook/notebook.html">Lab notebook</a>
+                        <a href="/2026_SynthImmunol/idec/protocol/protocol.html">Protocols</a>  
                     </div>
                 </div>
                  <div class="nav-item" id="publications">
-                    <a href="#publications" class="nav-link has-dropdown">ML-Model</a>
+                    <a href="#publications" class="nav-link has-dropdown">Challenge</a>
                 </div>
                 <div class="nav-item" id="team">
-                    <a href="#team" class="nav-link has-dropdown">Team</a>
+                    <a href="#team" class="nav-link has-dropdown">
+                        <img src="../idec/image/图标/team.png"alt="" class="nav-icon">Team</a>
                     <div class="dropdown-menu">
-                        <a href="C:\Users\25233\Desktop\idec\member\member1.html">Member</a>
-                        <a href="C:\Users\25233\Desktop\idec\Community\Community.html">Community</a>
+                        <a href="/2026_SynthImmunol/idec/member/member1.html">Member</a>
+                        <a href="/2026_SynthImmunol/idec/Community/Community.html">Community</a>
                     </div>
                 </div>
                 
@@ -420,7 +434,7 @@
              <div class="video-container">
                 <div class="video-wrapper">
                     <video id="video">
-                        <source src="C:\Users\25233\Downloads\纵隔.mp4" type="video/mp4">
+                        <source src="" type="video/mp4">
                         
                     </video>
                 </div>
