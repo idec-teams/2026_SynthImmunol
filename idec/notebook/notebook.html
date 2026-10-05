@@ -72,7 +72,7 @@
         
         .site-nav {
             display: flex;
-            gap: 25px;
+            gap: 15px;
             position: relative;
         }
          .nav-item {
@@ -84,7 +84,7 @@
     height: 50px;
     object-fit: contain; /* 保持图片比例，不变形 */
     flex-shrink: 0;      /* 防止图标被文字挤压变形 */
-    margin-right: 8px;   /* 图标与文字的间距 */
+    margin-right: 5px;   /* 图标与文字的间距 */
 }
         .nav-link {
             display: flex;
@@ -475,16 +475,18 @@
             position: relative;
             z-index: 5;
         }
-        
-        /* 页面标题 */
-        .page-title {
-            color: #2c3e50;
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        
+      .content-main::before {
+    content: "";
+    position: absolute;
+    top: 80px;                   /* 负值越大，露出越多 */
+    left: 10%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background: url('../image/所有图（除design头图）/notebook侧边栏/抽屉书柜/please\ click\ here.png') center / contain no-repeat;
+    z-index: -1;                   /* 低于实验区块 */
+    pointer-events: none;
+}
         /* 实验部分样式 */
         .experiment-section {
             background: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/大书柜.png') center top / 100% auto no-repeat;
@@ -828,34 +830,34 @@
             
             <nav class="sidebar-nav">
                 <ul>
-                    <li><button data-section="march" >
+                    <li><button data-section="november" >
                         <span class="nav-icon"></span>
                     </button></li>
-                    <li><button data-section="april" >
+                    <li><button data-section="december" >
                         <span class="nav-icon"></span>
                     </button></li>
-                    <li><button data-section="may" >
+                    <li><button data-section="january" >
                         <span class="nav-icon"></span>
                     </button></li>
-                    <li><button data-section="june">
+                    <li><button data-section="february">
                         <span class="nav-icon"></span>
                     </button></li>
-                    <li><button data-section="june">
+                    <li><button data-section="march">
                         <span class="nav-icon"></span>
                     </button></li>
-                    <li><button data-section="june">
+                    <li><button data-section="april">
                         <span class="nav-icon"></span>
                     </button></li>
-                    <li><button data-section="june">
-                        <span class="nav-icon"></span>
-                    </button></li>
-                    <li><button data-section="june">
+                    <li><button data-section="may">
                         <span class="nav-icon"></span>
                     </button></li>
                     <li><button data-section="june">
                         <span class="nav-icon"></span>
                     </button></li>
-                    <li><button data-section="june">
+                    <li><button data-section="july">
+                        <span class="nav-icon"></span>
+                    </button></li>
+                    <li><button data-section="august">
                         <span class="nav-icon"></span>
                     </button></li>
                 </ul>
@@ -867,53 +869,99 @@
         
         <!-- 主内容 -->
         <main class="content-main">
-            <h1 class="page-title"></h1>
-            
-            <!-- 三月实验部分 -->
-            <div id="section-march" class="content-panel">
+            <div id="section-november" class="content-panel">
                 <div class="experiment-section">
                     <div class="experiment-buttons">
-                        <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/1.Cell Thawing_English version.pdf" target="_blank" class="experiment-btn-e" style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/1.png');"></a>
-                        <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/1.Cell Thawing_Chinese version.pdf" target="_blank" class="experiment-btn-c" style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/2.png');"></a>
+                        <a href="../notebook/notebook 终版/1.Computational design strategy.pdf" target="_blank" class="experiment-btn-e" style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/1.png');"></a>
+                        <a href="../notebook/notebook 终版/2.RFDiffusion3-Based Protein Design.pdf" target="_blank" class="experiment-btn-c" style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/2.png');"></a>
                      </div>
                       <div class="experiment-buttons" style="margin-top: 7vh;">
- <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/11.Flow Cytometric Analysis of the Cell Cycle (II)_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/3.png');"></a>
+ <a href="../notebook/notebook 终版/3.ProteinMPNN-Based Sequence Design.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/3.png');"></a>
+                     <a href="../notebook/notebook 终版/4.AlphaFold3 Prediction.pdf" target="_blank" class="experiment-btn-c" style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/4.png');"></a>
                      </div>   
                 </div>
             </div>
-            <div id="section-april" class="content-panel">
+            <div id="section-december" class="content-panel">
                 <div class="experiment-section">
                     <div class="experiment-buttons">
-                        <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/5.Sample Preparation for Proteome Sequencing (I)_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/4.png');"></a>
-                        <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/5.Sample Preparation for Proteome Sequencing (I)_Chinese version.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/5.png');"></a>
+                        <a href="../notebook/notebook 终版/5.Rosetta and MD for ABC Selection.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/5.png');"></a>
+                        <a href="../notebook/notebook 终版/6.Homologous Recombination and pCDH Library Construction.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/6.png');"></a>
                     </div>
                 </div>
-                 <div class="experiment-buttons" style="margin-top: 7vh;">
- <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/11.Flow Cytometric Analysis of the Cell Cycle (II)_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/6.png');"></a>
-                 </div>
             </div>
             <!-- 五月实验 -->
-           <div id="section-may" class="content-panel">
+           <div id="section-january" class="content-panel">
             <div class="experiment-section">
                <div class="experiment-buttons" style="margin-top: 7vh;">
- <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/10.Flow Cytometric Analysis of the Cell Cycle (I)_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/7.png');"></a>
-                   <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/10.Flow Cytometric Analysis of the Cell Cycle (I)_Chinese version.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/8.png');"></a>
+ <a href="../notebook/notebook 终版/7.Lentivirus Packaging and Raji Cell Library Construction.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/7.png');"></a>
+                   <a href="../notebook/notebook 终版/8.Preparation of Fluorescent Complex and Flow Cytometric Detection of Complex Internalization.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/8.png');"></a>
                 </div>
+                <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="../notebook/notebook 终版/9.Genomic DNA third-generation sequencing.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/9.png');"></a>
+                 </div>
               
             </div>
            </div>
            
            <!-- 六月实验 -->
-           <div id="section-june" class="content-panel"><div class="experiment-section">
+           <div id="section-february" class="content-panel">
+            <div class="experiment-section">
                <div class="experiment-buttons" style="margin-top: 7vh;">
- <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/15.Transcriptomics Data Analysis_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/9.png');"></a>
-                   <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/15.Transcriptomics Data Analysis_Chinese version.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/10.png');"></a>
+ <a href="../notebook/notebook 终版/10.Rosetta Evaluation and MD Simulation for TOP Candidate Selection.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/10.png');"></a>
+                   <a href="../notebook/notebook 终版/11.SPR Measurement of Binding Affinity between A2B3C3-gp130 and IL-6-sIL-6Rα Complex.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/11.png');"></a>
                 </div>
                <div class="experiment-buttons" style="margin-top: 7vh;">
- <a href="https://raw.githubusercontent.com/idec-teams/2025_OncoStrat_NMU/main/static/PDFs/16.Proteomics Data Analysis_English version.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/11.png');"></a>
+ <a href="../notebook/notebook 终版/12.Lentiviral Transduction of A2B3C3-FcRγ in Raji Cells and Puromycin Selection.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/12.png');"></a>
                 </div>
-               
-               </div>
+            </div>
+            </div>
+            <div id="section-march" class="content-panel">
+            <div class="experiment-section">
+               <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="../notebook/notebook 终版/13.Construction of the gp130-caspase9 Suicide Selection System in Raji Cells.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/13.png');"></a>
+                   <a href="../notebook/notebook 终版/14.Construction of the dCas9-AIDΔ System.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/14.png');"></a>
+                </div>
+            </div>
+            </div>
+            <div id="section-april" class="content-panel"><div class="experiment-section">
+               <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="../notebook/notebook 终版/15.sgRNA Primer Design for dCas9-AIDΔ Targeted Mutagenesis.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/15.png');"></a>
+                   <a href="../notebook/notebook 终版/16.Transduction of sgRNA and Directed Evolution Screening of Raji Cells.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/16.png');"></a>
+                </div>
+            </div>
+            </div>
+            <div id="section-may" class="content-panel"><div class="experiment-section">
+               <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="../notebook/notebook 终版/17.Genomic DNA third-generation sequencing.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/17.png');"></a>
+                   <a href="../notebook/notebook 终版/18.AlphaFold3-Based Protein Interface Analysis and His-Tag Purification.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/18.png');"></a>
+                </div>
+            </div>
+            </div>
+            <div id="section-june" class="content-panel"><div class="experiment-section">
+               <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="../notebook/notebook 终版/19.SPR measurement of cytokine-receptor binding affinity.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/19.png');"></a>
+                </div>
+            </div>
+            </div>
+            <div id="section-july" class="content-panel">
+                <div class="experiment-section">
+               <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="../notebook/notebook 终版/20.Loading of designed protein onto macrophage surface (STAR-Trap generation) and flow cytometry validation.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/20.png');"></a>
+                   <a href="../notebook/notebook 终版/21.Endocytosis Assay.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/21.png');"></a>
+                </div>
+               <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="../notebook/notebook 终版/22.Confocal Imaging of Complex Uptake and Lysosomal Colocalization.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/22.png');"></a>
+                </div>
+            </div>
+            </div>
+            <div id="section-august" class="content-panel">
+                <div class="experiment-section">
+               <div class="experiment-buttons" style="margin-top: 7vh;">
+ <a href="../notebook/notebook 终版/23.Macrophage Polarization Detection of STAR-Trap.pdf" target="_blank" class="experiment-btn-e"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/23.png');"></a>
+                   <a href="../notebook/notebook 终版/24.Selective Inhibition of IL-6 Trans-signaling and Preservation of Classical Signaling by STAR-Trap Macrophages.pdf" target="_blank" class="experiment-btn-c"style="--btn-bg: url('../image/所有图（除design头图）/notebook侧边栏/notebook书元件+大书柜/书本元件/24.png');"></a>
+                </div>
+            </div>
+            </div>
               
 
 
