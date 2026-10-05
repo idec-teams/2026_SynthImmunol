@@ -74,7 +74,7 @@
         
         .site-nav {
             display: flex;
-            gap: 25px;
+            gap: 15px;
             position: relative;
         }
         
@@ -87,7 +87,7 @@
     height: 50px;
     object-fit: contain; /* 保持图片比例，不变形 */
     flex-shrink: 0;      /* 防止图标被文字挤压变形 */
-    margin-right: 8px;   /* 图标与文字的间距 */
+    margin-right: 5px;   /* 图标与文字的间距 */
 }
         .nav-link {
             display: flex;
@@ -271,12 +271,28 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
-        .section-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #7a7777;
-            margin-bottom: 30px;
-            text-align: justify;
+         .content-section {
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff9100, #ffd700);
+            border-radius: 2px;
         }
         /* 图片表格优化 */
         
@@ -333,7 +349,7 @@
         
        footer {
             background:url("../image/所有图（除design头图）/底部.png");
-            color: white;
+            color: rgb(0, 0, 0);
             padding: 40px 20px;
             text-align: center;
             margin-top: 60px;
@@ -407,11 +423,12 @@
         <main class="content-main">
             <!-- 内容区域 -->
             <div class="content-section">
+                <h2 class="section-title">Schematic of the design and screening workflow</h2>
                 <!-- 图片网格1 -->
                 <div class="single-image-container">
                     <img class="single-image" src="../design/design图/1.jpg">
                 </div>
-
+                <h2 class="section-title">Schematic of the second-round directed-evolution and sequencing workflow. </h2>
                 <!-- 图片网格2 -->
                 <div class="single-image-container">
                    <img class="single-image" src="../design/design图/2.png">
