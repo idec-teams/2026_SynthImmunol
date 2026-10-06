@@ -167,7 +167,7 @@
         .sidebar {
             width: 280px;
             flex-shrink: 0;
-            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            background: linear-gradient(145deg, #f8f9fa 10%,#D2B48C 90%);
             border-radius: 20px;
             padding: 25px 0;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -175,7 +175,7 @@
             position: sticky;
             top: 100px;
             border: 1px solid rgba(26, 35, 126, 0.1);
-            margin-top: 50px; /* 与顶部大图重叠一部分，增加视觉动感 */
+            margin-top: 85px; /* 与顶部大图重叠一部分，增加视觉动感 */
             margin-left: -40px; 
         }
         
@@ -230,11 +230,14 @@
         }
         
         .nav-icon {
-            margin-right: 12px;
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-        
+    margin-right: 12px;
+    width: 1.7rem;          /* 相当于原来的 font-size: 1.2rem */
+    height: 1.7rem;
+    object-fit: contain;    /* 保持比例，不拉伸 */
+    opacity: 0.8;
+    vertical-align: middle; /* 和文字对齐 */
+    display: inline-block;
+}
         /* 英雄区域 */
         .hero {
             height: 100vh;
@@ -617,26 +620,26 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li><a href="#Slide1" class="active">
-                        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Knowledge to Action
+                        <img src="../Community/目录图标/1 knowledge to action.png" alt="" class="nav-icon">Knowledge to Action
                     <li><a href="#Slide2">
-                        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Trust Gap
+                        <img src="../Community/目录图标/2 trust gap.png" alt="" class="nav-icon">Trust Gap
                     <li><a href="#Slide3">
-                        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Community Needs
+                        <img src="../Community/目录图标/3 community needs.png" alt="" class="nav-icon">Community Needs
                     </a></li>
                     <li><a href="#Slide4">
-                        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Tailored Outreach
+                        <img src="../Community/目录图标/4 tailored outreach.png" alt="" class="nav-icon">Tailored Outreach
                     </a></li>
                     <li><a href="#Slide5">
-                        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Simple Science
+                        <img src="../Community/目录图标/5 simple science.png" alt="" class="nav-icon">Simple Science
                     </a></li>
                     <li><a href="#Slide6">
-                    <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Community Action
+                    <img src="../Community/目录图标/6 community action.png" alt="" class="nav-icon">Community Action
                     </a></li>
                 <li><a href="#Slide7">
-                    <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Clinical Communication
+                    <img src="../Community/目录图标/7 clinical communication.png" alt="" class="nav-icon">Clinical Communication
                     </a></li>
                     <li><a href="#Slide8">
-                    <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>Long-Term Commitment
+                    <img src="../Community/目录图标/8 long-term commitment.png" alt="" class="nav-icon">Long-Term Commitment
                     </a></li>
             </nav>
         </aside>
