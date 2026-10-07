@@ -217,12 +217,14 @@
     padding: 30px 0;
     position: sticky;
     top: 100px;
-    overflow: visible;}
+    margin-top: 70px;
+    overflow: visible;
+}
 
 .sidebar-nav ul {
     list-style: none;
     padding:  5px 0 20px 0;
-    transform: translateY(-36px);     /* 整个导航列表上移15px */
+    transform: translateY(-12px);     /* 整个导航列表上移15px */
 }
 
 .sidebar-nav li {
@@ -236,8 +238,8 @@
     padding: 14px 0;
     color: #444;
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 1.1rem;
+    font-weight: 700;
     transition: all 0.3s ease;
     background: transparent;
     border: none;
@@ -587,8 +589,10 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li><a href="#preface" class="active">Preface</a></li>
+                    <li><a href="#il6">IL-6</a></li>
                     <li><a href="#denovo">Denovo Design</a></li>
                     <li><a href="#AID">AID</a></li>
+                    <li><a href="#shm">SHM</a></li>
                 </ul>
             </nav>
         </aside>
@@ -598,7 +602,11 @@
             <!-- 内容区域 -->
             <div class="content-section">
                 <h2 class="section-title" id="preface">Preface</h2>
-                 <div class="image-div">
+                <p class="section-text">
+                Inflammation is an essential defensive response of the body to infection and tissue injury. Its magnitude and duration are tightly regulated by the immune system. A variety of cytokines participate in host defense, tissue repair and the maintenance of immune homeostasis. However, upon sustained production or aberrant activation, these cytokines can drive chronic inflammation and tissue damage. Therefore, the regulation of inflammation is not merely about reducing the level of a single inflammatory mediator. More importantly, it requires distinguishing between physiological and pathological signals mediated by the same molecule, and selectively attenuating disease-associated signal output.
+                </p>
+                <h2 class="section-title" id="il6">IL-6</h2> 
+                <div class="image-div">
                     <img src="../image/wiki绘图/gp130.png" style="width: 100%; border-radius: 12px;">
                 </div>
             <!-- 图片网格1 -->
@@ -609,7 +617,7 @@
                    IL-6 signaling occurs through two principal modes. In classical signaling, IL-6 first binds membrane-bound IL-6 receptor α (mIL-6Rα), which is expressed mainly by hepatocytes and selected leukocyte subsets. By contrast, trans-signaling is initiated when IL-6 forms a complex with soluble IL-6Rα (sIL-6Rα), which subsequently recruits the ubiquitously expressed gp130. Because gp130 is broadly expressed across virtually all cell types, albeit at variable levels, trans-signaling extends IL-6 responsiveness to cells lacking mIL-6Rα, thereby contributing to inflammatory-cell recruitment, vascular endothelial activation, fibrosis, and the maintenance and amplification of chronic inflammation. Selective targeting of IL-6 trans-signaling may enable the inflammatory amplification loop to be uncoupled from basal immune homeostasis. The key is to obtain binders that selectively recognize the IL-6/sIL-6Rα complex over its free components and bind it tightly enough to compete with gp130. 
                 </p>
                 <div class="reference">
-                    <li>Figure quoted from Wang, M. J., Zhang, H. L., Chen, F., Guo, X. J., Liu, Q. G., & Hou, J. (2024). The double-edged effects of IL-6 in liver regeneration, aging, inflammation, and diseases. <em>Experimental Hematology &amp; Oncology, 13</em>(1), 62. <a href="https://doi.org/10.1186/s40164-024-00527-1" target="_blank">https://doi.org/10.1186/s40164-024-00527-1</a></li>
+                    <li>Figure quoted from Swaroop AK, Negi P, Kar A, Mariappan E, Natarajan J, Namboori P K K, Selvaraj J. Navigating IL-6: From molecular mechanisms to therapeutic breakthroughs. Cytokine Growth Factor Rev. 2024 Apr;76:48-76.<a href="https://doi.org/10.1016/j.cytogfr.2023.12.007" target="_blank">https://doi.org/10.1186/s40164-024-00527-1</a></li>
                 </div>
                 <h2 class="section-title" id="denovo">Denovo Design</h2>
                 <p class="section-text">
@@ -641,6 +649,7 @@
                    These clones are then gradually enriched for high-affinity variants through antigen-dependent selection and clonal expansion. 
                    This process couples sequence diversification, functional selection, and clonal amplification in a continuous manner within mammalian cells, providing a natural immunological foundation for the directed evolution of artificial proteins.
                 </p>
+                <h2 class="section-title" id="shm">SHM</h2>
                 <div class="image-div">
                     <img src="../image/wiki绘图/B细胞高频突变发展史 袁馨茹.png" style="width: 100%; border-radius: 12px;">
                 </div>
