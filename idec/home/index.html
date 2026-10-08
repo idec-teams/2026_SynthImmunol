@@ -226,6 +226,18 @@
             position: relative;
             z-index: 5;
         }
+        .left-text {
+    position: absolute;
+    left: -220px;           /* 往左移出主容器 */
+    top: 400px;
+    width: 200px;
+ font-family: "Great Vibes", cursive;
+    font-size: 4rem;
+    font-weight: 350;        /* 花体一般不要加粗，加粗会失真 */
+    line-height: 1.8;
+    color: #000000;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
         /* 主内容区域优化 */
         .content-main {
             flex: 1;
@@ -400,6 +412,9 @@
     </style>
     <!-- 添加Font Awesome图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="star-background" id="starBackground"></div>
@@ -461,6 +476,10 @@
 
     <!-- 重新设计的主内容区域 -->
     <div class="main-wrapper">
+         <div class="left-text">
+        OUR PROJECT
+    </div>
+
         <main class="content-main">
             
              <div class="video-container">
